@@ -97,7 +97,7 @@ mount --make-slave /mnt/gentoo/run
 # march指定了mac m1芯片，如果是amd64请自行修改, -j参数需要考虑内存，小心编译器爆内存
 COMMON_FLAGS="-march=armv8-a -O2 -pipe"
 MAKEOPTS="-j8"
-USE="-X grub"
+USE="-X grub git"
 GENTOO_MIRRORS="http://mirrors.tencent.com/gentoo/"
 ```
 执行下面命令换源
@@ -183,11 +183,31 @@ grub-mkconfig -o /boot/ESP/grub/grub.cfg
 ```
 9.  应用软件
 ```bash
-# locale定位
-emerge --ask sys-apps/mlocate
 # enable sshd
 systemctl enable sshd
-emerge --ask dev-vcs/git--ask dev-vcs/git go ssh zsh nvm docker
+
+# overlay
+emerge --ask app-eselect/eselect-repository
+emerge --ask dev-vcs/git
+eselect repository list
+eselect repository enable guru gentoo-zh
+emerge --sync
+
+# locale定位
+emerge --ask sys-apps/mlocate
+# overlay
+emerge --ask app-portage/layman
+
+echo "dev-util/rustup **" >> /etc/portage/package.accept_keywords/x
+echo "dev-db/mycli **" >> /etc/portage/package.accept_keywords/x
+echo "app-misc/trash-cli **" >> /etc/portage/package.accept_keywords/x
+echo "dev-vcs/lazygit **" >> /etc/portage/package.accept_keywords/x
+echo "dev-python/cli_helpers **" >> /etc/portage/package.accept_keywords/x
+echo "dev-python/tabulate **" >> /etc/portage/package.accept_keywords/x
+echo "dev-util/git-delta **" >> /etc/portage/package.accept_keywords/x
+echo "sys-apps/bat" >> /etc/portage/package.accept_keywords/x
+echo "app-shells/fzf" >> /etc/portage/package.accept_keywords/x
+emerge --ask go zsh nodejs app-containers/docker rustup mycli trash-cli htop mtr wget lazygit lrzsz git-delta htop aria2 lsd bat fzf dev-lang/lua sys-apps/ripgrep net-tools fd
 exit
 reboot
 ```
