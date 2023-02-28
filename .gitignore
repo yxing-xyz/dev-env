@@ -1,3 +1,4 @@
 gentoo.qcow2
 install-arm64-minimal-*.iso
 stage3-*.tar.xz
+linux.qcow2
