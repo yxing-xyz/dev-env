@@ -4,41 +4,62 @@
 qemu-img create -f qcow2 gentoo.qcow2 100G
 ```
 
-### mac m1 cd启动
+
 ```bash
+### mac m1 qemucd启动
 # 桥接网卡参数 -nic vmnet-bridged,ifname=en0 \
-sudo qemu-system-aarch64 \
+# -bios /opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-aarch64-code.fd \
+qemu-system-aarch64 \
     -machine virt \
     -accel hvf \
     -boot d \
     -cpu host \
     -smp 8 \
     -m 4096 \
-    -bios /opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-aarch64-code.fd \
-    -drive format=qcow2,file=linux.qcow2 \
+    -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-aarch64-code.fd \
+    -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-arm-vars.fd \
+    -drive format=qcow2,file=/Users/x/workspace/demo/gentoo/linux.qcow2 \
     -cdrom  install-arm64-minimal-20230226T234708Z.iso\
     -device virtio-gpu \
     -device usb-ehci \
     -device usb-kbd \
     -device usb-mouse \
     -nic user,hostfwd=tcp::3022-:22
-```
-### mac m1磁盘启动
-```bash
-sudo qemu-system-aarch64 \
+
+### mac m1 qemu图形化启动
+qemu-system-aarch64 \
     -machine virt \
     -accel hvf \
     -boot d \
     -cpu host \
     -smp 8 \
     -m 4096 \
-    -bios /opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-aarch64-code.fd \
-    -drive format=qcow2,file=linux.qcow2 \
+    -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-aarch64-code.fd \
+    -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-arm-vars.fd \
+    -drive format=qcow2,file=/Users/x/workspace/demo/gentoo/linux.qcow2 \
     -device virtio-gpu \
     -device usb-ehci \
     -device usb-kbd \
     -device usb-mouse \
     -nic user,hostfwd=tcp::3022-:22
+
+### mac m1 qemu禁用图形化和串口模拟器
+nohup qemu-system-aarch64 \
+    -machine virt \
+    -accel hvf \
+    -boot d \
+    -cpu host \
+    -smp 8 \
+    -m 4096 \
+    -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-aarch64-code.fd \
+    -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-arm-vars.fd \
+    -drive format=qcow2,file=/Users/x/workspace/demo/gentoo/linux.qcow2 \
+    -device virtio-gpu \
+    -device usb-ehci \
+    -device usb-kbd \
+    -device usb-mouse \
+    -nic user,hostfwd=tcp::3022-:22 \
+    -display none > /dev/null &
 ```
 
 
@@ -76,7 +97,7 @@ mount --make-slave /mnt/gentoo/run
 # march指定了mac m1芯片，如果是amd64请自行修改, -j参数需要考虑内存，小心编译器爆内存
 COMMON_FLAGS="-march=armv8-a -O2 -pipe"
 MAKEOPTS="-j8"
-USE="-X"
+USE="-X grub"
 GENTOO_MIRRORS="http://mirrors.tencent.com/gentoo/"
 ```
 执行下面命令换源
@@ -120,18 +141,20 @@ env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
 7. 配置内核
 7.1 使用 distribution内核，支持大多数硬件
 ```bash
-# grub, lilo传统启动使用
-# emerge --ask sys-kernel/installkernel-gentoo
+# emerge --ask sys-kernel/installkernel-systemd-boot
 
-emerge --ask sys-kernel/installkernel-systemd-boot
+# grub, lilo传统启动使用
+emerge --ask sys-kernel/installkernel-gentoo
 
 # 安装源码编译内核
 # emerge --ask sys-kernel/gentoo-kernel
 
 # 安装二进制内核
 emerge --ask sys-kernel/gentoo-kernel-bin
+
 # 清除旧软件包
 emerge --depclean
+
 # 为了节省空间，可以选择清除旧版本内核
 # emerge --prune sys-kernel/gentoo-kernel sys-kernel/gentoo-kernel-bin
 
@@ -154,8 +177,9 @@ passwd
 systemd-firstboot --prompt --setup-machine-id
 systemctl preset-all
 emerge --ask grub2 efibootmgr
-grub-install --target=arm64-efi --boot-directory=/boot/ESP/EFI/ --efi-directory=/boot/ESP --bootloader-id=grubgrub-install --target=arm64-efi --boot-directory=/boot/ESP/EFI/ --efi-directory=/boot/ESP --bootloader-id=grub
-/usr/sbin/grub-mkconfig -o /boot/grub/grub.cfg
+grub-install --target=arm64-efi --boot-directory=/boot/ESP/ --efi-directory=/boot/ESP --bootloader-id=grub
+# 生成的grub.cfg必须放在上面一条命令安装的grub目录中
+grub-mkconfig -o /boot/ESP/grub/grub.cfg
 ```
 9.  应用软件
 ```bash
@@ -163,7 +187,24 @@ grub-install --target=arm64-efi --boot-directory=/boot/ESP/EFI/ --efi-directory=
 emerge --ask sys-apps/mlocate
 # enable sshd
 systemctl enable sshd
-emerge --ask go ssh zsh nvm docker
+emerge --ask dev-vcs/git--ask dev-vcs/git go ssh zsh nvm docker
 exit
 reboot
+```
+
+
+## efibootmgr调整启动顺序
+```bash
+efibootmgr -o 0,1,2
+```
+## GRUB手动引导linux
+```bash
+# 查看uuid
+ls (hd0,gpt3)
+# 设置root加载linux
+linux (hd0,gpt3)/boot/vmlinuz-6.1.12-gentoo-dist root=UUID=cef878343-3434-3fdd-2323343
+# 加载initrd
+initrd (hd0,gpt3)/boot/initramfs-6.1.12-gentoo-dist.img
+# 启动
+boot
 ```
