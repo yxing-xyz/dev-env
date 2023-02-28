@@ -197,6 +197,9 @@ emerge --sync
 emerge --ask sys-apps/mlocate
 # overlay
 emerge --ask app-portage/layman
+# tmux
+emerge --ask tmux
+
 
 echo "dev-util/rustup **" >> /etc/portage/package.accept_keywords/x
 echo "dev-db/mycli **" >> /etc/portage/package.accept_keywords/x
