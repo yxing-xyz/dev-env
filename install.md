@@ -60,6 +60,15 @@ nohup qemu-system-aarch64 \
     -device usb-mouse \
     -nic user,hostfwd=tcp::3022-:22 \
     -display none > /dev/null &
+### 快照
+#### 创建快照
+qemu-img snapshot -c 2023-03-01 linux.qcow2
+#### 查看快照
+qemu-img snapshot -l linux.qcow2
+#### 删除快照
+qemu-img snapshot -d 2023-03-01 ./linux.qcow2
+#### 使用快照
+qemu-img snapshot -a 2023-03-01 linux.qcow2
 ```
 
 
