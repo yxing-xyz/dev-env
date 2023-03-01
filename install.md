@@ -183,23 +183,25 @@ grub-mkconfig -o /boot/ESP/grub/grub.cfg
 ```
 9.  应用软件
 ```bash
-# enable sshd
-systemctl enable sshd
+# sudo
+emerge --ask sudo
 
 # overlay
 emerge --ask app-eselect/eselect-repository
 emerge --ask dev-vcs/git
 eselect repository list
+emerge --ask app-portage/layman
 eselect repository enable guru gentoo-zh
 emerge --sync
 
+
 # locale定位
 emerge --ask sys-apps/mlocate
-# overlay
-emerge --ask app-portage/layman
+
+# enable sshd
+systemctl enable sshd
 # tmux
 emerge --ask tmux
-
 
 echo "dev-util/rustup **" >> /etc/portage/package.accept_keywords/x
 echo "dev-db/mycli **" >> /etc/portage/package.accept_keywords/x
@@ -210,8 +212,15 @@ echo "dev-python/tabulate **" >> /etc/portage/package.accept_keywords/x
 echo "dev-util/git-delta **" >> /etc/portage/package.accept_keywords/x
 echo "sys-apps/bat" >> /etc/portage/package.accept_keywords/x
 echo "app-shells/fzf" >> /etc/portage/package.accept_keywords/x
-emerge --ask go zsh nodejs app-containers/docker rustup mycli trash-cli htop mtr wget lazygit lrzsz git-delta htop aria2 lsd bat fzf dev-lang/lua sys-apps/ripgrep net-tools fd
+emerge --ask rustup dev-lang/lua go nodejs dev-python/pip
+emerge --ask app-containers/docker zsh trash-cli mycli htop mtr wget lazygit git-delta htop aria2 lsd bat fzf sys-apps/ripgrep net-tools fd lrzsz
+
+useradd -m -s /bin/zsh -G wheel x
+passwd x
+# mycli依赖
+pip3 install sqlglot --user
 exit
+
 reboot
 ```
 
