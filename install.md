@@ -202,17 +202,19 @@ emerge --ask sys-apps/mlocate
 systemctl enable sshd
 # tmux
 emerge --ask tmux
-
-echo "dev-util/rustup **" >> /etc/portage/package.accept_keywords/x
-echo "dev-db/mycli **" >> /etc/portage/package.accept_keywords/x
-echo "app-misc/trash-cli **" >> /etc/portage/package.accept_keywords/x
-echo "dev-vcs/lazygit **" >> /etc/portage/package.accept_keywords/x
-echo "dev-python/cli_helpers **" >> /etc/portage/package.accept_keywords/x
-echo "dev-python/tabulate **" >> /etc/portage/package.accept_keywords/x
-echo "dev-util/git-delta **" >> /etc/portage/package.accept_keywords/x
-echo "sys-apps/bat **" >> /etc/portage/package.accept_keywords/x
-echo "app-shells/fzf **" >> /etc/portage/package.accept_keywords/x
-echo "www-apps/hugo **" >> /etc/portage/package.accept_keywords/x
+tee > /etc/portage/package.accept_keywords/x <<EOF
+dev-util/rustup **
+dev-db/mycli **
+app-misc/trash-cli **
+dev-vcs/lazygit **
+dev-python/cli_helpers **
+dev-python/tabulate **
+dev-util/git-delta **
+sys-apps/bat **
+app-shells/fzf **
+www-apps/hugo **
+net-misc/zssh **
+EOF
 emerge --ask rustup dev-lang/lua go nodejs dev-python/pip
 emerge --ask app-containers/docker zsh trash-cli mycli htop mtr wget lazygit git-delta htop aria2 lsd bat fzf sys-apps/ripgrep net-tools fd lrzsz netcat tcpdump hugo
 
