@@ -15,16 +15,16 @@ qemu-system-aarch64 \
     -boot d \
     -cpu host \
     -smp 8 \
-    -m 4096 \
+    -m 16384 \
     -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-aarch64-code.fd \
     -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-arm-vars.fd \
     -drive format=qcow2,file=/Users/x/workspace/demo/gentoo/linux.qcow2 \
-    -cdrom  install-arm64-minimal-20230226T234708Z.iso\
+    -cdrom  /Users/x/workspace/demo/gentoo/install-arm64-minimal-20230226T234708Z.iso \
     -device virtio-gpu \
     -device usb-ehci \
     -device usb-kbd \
     -device usb-mouse \
-    -nic user,hostfwd=tcp::3022-:22
+    -nic user,hostfwd=tcp::22-:22
 
 ### mac m1 qemu图形化启动
 qemu-system-aarch64 \
@@ -33,7 +33,7 @@ qemu-system-aarch64 \
     -boot d \
     -cpu host \
     -smp 8 \
-    -m 4096 \
+    -m 16384 \
     -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-aarch64-code.fd \
     -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-arm-vars.fd \
     -drive format=qcow2,file=/Users/x/workspace/demo/gentoo/linux.qcow2 \
@@ -41,16 +41,16 @@ qemu-system-aarch64 \
     -device usb-ehci \
     -device usb-kbd \
     -device usb-mouse \
-    -nic user,hostfwd=tcp::3022-:22
+    -nic user,hostfwd=tcp::22-:22
 
 ### mac m1 qemu禁用图形化和串口模拟器
-nohup qemu-system-aarch64 \
+qemu-system-aarch64 \
     -machine virt \
     -accel hvf \
     -boot d \
     -cpu host \
     -smp 8 \
-    -m 4096 \
+    -m 16384 \
     -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-aarch64-code.fd \
     -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-arm-vars.fd \
     -drive format=qcow2,file=/Users/x/workspace/demo/gentoo/linux.qcow2 \
@@ -58,8 +58,8 @@ nohup qemu-system-aarch64 \
     -device usb-ehci \
     -device usb-kbd \
     -device usb-mouse \
-    -nic user,hostfwd=tcp::3022-:22 \
-    -display none > /dev/null &
+    -nic user,hostfwd=tcp::22-:22 \
+    -display non
 ### 快照
 #### 创建快照
 qemu-img snapshot -c 2023-03-01 linux.qcow2
@@ -128,6 +128,23 @@ export PS1="(chroot) ${PS1}"
 ```bash
 emerge-webrsyncemerge-webrsync
 emerge --syncemerge --sync
+
+tee > /etc/portage/package.accept_keywords/x <<EOF
+sys-fs/fuse-exfat **
+sys-fs/exfat-utils **
+dev-util/rustup **
+dev-db/mycli **
+app-misc/trash-cli **
+dev-vcs/lazygit **
+dev-python/cli_helpers **
+dev-python/tabulate **
+dev-util/git-delta **
+sys-apps/bat **
+app-shells/fzf **
+www-apps/hugo **
+net-misc/zssh **
+EOF
+
 eselect profile list
 # 这里选的systemd无桌面，带桌面的自行修改
 eselect profile set 14
@@ -135,10 +152,19 @@ emerge --ask --verbose --update --deep --newuse @world
 # emerge --ask app-portage/cpuid2cpuflags
 # echo "*/* $(cpuid2cpuflags)" > /etc/portage/package.use/00cpu-flags
 emerge --ask eix gentoolkit app-text/tree vim emacs
+emerge --ask sys-apps/pciutils
+emerge --ask sys-fs/e2fsprogs     #ext2、ext3、ext4
+emerge --ask sys-fs/xfsprogs      #xfs
+emerge --ask sys-fs/dosfstools    #fat32
+emerge --ask sys-fs/ntfs3g        #ntfs
+emerge --ask sys-fs/fuse-exfat    #exfat
+emerge --ask sys-fs/exfat-utils   #exfat
 ```
 
 6. systemd设置时区
 ```bash
+# 设置domain
+echo 'search yxing.xyz' >> /etc/resolv.conf
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 echo "zh_CN.UTF-8 UTF-8" >> /etc/locale.gen
@@ -148,17 +174,16 @@ eselect locale set zh_CN.utf8
 env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
 ```
 7. 配置内核
-7.1 使用 distribution内核，支持大多数硬件
+7.1 使用 gentoo distribution内核，支持大多数硬件
 ```bash
 # emerge --ask sys-kernel/installkernel-systemd-boot
 
 # grub, lilo传统启动使用
 emerge --ask sys-kernel/installkernel-gentoo
 
-# 安装源码编译内核
-# emerge --ask sys-kernel/gentoo-kernel
-
-# 安装二进制内核
+# 分支1 gentoo内核树构建内核
+# emerge --config sys-kernel/gentoo-kernel
+# 分支2 安装二进制内核
 emerge --ask sys-kernel/gentoo-kernel-bin
 
 # 清除旧软件包
@@ -169,6 +194,15 @@ emerge --depclean
 
 # 只要内核更新就要重建inittramfs
 emerge --ask @module-rebuild
+```
+
+7.2 手动编译内核
+```bash
+emerge --ask sys-kernel/gentoo-sources
+make -j10
+make modules_install
+dracut --kver=6.1.12-gentoo
+make install
 ```
 
 8. 挂载表和主机，网络，系统信息
@@ -211,19 +245,6 @@ emerge --ask sys-apps/mlocate
 systemctl enable sshd
 # tmux
 emerge --ask tmux
-tee > /etc/portage/package.accept_keywords/x <<EOF
-dev-util/rustup **
-dev-db/mycli **
-app-misc/trash-cli **
-dev-vcs/lazygit **
-dev-python/cli_helpers **
-dev-python/tabulate **
-dev-util/git-delta **
-sys-apps/bat **
-app-shells/fzf **
-www-apps/hugo **
-net-misc/zssh **
-EOF
 emerge --ask rustup dev-lang/lua go nodejs dev-python/pip
 emerge --ask app-containers/docker zsh trash-cli mycli htop mtr wget lazygit git-delta htop aria2 lsd bat fzf sys-apps/ripgrep net-tools fd lrzsz netcat tcpdump hugo
 
@@ -251,4 +272,39 @@ linux (hd0,gpt3)/boot/vmlinuz-6.1.12-gentoo-dist root=UUID=cef878343-3434-3fdd-2
 initrd (hd0,gpt3)/boot/initramfs-6.1.12-gentoo-dist.img
 # 启动
 boot
+```
+
+
+## portage使用内存文件系统加速
+提高SSD的寿命
+```bash
+echo 'tmpfs /var/tmp/portage tmpfs rw,nosuid,noatime,nodev,size=14G,mode=775,uid=portage,gid=portage,x-mount.mkdir=775 0 0' >> /etc/fstab
+mount /var/tmp/portage
+
+# 方法一指定特殊包不使用tmpfs
+mkdir -p /etc/portage/env
+echo 'PORTAGE_TMPDIR = "/var/tmp/notmpfs"' > /etc/portage/env/notmpfs.conf
+mkdir /var/tmp/notmpfs
+chown portage:portage /var/tmp/notmpfs
+mkdir -p /etc/portage/env
+echo 'PORTAGE_TMPDIR = "/var/tmp/notmpfs"' > /etc/portage/env/notmpfs.conf
+mkdir /var/tmp/notmpfs
+chown portage:portage /var/tmp/notmpfs
+chmod 775 /var/tmp/notmpfschmod 775 /var/tmp/notmpfs
+echo 'www-client/chromium notmpfs.conf' >> /etc/portage/package.env
+
+# 方法二增加tmpfs内存或者交换分区
+# mount -o remount,size=N /var/tmp/portage
+
+# 方法三 指定交换文件
+# 内存不够解决方法2
+## 创建交换文件
+touch /swap.img
+hmod 600 /swap.img
+dd if=/dev/zero bs=1024M of=/swap.img count=8
+mkswap /swap.img
+
+## 打开和关闭交换文件
+swapon /swap.img
+swapoff /swap.img
 ```
