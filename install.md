@@ -108,6 +108,7 @@ COMMON_FLAGS="-march=armv8-a -O2 -pipe"
 MAKEOPTS="-j8"
 USE="-X grub git"
 GENTOO_MIRRORS="http://mirrors.tencent.com/gentoo/"
+ACCEPT_LICENSE="*"
 ```
 执行下面命令换源
 ```bash
@@ -246,7 +247,9 @@ systemctl enable sshd
 # tmux
 emerge --ask tmux
 emerge --ask rustup dev-lang/lua go nodejs dev-python/pip
-emerge --ask app-containers/docker zsh trash-cli mycli htop mtr wget lazygit git-delta htop aria2 lsd bat fzf sys-apps/ripgrep net-tools fd lrzsz netcat tcpdump hugo
+emerge --ask app-containers/docker zsh trash-cli mycli htop mtr lazygit git-delta \
+wget htop aria2 lsd bat fzf sys-apps/ripgrep net-tools fd lrzsz netcat tcpdump hugo \
+neofetch net-dns/bind-tools sshfs
 
 useradd -m -s /bin/zsh -G wheel x
 passwd x
