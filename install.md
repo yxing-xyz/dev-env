@@ -200,6 +200,8 @@ emerge --ask @module-rebuild
 7.2 手动编译内核
 ```bash
 emerge --ask sys-kernel/gentoo-sources
+make ARCH=arm64 defconfig
+make menuconfig
 make -j10
 make modules_install
 dracut --kver=6.1.12-gentoo
