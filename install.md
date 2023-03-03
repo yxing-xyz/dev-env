@@ -100,36 +100,31 @@ mount --bind /run /mnt/gentoo/run
 mount --make-slave /mnt/gentoo/run
 ```
 
-3. make.conf,换源
-编辑`/mnt/gentoo/etc/portage/make.conf`,修改增加以下内容
-```txt
-# march指定了mac m1芯片，如果是amd64请自行修改, -j参数需要考虑内存，小心编译器爆内存
-COMMON_FLAGS="-march=armv8-a -O2 -pipe"
-MAKEOPTS="-j8"
-USE="-X grub git"
-GENTOO_MIRRORS="http://mirrors.tencent.com/gentoo/"
-ACCEPT_LICENSE="*"
-```
-执行下面命令换源
-```bash
-mirrorselect -i -o >> /mnt/gentoo/etc/portage/make.conf
-mkdir --parents /mnt/gentoo/etc/portage/repos.conf
-cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/gentoo.conf
-sed "s|rsync://rsync.gentoo.org/gentoo-portage|rsync://mirrors.tuna.tsinghua.edu.cn/gentoo-portage|" /mnt/gentoo/etc/portage/repos.conf/gentoo.conf
-```
-
-4. 进入新环境
+3. 进入新环境
 ```bash
 chroot /mnt/gentoo /bin/bash
 source /etc/profile
 export PS1="(chroot) ${PS1}"
 ```
-
-5. 同步源, 选配置文件, USE
+4. make.conf,换源
+5.
+编辑`/etc/portage/make.conf`,修改增加以下内容
+```txt
+# march指定了mac m1芯片，如果是amd64请自行修改, -j参数需要考虑内存，小心编译器爆内存
+COMMON_FLAGS="-march=armv8-a -O2 -pipe"
+MAKEOPTS="-j8"
+#- MAKEOPTS="-j20"
+USE="grub git -selinux -X systemd"
+#- USE="grub git -selinux X systemd gtk qt5"
+GENTOO_MIRRORS="http://mirrors.tencent.com/gentoo/"
+ACCEPT_LICENSE="*"
+```
+执行下面命令换源
 ```bash
-emerge-webrsyncemerge-webrsync
-emerge --syncemerge --sync
-
+# mirrorselect -i -o >> /mnt/gentoo/etc/portage/make.conf
+mkdir --parents /etc/portage/repos.conf
+cp /usr/share/portage/config/repos.conf /etc/portage/repos.conf/gentoo.conf
+sed -i  "s|rsync://rsync.gentoo.org/gentoo-portage|rsync://mirrors.tuna.tsinghua.edu.cn/gentoo-portage|" /etc/portage/repos.conf/gentoo.conf
 tee > /etc/portage/package.accept_keywords/x <<EOF
 sys-fs/fuse-exfat **
 sys-fs/exfat-utils **
@@ -145,10 +140,19 @@ app-shells/fzf **
 www-apps/hugo **
 net-misc/zssh **
 EOF
+```
 
+
+5. 同步源, 选配置文件, USE
+```bash
+emerge-webrsyncemerge-webrsync
+emerge --syncemerge --sync
 eselect profile list
-# 这里选的systemd无桌面，带桌面的自行修改
-eselect profile set 14
+# rm64 nodesktop systemd
+eselect profile set default/linux/arm64/17.0/systemd
+# amd64 desktop systemd
+# eselect profile set default/linux/amd64/17.1/desktop/systemd
+
 emerge --ask --verbose --update --deep --newuse @world
 # emerge --ask app-portage/cpuid2cpuflags
 # echo "*/* $(cpuid2cpuflags)" > /etc/portage/package.use/00cpu-flags
@@ -233,10 +237,8 @@ grub-mkconfig -o /boot/ESP/grub/grub.cfg
 emerge --ask sudo
 
 # overlay
-emerge --ask app-eselect/eselect-repository
-emerge --ask dev-vcs/git
-eselect repository list
-emerge --ask app-portage/layman
+emerge --ask app-eselect/eselect-repository dev-vcs/git app-portage/layman
+# eselect repository list
 eselect repository enable guru gentoo-zh
 emerge --sync
 
@@ -247,9 +249,9 @@ emerge --ask sys-apps/mlocate
 # enable sshd
 systemctl enable sshd
 # tmux
-emerge --ask tmux
-emerge --ask rustup dev-lang/lua go nodejs dev-python/pip
-emerge --ask app-containers/docker zsh trash-cli mycli htop mtr lazygit git-delta \
+emerge tmux \
+rustup dev-lang/lua go nodejs dev-python/pip \
+app-containers/docker zsh trash-cli mycli htop mtr lazygit git-delta \
 wget htop aria2 lsd bat fzf sys-apps/ripgrep net-tools fd lrzsz netcat tcpdump hugo \
 neofetch net-dns/bind-tools sshfs
 
