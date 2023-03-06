@@ -185,7 +185,8 @@ env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
 
 # grub, lilo传统启动使用
 emerge --ask sys-kernel/installkernel-gentoo
-
+# 固件
+emerge --ask sys-kernel/linux-firmware
 # 分支1 gentoo内核树构建内核
 # emerge --config sys-kernel/gentoo-kernel
 # 分支2 安装二进制内核
@@ -203,6 +204,7 @@ emerge --ask @module-rebuild
 
 7.2 手动编译内核
 ```bash
+emerge --ask sys-kernel/linux-firmware
 emerge --ask sys-kernel/gentoo-sources
 make ARCH=arm64 defconfig
 # make ARCH=x86_64 defconfig
@@ -217,7 +219,6 @@ make install
 8. 挂载表和主机，网络，系统信息
 ```bash
 ## UUID用blk命令看， 找到root分区
-
 echo "UUID=590a4b06-dcee-4761-b1f1-eb34810523cd		/		        ext4		noatime		0 1" >> /etc/fstab
 echo "UUID=C1D9-5170		                        /boot/ESP		vfat		noatime		0 1" >> /etc/fstab
 echo 'hostname="x"' >> /etc/conf.d/hostname
@@ -258,7 +259,7 @@ wget htop aria2 lsd bat fzf sys-apps/ripgrep net-tools fd lrzsz netcat tcpdump h
 neofetch net-dns/bind-tools sshfs
 
 ## desktop
-emerge x11-wm/awesome
+emerge x11-drivers/xf86-video-amdgpu x11-wm/awesome
 
 useradd -m -s /bin/zsh -G wheel x
 passwd x
