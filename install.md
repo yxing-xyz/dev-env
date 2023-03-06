@@ -205,9 +205,11 @@ emerge --ask @module-rebuild
 ```bash
 emerge --ask sys-kernel/gentoo-sources
 make ARCH=arm64 defconfig
+# make ARCH=x86_64 defconfig
 make menuconfig
 make -j10
 make modules_install
+emerge --ask sys-kernel/dracut
 dracut --kver=6.1.12-gentoo
 make install
 ```
@@ -226,7 +228,7 @@ passwd
 # systemd
 systemd-firstboot --prompt --setup-machine-id
 systemctl preset-all
-emerge --ask grub2 efibootmgr
+emerge --ask sys-boot/grub efibootmgr
 grub-install --target=arm64-efi --boot-directory=/boot/ESP/ --efi-directory=/boot/ESP --bootloader-id=grub
 # 生成的grub.cfg必须放在上面一条命令安装的grub目录中
 grub-mkconfig -o /boot/ESP/grub/grub.cfg
@@ -254,6 +256,9 @@ rustup dev-lang/lua go nodejs dev-python/pip \
 app-containers/docker zsh trash-cli mycli htop mtr lazygit git-delta \
 wget htop aria2 lsd bat fzf sys-apps/ripgrep net-tools fd lrzsz netcat tcpdump hugo \
 neofetch net-dns/bind-tools sshfs
+
+## desktop
+emerge x11-wm/awesome
 
 useradd -m -s /bin/zsh -G wheel x
 passwd x
