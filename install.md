@@ -118,6 +118,8 @@ USE="grub git -selinux -X systemd"
 #- USE="grub git -selinux X systemd gtk qt5"
 GENTOO_MIRRORS="http://mirrors.tencent.com/gentoo/"
 ACCEPT_LICENSE="*"
+# VIDEO_CARDS="amdgpu radeonsi"
+# L10N="zh-CN"
 ```
 执行下面命令换源
 ```bash
@@ -204,7 +206,7 @@ emerge --ask @module-rebuild
 
 7.2 手动编译内核
 ```bash
-emerge --ask sys-kernel/linux-firmware
+emerge --ask sys-kernel/linux-firmware  sys-firmware/intel-microcode
 emerge --ask sys-kernel/gentoo-sources
 make ARCH=arm64 defconfig
 # make ARCH=x86_64 defconfig
@@ -255,11 +257,13 @@ systemctl enable sshd
 emerge tmux \
 rustup dev-lang/lua go nodejs dev-python/pip \
 app-containers/docker zsh trash-cli mycli htop mtr lazygit git-delta \
-wget htop aria2 lsd bat fzf sys-apps/ripgrep net-tools fd lrzsz netcat tcpdump hugo \
+wget htop aria2 lsd bat fzf sys-apps/ripgrep net-tools fd lrzsz netcat tcpdump hugo lsof \
 neofetch net-dns/bind-tools sshfs
 
 ## desktop
-emerge x11-drivers/xf86-video-amdgpu x11-wm/awesome
+emerge x11-drivers/xf86-video-amdgpu x11-wm/awesome www-client/google-chrome rofi feh scrot telegram-desktop vlc
+## 单独安装太吃内存
+emerge calibre
 
 useradd -m -s /bin/zsh -G wheel x
 passwd x
@@ -297,13 +301,9 @@ mount /var/tmp/portage
 # 方法一指定特殊包不使用tmpfs
 mkdir -p /etc/portage/env
 echo 'PORTAGE_TMPDIR = "/var/tmp/notmpfs"' > /etc/portage/env/notmpfs.conf
-mkdir /var/tmp/notmpfs
+mkdir -p /var/tmp/notmpfs
 chown portage:portage /var/tmp/notmpfs
-mkdir -p /etc/portage/env
-echo 'PORTAGE_TMPDIR = "/var/tmp/notmpfs"' > /etc/portage/env/notmpfs.conf
-mkdir /var/tmp/notmpfs
-chown portage:portage /var/tmp/notmpfs
-chmod 775 /var/tmp/notmpfschmod 775 /var/tmp/notmpfs
+chmod 775 /var/tmp/notmpfs
 echo 'www-client/chromium notmpfs.conf' >> /etc/portage/package.env
 
 # 方法二增加tmpfs内存或者交换分区
