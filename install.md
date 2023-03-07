@@ -117,7 +117,9 @@ MAKEOPTS="-j8"
 USE="grub git -selinux -X systemd"
 #- USE="grub git -selinux X systemd gtk qt5"
 GENTOO_MIRRORS="http://mirrors.tencent.com/gentoo/"
-ACCEPT_LICENSE="*"
+# ACCEPT_LICENSE="*"
+ACCEPT_LICENSE="linux-fw-redistributable no-source-code google-chrome"
+
 # VIDEO_CARDS="amdgpu radeonsi"
 # L10N="zh-CN"
 ```
@@ -253,6 +255,7 @@ emerge --ask sys-apps/mlocate
 
 # enable sshd
 systemctl enable sshd
+systemctl start sshd
 # tmux
 emerge tmux \
 rustup dev-lang/lua go nodejs dev-python/pip \
@@ -265,6 +268,7 @@ emerge x11-drivers/xf86-video-amdgpu x11-wm/awesome www-client/google-chrome rof
 ## 单独安装太吃内存
 emerge calibre
 
+sed -i 's/enforce=everyone/enforce=none/' /etc/security/passwdqc.conf
 useradd -m -s /bin/zsh -G wheel x
 passwd x
 # mycli依赖
@@ -320,4 +324,9 @@ mkswap /swap.img
 ## 打开和关闭交换文件
 swapon /swap.img
 swapoff /swap.img
+```
+
+## 打包stage3
+```bash
+tar --exclude=proc --exclude=/var/cache --exclude=boot --exclude=run --exclude=sys --exclude=tmp --exclude="gentoo.tar.gz" -czvf ./gentoo.tar.gz /
 ```
