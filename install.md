@@ -214,7 +214,7 @@ make menuconfig
 make -j10
 make modules_install
 emerge --ask sys-kernel/dracut
-dracut --kver=6.1.12-gentoo
+dracut --early-microcode --kver=6.1.12-gentoo
 make install
 ```
 
