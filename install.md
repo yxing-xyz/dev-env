@@ -117,7 +117,6 @@ MAKEOPTS="-j8"
 USE="grub git -selinux -X systemd"
 #- USE="grub git -selinux X systemd gtk qt5"
 GENTOO_MIRRORS="http://mirrors.tencent.com/gentoo/"
-# ACCEPT_LICENSE="*"
 ACCEPT_LICENSE="linux-fw-redistributable no-source-code google-chrome"
 
 # VIDEO_CARDS="amdgpu radeonsi"
