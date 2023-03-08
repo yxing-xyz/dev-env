@@ -331,9 +331,24 @@ tar --exclude=proc --exclude=/var/cache --exclude=boot --exclude=run --exclude=s
 ```
 
 ## qemu启动内核
+编写init程序
+> gcc -o init init.c -static
+```c
+#include<unistd.h>
+#include<stdio.h>
+#include<linux/reboot.h>
+#include<sys/reboot.h>
+#include <unistd.h>
+
+int main(int argc, char *argv[])
+{
+    printf("this is the init program !\n");
+    sleep(60);
+    reboot(LINUX_REBOOT_CMD_RESTART);
+    return 0;
+}
+```
 ```bash
-# 编写init程序
-gcc -o init init.c -static
 # 制作initramfs
 ./make_initramfs.sh rootfs initramfs.cpio.gz
 # 解压initramfs， initramfs可能被压缩，需要提前解压缩一次
