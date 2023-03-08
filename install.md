@@ -331,13 +331,13 @@ tar --exclude=proc --exclude=/var/cache --exclude=boot --exclude=run --exclude=s
 ```
 
 ## qemu启动内核
-
-
 ```bash
 # 编写init程序
 gcc -o init init.c -static
 # 制作initramfs
 ./make_initramfs.sh rootfs initramfs.cpio.gz
+# 解压initramfs， initramfs可能被压缩，需要提前解压缩一次
+cpio -idmv < ./initramfs-6.1.12-gentoo.imgv
 
 qemu-system-x86_64 \
 -smp 1 \

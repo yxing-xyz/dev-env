@@ -3,3 +3,4 @@ install-arm64-minimal-*.iso
 stage3-*.tar.xz
 linux.qcow2
 bak
+tmp
