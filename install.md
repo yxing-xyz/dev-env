@@ -329,3 +329,20 @@ swapoff /swap.img
 ```bash
 tar --exclude=proc --exclude=/var/cache --exclude=boot --exclude=run --exclude=sys --exclude=tmp --exclude="gentoo.tar.gz" -czvf ./gentoo.tar.gz /
 ```
+
+## qemu启动内核
+
+
+```bash
+# 编写init程序
+gcc -o init init.c -static
+# 制作initramfs
+./make_initramfs.sh rootfs initramfs.cpio.gz
+
+qemu-system-x86_64 \
+-smp 1 \
+-m 512 \
+-kernel bzImage \
+-append "root=/dev/ram0 rootfstype=ramfs rw init=/init" \
+-initrd initramfs.cpio.gz
+```
