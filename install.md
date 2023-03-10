@@ -142,6 +142,7 @@ sys-apps/bat **
 app-shells/fzf **
 www-apps/hugo **
 net-misc/zssh **
+net-im/telegram-desktop-bin **
 EOF
 ```
 
