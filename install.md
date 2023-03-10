@@ -92,6 +92,7 @@ mount /dev/vda1 /mnt/gentoo/boot/ESP
 tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
 cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
 mount --types proc /proc /mnt/gentoo/proc
+# umount -R 可以递归解除挂载
 mount --rbind /sys /mnt/gentoo/sys
 mount --make-rslave /mnt/gentoo/sys
 mount --rbind /dev /mnt/gentoo/dev
@@ -361,4 +362,23 @@ qemu-system-x86_64 \
 -kernel bzImage \
 -append "root=/dev/ram0 rootfstype=ramfs rw init=/init" \
 -initrd initramfs.cpio.gz
+```
+
+
+## 制作gentoo rootfs
+```bash
+mkfs -t ext4 livecd.img
+mount -o loop livecd.img /mnt
+cp -ax /{bin,etc,lib,lib64,opt,sbin,usr,var} /mnt
+mkdir -p /mnt/{proc,sys,dev,run,tmp,home,media}
+
+# 打压缩包
+# tar --xattrs-include='*.*' --numeric-owner -czvf ./rootfs.targ.gz /mnt
+```
+
+##  分区扩容
+```bash
+growpart /dev/vdb 1
+e2fsck -f /dev/vdb1
+resize2fs /dev/vdb1
 ```
