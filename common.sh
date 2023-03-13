@@ -32,6 +32,10 @@ init() {
 net-im/telegram-desktop-bin **
 net-misc/proxychains **
 net-proxy/v2rayA **
+app-misc/trash-cli **
+dev-db/mycli **
+dev-vcs/lazygit **
+dev-python/cli_helpers **
 EOF
 
     tee >/etc/portage/package.use/x <<EOF
