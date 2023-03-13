@@ -78,7 +78,7 @@ app() {
         net-misc/dhcpcd sys-apps/net-tools
 
     ## dev
-    emerge -u dev-lang/go dev-lang/lua dev-lang/rust-bin nodejs
+    emerge -u dev-lang/go dev-lang/lua nodejs
 
     ## terminal
     emerge -u app-containers/docker app-shells/zsh app-misc/neofetch app-misc/trash-cli \
