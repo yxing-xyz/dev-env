@@ -83,5 +83,5 @@ app() {
         sys-apps/fd sys-apps/lsd sys-process/lsof sys-apps/ripgrep sys-process/htop sys-process/iotop
 
     ## dev
-    emerge -u dev-lang/go dev-lang/lua dev-lang/rust-bin dev-util/rustup nodejs
+    emerge -u dev-lang/go dev-lang/lua dev-lang/rust-bin nodejs
 }
