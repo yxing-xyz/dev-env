@@ -77,11 +77,11 @@ app() {
         net-misc/openssh net-misc/rsync net-misc/wget net-wireless/iwd net-misc/networkmanager \
         net-misc/dhcpcd sys-apps/net-tools
 
+    ## dev
+    emerge -u dev-lang/go dev-lang/lua dev-lang/rust-bin nodejs
+
     ## terminal
     emerge -u app-containers/docker app-shells/zsh app-misc/neofetch app-misc/trash-cli \
         app-shells/fzf app-text/tree dev-db/mycli dev-vcs/lazygit dev-util/git-delta sys-apps/bat \
         sys-apps/fd sys-apps/lsd sys-process/lsof sys-apps/ripgrep sys-process/htop sys-process/iotop
-
-    ## dev
-    emerge -u dev-lang/go dev-lang/lua dev-lang/rust-bin nodejs
 }
