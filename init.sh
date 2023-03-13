@@ -1,7 +1,7 @@
-#!bin/sh
+#!/bin/sh
 
 ## portage tmp
-echo 'tmpfs /var/tmp/portage tmpfs rw,nosuid,noatime,nodev,size=14G,mode=775,uid=portage,gid=portage,x-mount.mkdir=775 0 0' >>/etc/fstab
+echo 'tmpfs /var/tmp/portage tmpfs rw,nosuid,noatime,nodev,size=32G,mode=775,uid=portage,gid=portage,x-mount.mkdir=775 0 0' >>/etc/fstab
 mount /var/tmp/portage
 
 # 方法一指定特殊包不使用tmpfs
