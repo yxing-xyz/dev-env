@@ -150,9 +150,6 @@ resize2fs /dev/vdb1
 
 ## install gentoo
 下载livecd进入, 或者使用docker进入
-```bash
-docker run -dit --name gentoo -v home:/home  -p 1994:22  --privileged --hostname gentoo-builder gentoo/stage3
-```
 ### 1. parted分区
 ```bash
 ##
