@@ -1,8 +1,4 @@
 #!/bin/sh
-wget https://kgithub.com/v2rayA/v2rayA/releases/download/v2.0.1/v2raya_linux_arm64_2.0.1
-mv ./v2raya_linux_arm64_2.0.1 /usr/local/bin/v2raya
-chmod u+x /usr/local/bin/v2raya
-
 source ./common.sh
 init
 

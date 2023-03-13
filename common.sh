@@ -14,12 +14,11 @@ init() {
     echo 'app-admin/sudo notmpfs.conf' >>/etc/portage/package.env
 
     # profile config
-    echo 'hostname="x"' >>/etc/conf.d/hostname
+    echo 'hostname="x"' > /etc/conf.d/hostname
     echo 'search yxing.xyz' >>/etc/resolv.conf
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
     echo "en_US.UTF-8 UTF-8" >>/etc/locale.gen
     echo "zh_CN.UTF-8 UTF-8" >>/etc/locale.gen
-    eselect locale set zh_CN.utf8
     locale-gen
     sed -i 's/enforce=everyone/enforce=none/' /etc/security/passwdqc.conf
 
@@ -65,6 +64,7 @@ app() {
         app-alternatives/cpio \
         net-misc/proxychains
     sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
+    eselect locale set zh_CN.utf8
     eselect repository enable guru gentoo-zh
     eix-sync
 
