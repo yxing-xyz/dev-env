@@ -197,14 +197,12 @@ echo 'www-client/chromium notmpfs.conf' >> /etc/portage/package.env
 # 方法三 指定交换文件
 # 内存不够解决方法2
 ## 创建交换文件
-touch /swap.img
-hmod 600 /swap.img
-dd if=/dev/zero bs=1024M of=/swap.img count=8
-mkswap /swap.img
+dd if=/dev/zero of=/var/cache/swap bs=1024M count=20
+chmod 600 /var/cache/swap
+mkswap /var/cache/swap
+swapon /var/cache/swap
 
-## 打开和关闭交换文件
-swapon /swap.img
-swapoff /swap.img
+swapoff /var/cache/swap
 ```
 ### 3. gentoo linux内核
 ```bash
