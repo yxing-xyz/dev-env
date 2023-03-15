@@ -238,6 +238,8 @@ equery g bo
 equery d go
 # 指定版本
 emerge "=dev-lang/go-1.19.5"
+# 重新构建包管理树
+emerge @preserved-rebuild
 ```
 
 ### 5. systemd初始化设置

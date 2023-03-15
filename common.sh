@@ -39,7 +39,7 @@ dev-python/cli_helpers **
 app-misc/diff-so-fancy **
 EOF
 
-    tee >/etc/portage/package.use/x <<EOF
+    tee >>/etc/portage/package.use/x <<EOF
 media-fonts/nerd-fonts codenewroman
 net-analyzer/mtr -gtk
 EOF
