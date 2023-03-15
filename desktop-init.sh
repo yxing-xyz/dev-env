@@ -56,4 +56,4 @@ emerge -u sys-kernel/gentoo-sources sys-kernel/linux-firmware x11-drivers/xf86-i
     www-client/google-chrome app-editors/vscode app-i18n/ibus-rime net-im/telegram-desktop-bin feh scrot media-gfx/flameshot \
     gnome-base/gnome-keyring gnome-extra/nm-applet lxde-base/lxappearance media-fonts/nerd-fonts media-fonts/source-han-mono \
     media-fonts/source-han-sans media-fonts/source-han-serif www-apps/hugo scrot vlc app-containers/docker media-sound/netease-cloud-music \
-    app-text/calibre krita gimp blender mypaint
+    app-text/calibre krita gimp mypaint
