@@ -42,6 +42,7 @@ EOF
     tee >>/etc/portage/package.use/x <<EOF
 media-fonts/nerd-fonts codenewroman
 net-analyzer/mtr -gtk
+dev-lang/ghc -llvm
 EOF
 }
 sync() {
@@ -79,7 +80,7 @@ app() {
         net-misc/dhcpcd sys-apps/net-tools
 
     ## dev
-    emerge -u dev-lang/go dev-lang/lua nodejs dev-lang/rust
+    emerge -u dev-lang/go dev-lang/lua nodejs dev-lang/rust dev-lang/ghc
 
     ## terminal
     emerge -u app-containers/docker-cli app-shells/zsh app-misc/neofetch app-misc/trash-cli \

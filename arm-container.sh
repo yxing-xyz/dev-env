@@ -24,7 +24,7 @@ LC_MESSAGES=C
 ACCEPT_KEYWORDS="~arm64"
 KEYWORDS="~arm64"
 MAKEOPTS="-j8"
-USE="-X -qt -gtk -systemd -openrc"
+USE="binary -test -X -qt -gtk -systemd -openrc"
 ACCEPT_LICENSE="linux-fw-redistributable no-source-code google-chrome Microsoft-vscode Vic-Fieger-License"
 GENTOO_MIRRORS="http://mirrors.tencent.com/gentoo/"
 EOF
