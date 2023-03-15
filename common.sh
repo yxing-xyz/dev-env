@@ -36,6 +36,7 @@ app-misc/trash-cli **
 dev-db/mycli **
 dev-vcs/lazygit **
 dev-python/cli_helpers **
+app-misc/diff-so-fancy **
 EOF
 
     tee >/etc/portage/package.use/x <<EOF

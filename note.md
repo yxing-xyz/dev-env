@@ -223,9 +223,11 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 ### 4. 更新世界, 常用包管理命令
 ```bash
-sudo emerge --update --deep --newuse @world
+emerge --ask --update --deep --newuse @world
+# 删除包
+emerge --ask -C
 # 深度清理
-emerge --depclean
+emerge --ask --depclean
 # 查看已安安装包
 eix-installed -a
 # 查看字符串属于哪个包
@@ -234,6 +236,8 @@ equery b ls
 equery g bo
 # 查看包被依赖
 equery d go
+# 指定版本
+emerge "=dev-lang/go-1.19.5"
 ```
 
 ### 5. systemd初始化设置
