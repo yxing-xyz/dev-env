@@ -80,7 +80,7 @@ app() {
         net-misc/dhcpcd sys-apps/net-tools
 
     ## dev
-    emerge -u dev-lang/go dev-lang/lua nodejs dev-lang/rust dev-lang/ghc
+    emerge -u dev-lang/go dev-lang/lua
 
     ## terminal
     emerge -u app-containers/docker-cli app-shells/zsh app-misc/neofetch app-misc/trash-cli \
