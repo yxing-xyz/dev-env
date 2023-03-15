@@ -31,7 +31,7 @@ KEYWORDS="~amd64"
 VIDEO_CARDS="amdgpu"
 MAKEOPTS="-j8"
 USE="grub git -selinux X systemd gtk -qt5 networkmanager alsa"
-ACCEPT_LICENSE="linux-fw-redistributable no-source-code google-chrome Microsoft-vscode Vic-Fieger-License"
+ACCEPT_LICENSE="linux-fw-redistributable no-source-code google-chrome Microsoft-vscode Vic-Fieger-License WPS-EULA NetEase as-is"
 GENTOO_MIRRORS="http://mirrors.tencent.com/gentoo/"
 L10N="zh-CN"
 EOF
@@ -48,9 +48,12 @@ chmod u+x ./v2raya
 mv ./v2raya /usr/local/bin/v2raya
 
 ## desktop app
+### 解决循环依赖
+USE=-opengl emerge media-libs/opencolorio'
 emerge -u sys-kernel/gentoo-sources sys-kernel/linux-firmware x11-drivers/xf86-input-libinput x11-drivers/xf86-video-amdgpu \
     x11-wm/awesome media-sound/alsa-utils x11-apps/xinput x11-apps/xset x11-misc/picom x11-misc/rofi x11-misc/xautolock \
-    x11-misc/xsel x11-terms/st x11-terms/xterm xfce-base/thunar \
-    www-client/google-chrome app-editors/vscode app-i18n/ibus-rime net-im/telegram-desktop-bin feh media-gfx/flameshot \
+    x11-misc/xsel x11-terms/st x11-terms/xterm xfce-base/thunar bluez net-wireless/bluez-tools app-office/wps-office media-fonts/ttf-wps-fonts \
+    www-client/google-chrome app-editors/vscode app-i18n/ibus-rime net-im/telegram-desktop-bin feh scrot media-gfx/flameshot \
     gnome-base/gnome-keyring gnome-extra/nm-applet lxde-base/lxappearance media-fonts/nerd-fonts media-fonts/source-han-mono \
-    media-fonts/source-han-sans media-fonts/source-han-serif app-text/calibre www-apps/hugo scrot vlc app-containers/docker
+    media-fonts/source-han-sans media-fonts/source-han-serif www-apps/hugo scrot vlc app-containers/docker media-sound/netease-cloud-music \
+    app-text/calibre krita gimp blender mypaint
