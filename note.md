@@ -226,13 +226,13 @@ grub-mkconfig -o /boot/grub/grub.cfg
 emerge --ask --update --deep --newuse @world
 # 深度清理
 emerge --ask --depclean
-# 删除包
+# 删除包，如果是顶层包，merge树会移除包，中间包只是移除顶层依赖关系
 emerge --ask -c sudo
 # 指定版本
 emerge "=dev-lang/go-1.19.5"
 # 重新构建包管理树
 emerge @preserved-rebuild
-# emerge将包转为间接依赖或者孤立包(可以深度自动清理掉)
+# 重新安装包，不使用顶层依赖
 emerge --oneshot sudo
 # 查看已安安装包
 eix-installed -a
