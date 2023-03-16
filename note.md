@@ -246,8 +246,10 @@ equery g bo
 equery d go
 # 查看哪些包使用这个标志
 equery h llvm
-# 清除二进制包
-eclean packages
+# 清除源文件/var/cache/distfiles
+eclean-dist --deep
+# 清除二进制包/var/cache/binpkgs
+eclean-pkg --deep
 # 重建二进制包索引
 emaint binhost --fix
 ```

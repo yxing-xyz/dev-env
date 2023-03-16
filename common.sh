@@ -37,6 +37,7 @@ dev-db/mycli **
 dev-vcs/lazygit **
 dev-python/cli_helpers **
 app-misc/diff-so-fancy **
+sys-cluster/k9scli **
 EOF
     ## use
     tee >>/etc/portage/package.use/x <<EOF
