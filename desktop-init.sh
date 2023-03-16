@@ -2,10 +2,7 @@
 source ./common.sh
 init
 tee >>/etc/portage/profile/profile.bashrc <<EOF
-export PATH="/opt/.cargo/bin:\$PATH"
-RUST_STABLE=/opt/.rustup/toolchains/stable-x86_64-unknown-linux-gnu
-rustup toolchain link build-stable \$RUST_STABLE
-rustup default build-stable
+export PATH="/opt/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin:\$PATH"
 EOF
 
 ## make.conf
