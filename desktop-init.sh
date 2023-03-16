@@ -25,7 +25,7 @@ FFLAGS="${COMMON_FLAGS}"
 LC_MESSAGES=C
 
 #### x
-## FEATURES="buildpkg"
+FEATURES="buildpkg"
 ## ossfs gentoo-distfiles-yxing-xyz /var/cache/distfiles -o url=http://oss-cn-hangzhou.aliyuncs.com
 ## PORTAGE_BINHOST="https://gentoo-distfiles-yxing-xyz.oss-cn-hangzhou.aliyuncs.com"
 ACCEPT_KEYWORDS="~amd64"
