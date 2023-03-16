@@ -109,6 +109,7 @@ app() {
     emerge -u app-containers/docker-cli app-shells/zsh app-misc/neofetch app-misc/trash-cli \
         app-shells/fzf app-text/tree dev-db/mycli dev-vcs/lazygit dev-util/git-delta sys-apps/bat \
         sys-apps/fd sys-apps/lsd sys-process/lsof sys-apps/ripgrep sys-process/htop sys-process/iotop \
-        strace cloc dev-util/shellcheck-bin app-admin/helm exa sshfs cmus app-misc/jq diff-so-fancy caddy
+        strace cloc dev-util/shellcheck-bin app-admin/helm exa sshfs cmus app-misc/jq diff-so-fancy caddy \
+        www-apps/hugo 
 
 }

@@ -26,7 +26,6 @@ LC_MESSAGES=C
 
 #### x
 FEATURES="buildpkg"
-## ossfs gentoo-distfiles-yxing-xyz /var/cache/distfiles -o url=http://oss-cn-hangzhou.aliyuncs.com
 ## PORTAGE_BINHOST="https://gentoo-distfiles-yxing-xyz.oss-cn-hangzhou.aliyuncs.com"
 ACCEPT_KEYWORDS="~amd64"
 KEYWORDS="~amd64"
@@ -51,11 +50,11 @@ mv ./v2raya /usr/local/bin/v2raya
 
 ## desktop app
 ### 解决循环依赖
-USE=-opengl emerge media-libs/opencolorio'
-emerge -u sys-kernel/gentoo-sources sys-kernel/linux-firmware x11-drivers/xf86-input-libinput x11-drivers/xf86-video-amdgpu \
+emerge -u sys-kernel/gentoo-sources sys-kernel/linux-firmware
+emerge -u  x11-drivers/xf86-input-libinput x11-drivers/xf86-video-amdgpu \
     x11-wm/awesome media-sound/alsa-utils x11-apps/xinput x11-apps/xset x11-misc/picom x11-misc/rofi x11-misc/xautolock \
     x11-misc/xsel x11-terms/st x11-terms/xterm xfce-base/thunar bluez net-wireless/bluez-tools app-office/wps-office media-fonts/ttf-wps-fonts \
     www-client/google-chrome app-editors/vscode app-i18n/ibus-rime net-im/telegram-desktop-bin feh scrot media-gfx/flameshot \
     gnome-base/gnome-keyring gnome-extra/nm-applet lxde-base/lxappearance media-fonts/nerd-fonts media-fonts/source-han-mono \
-    media-fonts/source-han-sans media-fonts/source-han-serif www-apps/hugo scrot vlc app-containers/docker media-sound/netease-cloud-music \
+    media-fonts/source-han-sans media-fonts/source-han-serif scrot vlc app-containers/docker media-sound/netease-cloud-music \
     app-text/calibre krita gimp mypaint
