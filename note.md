@@ -250,6 +250,8 @@ equery h llvm
 eclean-dist --deep
 # 清除二进制包/var/cache/binpkgs
 eclean-pkg --deep
+# 生成分发二进制安装包
+quickpkg "*/*"
 # 重建二进制包索引
 emaint binhost --fix
 ```
