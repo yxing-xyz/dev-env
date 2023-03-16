@@ -14,7 +14,7 @@ init() {
     echo 'app-admin/sudo notmpfs.conf' >>/etc/portage/package.env
 
     # profile config
-    echo 'hostname="x"' > /etc/conf.d/hostname
+    echo 'hostname="x"' >/etc/conf.d/hostname
     echo 'search yxing.xyz' >>/etc/resolv.conf
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
     echo "en_US.UTF-8 UTF-8" >>/etc/locale.gen
@@ -38,11 +38,18 @@ dev-vcs/lazygit **
 dev-python/cli_helpers **
 app-misc/diff-so-fancy **
 EOF
-
+    ## use
     tee >>/etc/portage/package.use/x <<EOF
 media-fonts/nerd-fonts codenewroman
 net-analyzer/mtr -gtk
 dev-lang/ghc -llvm
+EOF
+    ## private
+    mkdir -p /etc/portage/profile/package.provided
+    tee >/etc/portage/profile/package.provided/x <<EOF
+dev-lang/rust-1.67.1
+dev-lang/rust-bin-1.67.1
+virtual/rust-1.67.1
 EOF
 }
 sync() {
@@ -56,7 +63,7 @@ update() {
 }
 
 app() {
-    emerge -u sudo app-eselect/eselect-repository eix gentoolkit eix dev-vcs/git \
+    emerge -u sudo app-eselect/eselect-repository eix gentoolkit dev-vcs/git \
         app-text/tree vim emacs dev-vcs/git app-misc/tmux \
         sys-apps/pciutils \
         sys-fs/e2fsprogs \
@@ -68,24 +75,28 @@ app() {
         net-misc/dhcpcd \
         sys-boot/grub efibootmgr \
         app-alternatives/cpio \
+        app-portage/cpuid2cpuflags \
         net-misc/proxychains
     sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
     eselect locale set zh_CN.utf8
     eselect repository enable guru gentoo-zh
     eix-sync
 
+    curl https://sh.rustup.rs -sSf | RUSTUP_HOME=/opt/.rustup sh -s -- -y
+    mv ./.cargo /opt
+
     ## net
     emerge -u net-analyzer/mtr net-analyzer/netcat net-analyzer/tcpdump net-dialup/lrzsz \
         net-misc/openssh net-misc/rsync net-misc/wget net-wireless/iwd net-misc/networkmanager \
-        net-misc/dhcpcd sys-apps/net-tools
+        net-misc/dhcpcd sys-apps/net-tools net-dns/bind-tools
 
     ## dev
-    emerge -u dev-lang/go dev-lang/lua
+    emerge -u dev-lang/go dev-lang/lua sys-devel/clang
 
     ## terminal
     emerge -u app-containers/docker-cli app-shells/zsh app-misc/neofetch app-misc/trash-cli \
         app-shells/fzf app-text/tree dev-db/mycli dev-vcs/lazygit dev-util/git-delta sys-apps/bat \
         sys-apps/fd sys-apps/lsd sys-process/lsof sys-apps/ripgrep sys-process/htop sys-process/iotop \
-        strace cloc shellcheck app-admin/helm exa sshfs cmus app-misc/jq diff-so-fancy caddy
+        strace cloc dev-util/shellcheck-bin app-admin/helm exa sshfs cmus app-misc/jq diff-so-fancy caddy
 
 }

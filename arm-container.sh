@@ -1,6 +1,13 @@
 #!/bin/sh
 source ./common.sh
 init
+## rustup
+tee >>/etc/portage/profile/profile.bashrc <<EOF
+export PATH="/opt/.cargo/bin:\$PATH"
+RUST_STABLE=/opt/.rustup/toolchains/stable-aarch64-unknown-linux-gnu
+rustup toolchain link build-stable \$RUST_STABLE
+rustup default build-stable
+EOF
 
 ## make.conf
 tee >/etc/portage/make.conf <<EOF

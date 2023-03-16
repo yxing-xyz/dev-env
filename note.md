@@ -236,6 +236,8 @@ emerge @preserved-rebuild
 emerge --oneshot sudo
 # 查看已安安装包
 eix-installed -a
+# 查看依赖的顶层包
+eix --color -c --world
 # 查看字符串属于哪个包
 equery b ls
 # 查看包依赖
@@ -244,6 +246,10 @@ equery g bo
 equery d go
 # 查看哪些包使用这个标志
 equery h llvm
+# 清除二进制包
+eclean packages
+# 重建二进制包索引
+emaint binhost --fix
 ```
 
 ### 5. systemd初始化设置
