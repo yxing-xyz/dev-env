@@ -31,7 +31,6 @@ init() {
     tee >/etc/portage/package.accept_keywords/x <<EOF
 net-im/telegram-desktop-bin **
 net-misc/proxychains **
-net-proxy/v2rayA **
 app-misc/trash-cli **
 dev-db/mycli **
 dev-vcs/lazygit **
@@ -113,6 +112,6 @@ app() {
         app-shells/fzf app-text/tree dev-db/mycli dev-vcs/lazygit dev-util/git-delta sys-apps/bat \
         sys-apps/fd sys-apps/lsd sys-process/lsof sys-apps/ripgrep sys-process/htop sys-process/iotop \
         strace cloc dev-util/shellcheck-bin app-admin/helm exa sshfs cmus app-misc/jq diff-so-fancy caddy \
-        www-apps/hugo
+        www-apps/hugo v2ray-bin
 
 }
