@@ -83,7 +83,9 @@ app() {
         app-alternatives/cpio \
         app-portage/cpuid2cpuflags \
         net-misc/proxychains
-    sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
+
+    mkdir -p /etc/sudoers.d
+    echo '%wheel ALL=(ALL:ALL) ALL' > /etc/sudoers.d/wheel
     eselect locale set zh_CN.utf8
     eselect repository enable guru gentoo-zh
     eix-sync
@@ -110,6 +112,6 @@ app() {
         app-shells/fzf app-text/tree dev-db/mycli dev-vcs/lazygit dev-util/git-delta sys-apps/bat \
         sys-apps/fd sys-apps/lsd sys-process/lsof sys-apps/ripgrep sys-process/htop sys-process/iotop \
         strace cloc dev-util/shellcheck-bin app-admin/helm exa sshfs cmus app-misc/jq diff-so-fancy caddy \
-        www-apps/hugo 
+        www-apps/hugo
 
 }
