@@ -254,6 +254,8 @@ eclean-pkg --deep
 quickpkg "*/*"
 # 重建二进制包索引
 emaint binhost --fix
+# 重新安装所有包
+emerge -e @world
 ```
 
 ### 5. systemd初始化设置
