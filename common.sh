@@ -82,7 +82,8 @@ app() {
         sys-boot/grub efibootmgr \
         app-alternatives/cpio \
         app-portage/cpuid2cpuflags \
-        net-misc/proxychains
+        net-misc/proxychains \
+        eclean-kernel
 
     mkdir -p /etc/sudoers.d
     echo '%wheel ALL=(ALL:ALL) ALL' > /etc/sudoers.d/wheel
@@ -92,12 +93,12 @@ app() {
 
     # rust binary
     curl https://sh.rustup.rs -sSf | RUSTUP_HOME=/opt/.rustup sh -s -- -y
-    mv ./.cargo /opt
+    #mv /root/.cargo /opt
 
     # nodejs binary
     git clone https://github.com/nvm-sh/nvm.git --depth 1 /opt/.nvm && source /opt/.nvm/nvm.sh
     nvm install --lts
-    nvm use lts
+    nvm use --lts
 
     ## net
     emerge -u net-analyzer/mtr net-analyzer/netcat net-analyzer/tcpdump net-dialup/lrzsz \
