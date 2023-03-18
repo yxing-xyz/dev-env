@@ -75,7 +75,7 @@ emerge -u  x11-drivers/xf86-input-libinput x11-drivers/xf86-video-amdgpu \
     x11-wm/awesome media-sound/alsa-utils x11-apps/xinput x11-apps/xset x11-misc/picom x11-misc/rofi x11-misc/xautolock \
     x11-misc/xsel x11-terms/st x11-terms/xterm xfce-base/thunar bluez net-wireless/bluez-tools app-office/wps-office media-fonts/ttf-wps-fonts \
     www-client/google-chrome app-editors/vscode app-i18n/ibus-rime net-im/telegram-desktop-bin feh scrot media-gfx/flameshot \
-    gnome-base/gnome-keyring gnome-extra/nm-applet lxde-base/lxappearance media-fonts/nerd-fonts media-fonts/source-han-mono \
+    gnome-base/gnome-keyring seahorse gnome-extra/nm-applet lxde-base/lxappearance media-fonts/nerd-fonts media-fonts/source-han-mono \
     media-fonts/source-han-sans media-fonts/source-han-serif scrot vlc app-containers/docker media-sound/netease-cloud-music \
     app-text/calibre krita gimp mypaint
 
