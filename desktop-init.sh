@@ -80,7 +80,10 @@ emerge -u  x11-drivers/xf86-input-libinput x11-drivers/xf86-video-amdgpu \
     app-text/calibre krita gimp mypaint
 
 
-
+## group
 # gpasswd -a x pcap
 # gpasswd -a x wheel
 # gpasswd -a x plugdev
+
+## grub cmdline
+# quiet loglevel=3 systemd.show_status=auto rd.udev.log_level=3
