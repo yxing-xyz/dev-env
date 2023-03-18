@@ -43,6 +43,26 @@ update
 localectl set-keymap us
 localectl set-locale LANG=zh_CN.utf8
 app
+
+
+# wpa 守护进程, 或者手动自己启动也可以
+#tee > /etc/wpa_supplicant/wpa_supplicant.conf-wlan0 <<EOF
+## Allow users in the 'wheel' group to control wpa_supplicant
+#ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=wheel
+#
+## Make this file writable for wpa_gui / wpa_cli
+#update_config=1
+#EOF
+#cd /etc/systemd/system/multi-user.target.wants
+#ln -s /lib/systemd/system/wpa_supplicant@.service wpa_supplicant@wlan0.service
+
+# 关机之前记住网卡和蓝牙锁状态
+rfkill unlock all
+systemctl restart systemd-rfkill
+systemctl enable systemd-rfkill
+systemctl restart  NetworkManager.service
+systemctl enable  NetworkManager.service
+systemctl enable NetworkManager-wait-online.service
 ## proxy
 wget https://kgithub.com/v2rayA/v2rayA/releases/download/v2.0.1/v2raya_linux_x64_2.0.1 -o ./v2raya
 chmod u+x ./v2raya
@@ -58,3 +78,9 @@ emerge -u  x11-drivers/xf86-input-libinput x11-drivers/xf86-video-amdgpu \
     gnome-base/gnome-keyring gnome-extra/nm-applet lxde-base/lxappearance media-fonts/nerd-fonts media-fonts/source-han-mono \
     media-fonts/source-han-sans media-fonts/source-han-serif scrot vlc app-containers/docker media-sound/netease-cloud-music \
     app-text/calibre krita gimp mypaint
+
+
+
+# gpasswd -a x pcap
+# gpasswd -a x wheel
+# gpasswd -a x plugdev

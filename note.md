@@ -144,6 +144,19 @@ e2fsck -f /dev/vdb1
 resize2fs /dev/vdb1
 ```
 
+## wpa_cli
+```bash
+# 创建网络返回网络ID
+wpa_cli -i wlan0 add_network
+# 设置ssid
+wpa_cli -i wlan0 set_network 0 ssid '"B701"'
+# 设置psk
+wpa_cli -i wlan0 set_network 0 psk '"nalzj4ka"'
+# 启用网络
+wpa_cli -i wlan0 enable_network 0
+# 保存网络
+wpa_cli -i wlan0 save_config
+```
 
 
 
