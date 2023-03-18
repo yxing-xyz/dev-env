@@ -43,6 +43,7 @@ EOF
 media-fonts/nerd-fonts codenewroman
 net-analyzer/mtr -gtk
 dev-lang/ghc -llvm
+net-wireless/wpa_supplicant tkip
 EOF
     ## private
     mkdir -p /etc/portage/profile/package.provided
@@ -82,7 +83,8 @@ app() {
         app-alternatives/cpio \
         app-portage/cpuid2cpuflags \
         net-misc/proxychains \
-        eclean-kernel
+        eclean-kernel \
+        usbutils
 
     mkdir -p /etc/sudoers.d
     echo '%wheel ALL=(ALL:ALL) ALL' > /etc/sudoers.d/wheel
@@ -112,6 +114,6 @@ app() {
         app-shells/fzf app-text/tree dev-db/mycli dev-vcs/lazygit dev-util/git-delta sys-apps/bat \
         sys-apps/fd sys-apps/lsd sys-process/lsof sys-apps/ripgrep sys-process/htop sys-process/iotop \
         strace cloc dev-util/shellcheck-bin app-admin/helm exa sshfs cmus app-misc/jq diff-so-fancy caddy \
-        www-apps/hugo v2ray-bin
+        www-apps/hugo v2ray-bin ntp
 
 }
