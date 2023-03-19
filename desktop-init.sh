@@ -40,33 +40,7 @@ EOF
 sync
 eselect profile set default/linux/amd64/17.1/desktop/systemd
 update
-localectl set-keymap us
-localectl set-locale LANG=zh_CN.utf8
 app
-
-
-# wpa 守护进程, 或者手动自己启动也可以
-#tee > /etc/wpa_supplicant/wpa_supplicant.conf-wlan0 <<EOF
-## Allow users in the 'wheel' group to control wpa_supplicant
-#ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=wheel
-#
-## Make this file writable for wpa_gui / wpa_cli
-#update_config=1
-#EOF
-#cd /etc/systemd/system/multi-user.target.wants
-#ln -s /lib/systemd/system/wpa_supplicant@.service wpa_supplicant@wlan0.service
-
-# 关机之前记住网卡和蓝牙锁状态
-rfkill unlock all
-systemctl restart systemd-rfkill
-systemctl enable systemd-rfkill
-systemctl restart  NetworkManager.service
-systemctl enable  NetworkManager.service
-systemctl enable NetworkManager-wait-online.service
-## proxy
-wget https://kgithub.com/v2rayA/v2rayA/releases/download/v2.0.1/v2raya_linux_x64_2.0.1 -o ./v2raya
-chmod u+x ./v2raya
-mv ./v2raya /usr/local/bin/v2raya
 
 ## desktop app
 ### 解决循环依赖
@@ -79,11 +53,62 @@ emerge -u  x11-drivers/xf86-input-libinput x11-drivers/xf86-video-amdgpu acpi \
     media-fonts/source-han-sans media-feonts/source-han-serif scrot vlc mpv app-containers/podman media-sound/netease-cloud-music \
     app-text/calibre krita gimp mypaint
 
+# wpa 守护进程, 或者手动自己启动也可以
+#tee > /etc/wpa_supplicant/wpa_supplicant.conf-wlan0 <<EOF
+## Allow users in the 'wheel' group to control wpa_supplicant
+#ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=wheel
+#
+## Make this file writable for wpa_gui / wpa_cli
+#update_config=1
+#EOF
+#cd /etc/systemd/system/multi-user.target.wants
+#ln -s /lib/systemd/system/wpa_supplicant@.service wpa_supplicant@wlan0.service
 
-## group
-# gpasswd -a x pcap
-# gpasswd -a x wheel
-# gpasswd -a x plugdev
+localectl set-keymap us
+localectl set-locale LANG=zh_CN.utf8
+
+# 关机之前记住网卡和蓝牙锁状态
+rfkill unlock all
+systemctl restart systemd-rfkill
+systemctl enable systemd-rfkill
+systemctl restart  NetworkManager.service
+systemctl enable  NetworkManager.service
+systemctl enable NetworkManager-wait-online.service
+systemctl start  alsa-restore
+systemctl enable alsa-restore
+
+## proxy
+wget https://kgithub.com/v2rayA/v2rayA/releases/download/v2.0.1/v2raya_linux_x64_2.0.1 -o ./v2raya
+chmod u+x ./v2raya
+mv ./v2raya /usr/local/bin/v2raya
+## proxychains
+echo 'socks5  127.0.0.1 1080' >> /etc/proxychains.conf
+
+## xorg config
+cp -f ./00-myinput.conf /etc/X11/xorg.conf.d
+# tty key map
+cp -f ./us.map.gz /usr/share/keymaps/i386/qwerty/us.map.gz
+# xorg key map
+cp -f ./pc /usr/share/X11/xkb/symbols/pc
+
+## user
+useradd -m -G wheel,pcap,plugdev,audio -s /bin/bash x
+### 声卡
+cp -f  ./.asoundrc /home/x
+
+echo 'auth       optional     pam_gnome_keyring.so' >> /etc/pam.d/login
+echo 'session    optional     pam_gnome_keyring.so auto_start' >> /etc/pam.d/login
+
+
 
 ## grub cmdline
 # quiet loglevel=3 systemd.show_status=auto rd.udev.log_level=3
+
+### grub boot window efi
+# menuentry "Windows 10" {
+#     insmod part_msdos
+#     insmod ntfs
+#     set root=(hd0,gpt1)
+#     chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+#     boot
+# }

@@ -88,6 +88,7 @@ app() {
         eclean-kernel \
         usbutils
 
+    eselect editor set emacs
     mkdir -p /etc/sudoers.d
     echo '%wheel ALL=(ALL:ALL) ALL' > /etc/sudoers.d/wheel
     eselect locale set zh_CN.utf8

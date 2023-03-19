@@ -124,7 +124,16 @@ initrd (hd0,gpt3)/boot/initramfs-6.1.12-gentoo-dist.img
 # 启动
 boot
 ```
-
+## GRUB手动引导Window
+```bash
+menuentry "Windows 10" {
+    insmod part_msdos
+    insmod ntfs
+    set root=(hd0,gpt1)
+    chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+    boot
+}
+```
 
 ## 制作rootfs
 ```bash
