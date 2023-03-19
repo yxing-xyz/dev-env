@@ -219,7 +219,7 @@ echo 'www-client/chromium notmpfs.conf' >> /etc/portage/package.env
 # 方法三 指定交换文件
 # 内存不够解决方法2
 ## 创建交换文件
-dd if=/dev/zero of=/var/cache/swap bs=1024M count=20
+dd if=/dev/zero of=/var/cache/swap bs=1024M count=8
 chmod 600 /var/cache/swap
 mkswap /var/cache/swap
 swapon /var/cache/swap
