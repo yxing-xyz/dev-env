@@ -71,7 +71,7 @@ mv ./v2raya /usr/local/bin/v2raya
 ## desktop app
 ### 解决循环依赖
 emerge -u sys-kernel/gentoo-sources sys-kernel/linux-firmware
-emerge -u  x11-drivers/xf86-input-libinput x11-drivers/xf86-video-amdgpu \
+emerge -u  x11-drivers/xf86-input-libinput x11-drivers/xf86-video-amdgpu acpi \
     x11-wm/awesome media-sound/alsa-utils x11-apps/xinput x11-apps/xset x11-misc/picom x11-misc/rofi x11-misc/xautolock \
     x11-misc/xsel x11-terms/st x11-terms/xterm xfce-base/thunar bluez net-wireless/bluez-tools app-office/wps-office media-fonts/ttf-wps-fonts \
     www-client/google-chrome app-editors/vscode app-i18n/ibus-rime net-im/telegram-desktop-bin feh scrot media-gfx/flameshot \
