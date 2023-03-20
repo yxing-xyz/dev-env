@@ -2,8 +2,8 @@ FROM registry.cn-hangzhou.aliyuncs.com/yuxing1994/archlinux:base-devel
 
 # init
 RUN echo 'Server = https://mirrors.tencent.com/archlinux/$repo/os/$arch' > etc/pacman.d/mirrorlist && \
-tee >>/etc/pacman.conf <<EOF
-[archlinuxcn]
+    tee >>/etc/pacman.conf <<EOF
+    archlinuxcn]
 SigLevel = Never
 Server = https://mirrors.tencent.com/archlinuxcn/\$arch
 EOF
@@ -29,17 +29,18 @@ RUN pacman -S openssh --noconfirm && \
     ssh-keygen -A
 
 # dev
-RUN pacman -S gcc go rustup nvm --noconfirm && \
+    RUN pacman -S gcc go rustup nvm --noconfirm && \
     rustup install stable && \
     rustup component add rls-preview rust-analysis rust-src && \
-    pacman -S docker mycli iredis trash-cli htop git-delta mtr wget tree lazygit zssh lrzsz --noconfirm
+    pacman -S docker mycli iredis trash-cli htop git-delta mtr wget tree lazygit zssh lrzsz --noconfirm && \
+    source /usr/share/nvm/nvm.sh && nvm install --lts   &&  nvm use --lts && echo 'PATH=/usr/share/nvm/versions/node/v18.15.0/bin:$PATH' > /root/.bashrc
 
-# user
-RUN echo 'root:root' | chpasswd && \
-    chsh -s /bin/zsh
+
+    # user
+    RUN echo 'root:root' | chpasswd && \
+    chsh -s /bin/bash
 
 WORKDIR /root
+    CMD [ "/usr/sbin/sshd", "-D"]
 
-CMD [ "/usr/sbin/sshd", "-D"]
-# docker build . -t registry.cn-hangzhou.aliyuncs.com/yuxing1994/archlinux:latest
-# docker run -dit --name dev --restart=always --net=host --pid=host -v /var/run/docker.sock:/var/run/docker.sock -v /root/x:/root -v /root/workspace:/root/workspace -u root registry.cn-hangzhou.aliyuncs.com/yuxing1994/archlinux:latest /usr/sbin/sshd -D
+    # docker run -dit --name arch --hostname arch --net=host --privileged ccr.ccs.tencentyun.com/yxing-xyz/linux:arch-2023-03-20 /bin/bash

@@ -38,6 +38,7 @@ dev-vcs/lazygit **
 dev-python/cli_helpers **
 app-misc/diff-so-fancy **
 sys-cluster/k9scli **
+sys-apps/sd **
 EOF
     ## use
     tee >/etc/portage/package.use/x <<EOF
@@ -92,15 +93,12 @@ app() {
     eselect repository enable guru gentoo-zh
     eix-sync
 
-    # rust binary
-    curl https://sh.rustup.rs -sSf | RUSTUP_HOME=/opt/.rustup sh -s -- -y
-    #mv /root/.cargo /opt
 
     # nodejs binary
     git clone https://github.com/nvm-sh/nvm.git --depth 1 /opt/.nvm && source /opt/.nvm/nvm.sh
     nvm install --lts
     nvm use --lts
-tee >>/etc/portage/profile/profile.bashrc <<EOF
+    tee >>/etc/portage/profile/profile.bashrc <<EOF
     export PATH=/opt/.nvm/versions/node/v18.15.0/bin:\$PATH
 EOF
 
@@ -112,11 +110,13 @@ EOF
     ## dev
     emerge -u dev-lang/go dev-lang/lua sys-devel/clang
 
+    # rust binary
+    echo 'dev-lang/rust' >> /etc/portage/package.mask/x
+
     ## terminal
     emerge -u app-containers/docker-cli app-shells/zsh app-misc/neofetch app-misc/trash-cli \
         app-shells/fzf app-text/tree dev-db/mycli dev-vcs/lazygit dev-util/git-delta sys-apps/bat \
         sys-apps/fd sys-apps/sd sys-apps/lsd sys-process/lsof sys-apps/ripgrep sys-process/htop sys-process/iotop \
         strace cloc dev-util/shellcheck-bin app-admin/helm exa sshfs cmus app-misc/jq diff-so-fancy caddy \
-        www-apps/hugo v2ray-bin ntp
-
+        www-apps/hugo v2ray-bin ntp rustup
 }
