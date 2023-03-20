@@ -1,13 +1,17 @@
-FROM ccr.ccs.tencentyun.com/yxing-xyz/gentoo:gentoo-builder-2023-03-13 as base
+FROM ccr.ccs.tencentyun.com/yxing-xyz/linux:builder as base
+
+RUN rm -r /var/cache/distfiles && \
+    rm -r /var/cache/binpkgs
+
 
 FROM scratch
-COPY --from=base / /
 
-RUN eclean-dist --deep && \
-    eclean-pkg --deep
+    COPY --from=base / /
+
+
 
 # run builder
-# podman run -dit --name builder --privileged --hostname builder ccr.ccs.tencentyun.com/yxing-xyz/linux:builder-2023-03-16-1 /bin/bash
+# podman run -dit --name builder --privileged --hostname builder ccr.ccs.tencentyun.com/yxing-xyz/linux:builder /bin/bash
 
 # run code
-# podman run -dit --name code -p 2222:2222  -v x:/home/x --privileged --hostname code ccr.ccs.tencentyun.com/yxing-xyz/linux:code-2023-03-20 /bin/bash
+# podman run -dit --name code -p 2222:2222  -v x:/home/x --privileged --hostname code ccr.ccs.tencentyun.com/yxing-xyz/linux:code /bin/bash

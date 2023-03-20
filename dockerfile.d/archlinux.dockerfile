@@ -43,4 +43,4 @@ RUN pacman -S openssh --noconfirm && \
 WORKDIR /root
     CMD [ "/usr/sbin/sshd", "-D"]
 
-    # docker run -dit --name arch --hostname arch --net=host --privileged ccr.ccs.tencentyun.com/yxing-xyz/linux:arch-2023-03-20 /bin/bash
+    # docker run -dit --name arch --hostname arch --net=host --privileged ccr.ccs.tencentyun.com/yxing-xyz/linux:arch /bin/bash
