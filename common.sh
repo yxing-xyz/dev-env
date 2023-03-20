@@ -56,10 +56,6 @@ dev-lang/rust-bin-1.67.1
 virtual/rust-1.67.1
 net-libs/nodejs-18.14.2
 EOF
-
-tee >/etc/portage/profile/profile.bashrc <<EOF
-export PATH=/opt/.nvm/versions/node/v18.15.0/bin:\$PATH
-EOF
 }
 sync() {
     ## sync, set profile, update world
@@ -104,6 +100,9 @@ app() {
     git clone https://github.com/nvm-sh/nvm.git --depth 1 /opt/.nvm && source /opt/.nvm/nvm.sh
     nvm install --lts
     nvm use --lts
+tee >>/etc/portage/profile/profile.bashrc <<EOF
+    export PATH=/opt/.nvm/versions/node/v18.15.0/bin:\$PATH
+EOF
 
     ## net
     emerge -u net-analyzer/mtr net-analyzer/netcat net-analyzer/tcpdump net-dialup/lrzsz \
