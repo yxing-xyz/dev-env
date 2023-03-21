@@ -52,9 +52,6 @@ EOF
     ## private
     mkdir -p /etc/portage/profile/package.provided
     tee >/etc/portage/profile/package.provided/x <<EOF
-dev-lang/rust-1.67.1
-dev-lang/rust-bin-1.67.1
-virtual/rust-1.67.1
 net-libs/nodejs-18.14.2
 EOF
 }

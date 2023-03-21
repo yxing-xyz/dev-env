@@ -326,14 +326,17 @@ emerge --oneshot sudo
 eix-installed -a
 # 查看依赖的顶层包
 eix --color -c --world
-# 查看字符串属于哪个包
-equery b ls
+
 # 查看包依赖
 equery g bo
 # 查看包被依赖
 equery d go
 # 查看哪些包使用这个标志
 equery h llvm
+# 查看文件属于哪个包
+equery b ls
+# 查看包有哪些文件
+equery f glibc
 # 清除源文件/var/cache/distfiles
 eclean-dist --deep
 # 清除二进制包/var/cache/binpkgs
@@ -344,6 +347,10 @@ quickpkg "*/*"
 emaint binhost --fix
 # 重新安装所有包
 emerge -e @world
+# 配置文件更新
+etc-update
+# 配置文件合并
+dispatch-cofn
 ```
 
 ### 5. systemd初始化设置
