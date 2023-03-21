@@ -1,5 +1,23 @@
 ## qemu
 
+### docker的qemu启动命令
+```bash
+/opt/homebrew/bin/qemu-system-aarch64
+-accel hvf
+-cpu host
+-machine virt,highmem=off
+-m 16384
+-smp 8
+-kernel /Applications/Docker.app/Contents/Resources/linuxkit/kernel
+-append page_poison=1 vsyscall=emulate panic=1 nospec_store_bypass_disable noibrs noibpb no_stf_barrier mitigations=off linuxkit.unified_cgroup_hierarchy=1    vpnkit.connect=tcp+bootstrap+client://192.168.65.2:54760/a8f36b5c3f2bb8125044cbdce643cae23bf73557ebc1a3a95ffd87993e1d8516 vpnkit.disable=osxfs-data console=ttyAMA0
+-initrd /Applications/Docker.app/Contents/Resources/linuxkit/initrd.img
+-serial pipe:/var/folders/hd/sgm8y5kj4g9740whp7b8w37m0000gn/T/qemu-console1934410198/fifo
+-drive if=none,file=/Users/x/Library/Containers/com.docker.docker/Data/vms/0/data/Docker.raw,format=raw,id=hd0
+-device virtio-blk-pci,drive=hd0,serial=dummyserial -netdev socket,id=net1,fd=3 -device virtio-net-device,netdev=net1,mac=02:50:00:00:00:01
+-vga none
+-nographic
+-monitor none
+```
 ### podman的qemu启动命令
 ```bash
   /opt/homebrew/bin/qemu-system-aarch64
