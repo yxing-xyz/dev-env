@@ -46,8 +46,6 @@ media-fonts/nerd-fonts codenewroman
 net-analyzer/mtr -gtk
 dev-lang/ghc -llvm
 net-wireless/wpa_supplicant tkip
-media-video/ffmpeg v4l
-x11-misc/picom test
 EOF
     ## private
     mkdir -p /etc/portage/profile/package.provided

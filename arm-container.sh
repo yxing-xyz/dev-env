@@ -25,10 +25,11 @@ LC_MESSAGES=C
 
 
 ## XXXXXX
+FEATURES="buildpkg"
 ACCEPT_KEYWORDS="~arm64"
 KEYWORDS="~arm64"
 MAKEOPTS="-j8"
-USE="binary -test -X -qt -gtk -systemd -openrc"
+USE="binary -test -X -qt -gtk -systemd -openrc -selinux"
 ACCEPT_LICENSE="linux-fw-redistributable no-source-code google-chrome Microsoft-vscode Vic-Fieger-License"
 GENTOO_MIRRORS="http://mirrors.tencent.com/gentoo/"
 EOF
