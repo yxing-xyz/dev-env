@@ -9,10 +9,10 @@ EOF
 ## make.conf
 tee >/etc/portage/make.conf <<EOF
 COMMON_FLAGS="-march=armv8-a -O2 -pipe"
-CFLAGS="${COMMON_FLAGS}"
-CXXFLAGS="${COMMON_FLAGS}"
-FCFLAGS="${COMMON_FLAGS}"
-FFLAGS="${COMMON_FLAGS}"
+CFLAGS="\${COMMON_FLAGS}"
+CXXFLAGS="\${COMMON_FLAGS}"
+FCFLAGS="\${COMMON_FLAGS}"
+FFLAGS="\${COMMON_FLAGS}"
 # WARNING: Changing your CHOST is not something that should be done lightly.
 # Please consult https://wiki.gentoo.org/wiki/Changing_the_CHOST_variable before changing.
 CHOST="aarch64-unknown-linux-gnu"

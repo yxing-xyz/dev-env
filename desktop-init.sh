@@ -13,10 +13,10 @@ tee >/etc/portage/make.conf <<EOF
 # detailed example.
 COMMON_FLAGS="-march=amd64 -O2 -pipe"
 COMMON_FLAGS="-O2 -pipe"
-CFLAGS="${COMMON_FLAGS}"
-CXXFLAGS="${COMMON_FLAGS}"
-FCFLAGS="${COMMON_FLAGS}"
-FFLAGS="${COMMON_FLAGS}"
+CFLAGS="\${COMMON_FLAGS}"
+CXXFLAGS="\${COMMON_FLAGS}"
+FCFLAGS="\${COMMON_FLAGS}"
+FFLAGS="\${COMMON_FLAGS}"
 
 # NOTE: This stage was built with the bindist Use flag enabled
 
@@ -27,10 +27,10 @@ LC_MESSAGES=C
 #### x
 FEATURES="buildpkg"
 ## PORTAGE_BINHOST="https://gentoo-distfiles-yxing-xyz.oss-cn-hangzhou.aliyuncs.com"
-ACCEPT_KEYWORDS="~amd64"
-KEYWORDS="~amd64"
+#ACCEPT_KEYWORDS="~amd64"
+#KEYWORDS="~amd64"
 VIDEO_CARDS="amdgpu radeonsi"
-MAKEOPTS="-j8"
+MAKEOPTS="-j16"
 USE="binary -test grub git -selinux X systemd gtk -qt5 networkmanager alsa"
 ACCEPT_LICENSE="linux-fw-redistributable no-source-code google-chrome Microsoft-vscode Vic-Fieger-License WPS-EULA NetEase as-is"
 GENTOO_MIRRORS="http://mirrors.tencent.com/gentoo/"
