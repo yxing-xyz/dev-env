@@ -1,5 +1,5 @@
-FROM ccr.ccs.tencentyun.com/yxing-xyz/linux:builder as base
-
+#FROM ccr.ccs.tencentyun.com/yxing-xyz/linux:builder as base
+FROM ccr.ccs.tencentyun.com/yxing-xyz/linux:code as base
 RUN rm -r /var/cache/distfiles && \
     rm -r /var/cache/binpkgs
 
