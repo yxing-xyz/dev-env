@@ -49,7 +49,12 @@ emerge -u x11-drivers/xf86-input-libinput x11-drivers/xf86-video-amdgpu acpi \
        www-client/google-chrome app-editors/vscode app-i18n/ibus-rime net-im/telegram-desktop-bin feh scrot media-gfx/flameshot \
        gnome-base/gnome-keyring seahorse gnome-extra/nm-applet lxde-base/lxappearance media-fonts/nerd-fonts media-fonts/source-han-mono \
        media-fonts/source-han-sans media-fonts/source-han-serif scrot vlc mpv app-containers/podman media-sound/netease-cloud-music \
-       app-text/calibre krita gimp mypaint
+       app-text/calibre
+
+## design
+emerge -u krita gimp mypaint
+
+
 
 # wpa 守护进程, 或者手动自己启动也可以
 #tee > /etc/wpa_supplicant/wpa_supplicant.conf-wlan0 <<EOF
