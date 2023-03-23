@@ -12,7 +12,6 @@ tee >/etc/portage/make.conf <<EOF
 # Please consult /usr/share/portage/config/make.conf.example for a more
 # detailed example.
 COMMON_FLAGS="-march=amd64 -O2 -pipe"
-COMMON_FLAGS="-O2 -pipe"
 CFLAGS="\${COMMON_FLAGS}"
 CXXFLAGS="\${COMMON_FLAGS}"
 FCFLAGS="\${COMMON_FLAGS}"
