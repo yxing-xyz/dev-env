@@ -105,6 +105,8 @@ EOF
 
     ## dev
     emerge -u dev-lang/go dev-lang/lua sys-devel/clang
+    USE='clippy rust-analyzer rust-src rustfmt' emerge --ask dev-lang/rust-bin
+
 
     # rust binary
     echo 'dev-lang/rust' >> /etc/portage/package.mask/x
