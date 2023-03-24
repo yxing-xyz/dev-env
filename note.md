@@ -347,6 +347,8 @@ quickpkg "*/*"
 emaint binhost --fix
 # 重新安装所有包
 emerge -e @world
+revdep-rebuild
+emerge --ignore-default-opts -va1 $(qdepends -CQqqF'%{CAT}/%{PN}:%{SLOT}' '^dev-libs/boost:0/1.70.0')
 # 配置文件更新
 etc-update
 # 配置文件合并
