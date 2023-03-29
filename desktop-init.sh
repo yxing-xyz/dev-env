@@ -24,8 +24,7 @@ FFLAGS="\${COMMON_FLAGS}"
 LC_MESSAGES=C
 
 #### x
-## nostrip
-FEATURES="buildpkg"
+FEATURES="buildpkg nostrip"
 ## PORTAGE_BINHOST="https://gentoo-distfiles-yxing-xyz.oss-cn-hangzhou.aliyuncs.com"
 #ACCEPT_KEYWORDS="~amd64"
 #KEYWORDS="~amd64"

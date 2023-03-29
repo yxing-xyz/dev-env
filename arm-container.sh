@@ -25,11 +25,12 @@ LC_MESSAGES=C
 
 
 ## XXXXXX
-FEATURES="buildpkg"
+FEATURES="buildpkg nostrip"
 MAKEOPTS="-j8"
 USE="binary -test -X -qt -gtk -systemd -openrc -selinux"
 ACCEPT_LICENSE="linux-fw-redistributable no-source-code google-chrome Microsoft-vscode Vic-Fieger-License"
 GENTOO_MIRRORS="http://mirrors.tencent.com/gentoo/"
+L10N="zh-CN"
 EOF
 
 sync
