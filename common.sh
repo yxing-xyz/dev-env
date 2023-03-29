@@ -80,6 +80,7 @@ app() {
         app-portage/cpuid2cpuflags \
         net-misc/proxychains \
         eclean-kernel \
+        gdb \
         usbutils
 
     eselect editor set emacs
