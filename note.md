@@ -20,47 +20,33 @@
 ```
 ### podman的qemu启动命令
 ```bash
-  /opt/homebrew/bin/qemu-system-aarch64
-  -m
-  16384
-  -smp
-  8
-  -fw_cfg
-  name=opt/com.coreos/config,file=/Users/x/.config/containers/podman/machine/qemu/podman-machine-default.ign
-  -qmp
-  unix:/var/folders/hd/sgm8y5kj4g9740whp7b8w37m0000gn/T/podman/qmp_podman-machine-default.sock,server=on,wait=off
-  -netdev
-  socket,id=vlan,fd=3
-  -device
-  virtio-net-pci,netdev=vlan,mac=5a:94:ef:e4:0c:ee
-  -device
-  virtio-serial
-  -chardev
-  socket,path=/var/folders/hd/sgm8y5kj4g9740whp7b8w37m0000gn/T/podman/podman-machine-default_ready.sock,server=on,wait=off,id=apodman-machine-default_ready
-  -device
-  virtserialport,chardev=apodman-machine-default_ready,name=org.fedoraproject.port.0
-  -pidfile
-  /var/folders/hd/sgm8y5kj4g9740whp7b8w37m0000gn/T/podman/podman-machine-default_vm.pid
-  -accel
-  hvf
-  -accel
-  tcg
-  -cpu
-  host
-  -M
-  virt,highmem=on
-  -drive
-  file=/opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-aarch64-code.fd,if=pflash,format=raw,readonly=on
-  -drive
-  file=/Users/x/.local/share/containers/podman/machine/qemu/podman-machine-default_ovmf_vars.fd,if=pflash,format=raw
-  -virtfs
-  local,path=/Users,mount_tag=vol0,security_model=none
-  -virtfs
-  local,path=/private,mount_tag=vol1,security_model=none
-  -virtfs
-  local,path=/var/folders,mount_tag=vol2,security_model=none
-  -drive
-  if=virtio,file=/Users/x/.local/share/containers/podman/machine/qemu/podman-machine-default_fedora-coreos-37.20230303.2.0-qemu.aarch64.qcow2
+qemu-system-aarch64 -m 16384 -smp 8 \
+-fw_cfg name=opt/com.coreos/config,file=/Users/x/.config/containers/podman/machine/qemu/podman-machine-default.ign \
+-qmp unix:/var/folders/hd/sgm8y5kj4g9740whp7b8w37m0000gn/T/podman/qmp_podman-machine-default.sock,server=on,wait=off \
+-netdev socket,id=vlan,fd=3 \
+-device virtio-net-pci,netdev=vlan,mac=5a:94:ef:e4:0c:ee \
+-device virtio-serial \
+-chardev socket,path=/var/folders/hd/sgm8y5kj4g9740whp7b8w37m0000gn/T/podman/podman-machine-default_ready.sock,server=on,wait=off,id=apodman-machine-default_ready \
+-device virtserialport,chardev=apodman-machine-default_ready,name=org.fedoraproject.port.0 \
+-pidfile /var/folders/hd/sgm8y5kj4g9740whp7b8w37m0000gn/T/podman/podman-machine-default_vm.pid \
+-accel hvf -accel tcg -cpu host -M virt,highmem=on \
+-drive file=/opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-aarch64-code.fd,if=pflash,format=raw,readonly=on \
+-drive file=/Users/x/.local/share/containers/podman/machine/qemu/podman-machine-default_ovmf_vars.fd,if=pflash,format=raw \
+-virtfs local,path=/Users,mount_tag=vol0,security_model=none \
+-virtfs local,path=/private,mount_tag=vol1,security_model=none \
+-virtfs local,path=/var/folders,mount_tag=vol2,security_model=none \
+-drive if=virtio,file=/Users/x/.local/share/containers/podman/machine/qemu/podman-machine-default_fedora-coreos-37.20230322.2.0-qemu.aarch64.qcow2
+
+
+
+
+sudo qemu-system-aarch64 -m 16384 -smp 8 \
+-accel hvf -accel tcg -cpu host -M virt,highmem=on \
+-drive file=/opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-aarch64-code.fd,if=pflash,format=raw,readonly=on \
+-drive file=/Users/x/.local/share/containers/podman/machine/qemu/podman-machine-default_ovmf_vars.fd,if=pflash,format=raw \
+-drive if=virtio,file=/Users/x/.local/share/containers/podman/machine/qemu/podman-machine-default_fedora-coreos-37.20230322.2.0-qemu.aarch64.qcow2 \
+-qmp unix:/var/run/podman.sock,server=on,wait=off \
+-nic user,hostfwd=tcp::22-:22,hostfwd=tcp::2222-:2222
 ```
 ### 创建qcow2磁盘文件
 ```bash
