@@ -29,19 +29,12 @@ init() {
     sed -i "s|rsync://rsync.gentoo.org/gentoo-portage|rsync://mirrors.tuna.tsinghua.edu.cn/gentoo-portage|" /etc/portage/repos.conf/gentoo.conf
 
     ## accept keyword
-    tee >/etc/portage/package.accept_keywords/x <<EOF
-net-im/telegram-desktop-bin **
-net-misc/proxychains **
-app-misc/trash-cli **
-dev-db/mycli **
-dev-vcs/lazygit **
-dev-python/cli_helpers **
-app-misc/diff-so-fancy **
-sys-cluster/k9scli **
-sys-apps/sd **
+    tee >>/etc/portage/package.accept_keywords/x <<EOF
+=www-servers/caddy-2.6.4 ~amd64 ~arm64
+=media-video/peek-1.5.1-r1 ~amd64 ~arm64
 EOF
     ## use
-    tee >/etc/portage/package.use/x <<EOF
+    tee >>/etc/portage/package.use/x <<EOF
 media-fonts/nerd-fonts codenewroman
 net-analyzer/mtr -gtk
 dev-lang/ghc -llvm
