@@ -34,6 +34,6 @@ L10N="zh-CN"
 EOF
 
 sync
-eselect profile set default/linux/arm64/17.0
+eselect profile set default/linux/arm64/17.0/systemd
 update
 app
