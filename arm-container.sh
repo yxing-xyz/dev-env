@@ -1,10 +1,6 @@
 #!/bin/sh
 source ./common.sh
 init
-## rustup
-tee >>/etc/portage/profile/profile.bashrc <<EOF
-export PATH="/opt/.rustup/toolchains/stable-aarch64-unknown-linux-gnu/bin:\$PATH"
-EOF
 
 ## make.conf
 tee >/etc/portage/make.conf <<EOF

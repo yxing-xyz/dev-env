@@ -1,9 +1,7 @@
 #!/bin/sh
 source ./common.sh
 init
-tee >>/etc/portage/profile/profile.bashrc <<EOF
-export PATH="/opt/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin:\$PATH"
-EOF
+
 
 ## make.conf
 tee >/etc/portage/make.conf <<EOF
@@ -29,7 +27,7 @@ FEATURES="buildpkg nostrip"
 #ACCEPT_KEYWORDS="~amd64"
 #KEYWORDS="~amd64"
 VIDEO_CARDS="amdgpu radeonsi"
-MAKEOPTS="-j16"
+MAKEOPTS="-j4"
 USE="binary -test grub git -selinux X systemd gtk -qt5 networkmanager alsa"
 ACCEPT_LICENSE="linux-fw-redistributable no-source-code google-chrome Microsoft-vscode Vic-Fieger-License WPS-EULA NetEase as-is"
 GENTOO_MIRRORS="http://mirrors.tencent.com/gentoo/"

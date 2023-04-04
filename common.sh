@@ -58,6 +58,9 @@ update() {
 }
 
 app() {
+    emerge -u merge-usr \
+    merge-usr
+
     emerge -u sudo app-eselect/eselect-repository eix gentoolkit dev-vcs/git \
         app-text/tree vim emacs dev-vcs/git app-misc/tmux \
         sys-apps/pciutils \
