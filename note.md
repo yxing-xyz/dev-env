@@ -30,7 +30,7 @@ qemu-system-aarch64 -m 16384 -smp 8 \
 -device virtserialport,chardev=apodman-machine-default_ready,name=org.fedoraproject.port.0 \
 -pidfile /var/folders/hd/sgm8y5kj4g9740whp7b8w37m0000gn/T/podman/podman-machine-default_vm.pid \
 -accel hvf -accel tcg -cpu host -M virt,highmem=on \
--drive file=/opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-aarch64-code.fd,if=pflash,format=raw,readonly=on \
+-drive file=/opt/homebrew/Cellar/qemu/7.2.1/share/qemu/edk2-aarch64-code.fd,if=pflash,format=raw,readonly=on \
 -drive file=/Users/x/.local/share/containers/podman/machine/qemu/podman-machine-default_ovmf_vars.fd,if=pflash,format=raw \
 -virtfs local,path=/Users,mount_tag=vol0,security_model=none \
 -virtfs local,path=/private,mount_tag=vol1,security_model=none \
@@ -40,12 +40,13 @@ qemu-system-aarch64 -m 16384 -smp 8 \
 
 
 
+
 sudo qemu-system-aarch64 -m 16384 -smp 8 \
 -accel hvf -accel tcg -cpu host -M virt,highmem=on \
--drive file=/opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-aarch64-code.fd,if=pflash,format=raw,readonly=on \
+-qmp tcp:localhost:4444,server=on,wait=off \
+-drive file=/opt/homebrew/Cellar/qemu/7.2.1/share/qemu/edk2-aarch64-code.fd,if=pflash,format=raw,readonly=on \
 -drive file=/Users/x/.local/share/containers/podman/machine/qemu/podman-machine-default_ovmf_vars.fd,if=pflash,format=raw \
 -drive if=virtio,file=/Users/x/.local/share/containers/podman/machine/qemu/podman-machine-default_fedora-coreos-37.20230322.2.0-qemu.aarch64.qcow2 \
--qmp unix:/var/run/podman.sock,server=on,wait=off \
 -nic user,hostfwd=tcp::22-:22,hostfwd=tcp::2222-:2222
 ```
 ### 创建qcow2磁盘文件
@@ -57,7 +58,7 @@ qemu-img create -f qcow2 gentoo.qcow2 100G
 ```bash
 ### mac m1 qemucd启动
 # 桥接网卡参数 -nic vmnet-bridged,ifname=en0 \
-# -bios /opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-aarch64-code.fd \
+# -bios /opt/homebrew/Cellar/qemu/7.2.1/share/qemu/edk2-aarch64-code.fd \
 qemu-system-aarch64 \
     -machine virt \
     -accel hvf \
@@ -66,8 +67,8 @@ qemu-system-aarch64 \
     -cpu host \
     -smp 8 \
     -m 16384 \
-    -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-aarch64-code.fd \
-    -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-arm-vars.fd \
+    -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.1/share/qemu/edk2-aarch64-code.fd \
+    -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.1/share/qemu/edk2-arm-vars.fd \
     -drive format=qcow2,file=/Users/x/workspace/demo/gentoo/linux.qcow2 \
     -cdrom  /Users/x/workspace/demo/gentoo/install-arm64-minimal-20230226T234708Z.iso \
     -device virtio-gpu \
@@ -85,8 +86,8 @@ qemu-system-aarch64 \
     -cpu host \
     -smp 8 \
     -m 16384 \
-    -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-aarch64-code.fd \
-    -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-arm-vars.fd \
+    -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.1/share/qemu/edk2-aarch64-code.fd \
+    -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.1/share/qemu/edk2-arm-vars.fd \
     -drive format=qcow2,file=/Users/x/workspace/demo/gentoo/linux.qcow2 \
     -device virtio-gpu \
     -device usb-ehci \
@@ -103,8 +104,8 @@ qemu-system-aarch64 \
     -cpu host \
     -smp 8 \
     -m 16384 \
-    -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-aarch64-code.fd \
-    -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.0/share/qemu/edk2-arm-vars.fd \
+    -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.1/share/qemu/edk2-aarch64-code.fd \
+    -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.1/share/qemu/edk2-arm-vars.fd \
     -drive format=qcow2,file=/Users/x/workspace/demo/gentoo/linux.qcow2 \
     -device virtio-gpu \
     -device usb-ehci \
