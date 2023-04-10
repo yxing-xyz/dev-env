@@ -13,7 +13,8 @@ COPY --from=base / /
 # machine
 #
 # podman machine init --cpus 8 --memory 16384 --disk-size=128 --image-path stable --rootful
-
+# ip addr add 192.168.127.2/24 dev enp0s1
+# ip route add default via 192.168.127.1
 
 
 # code
