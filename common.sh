@@ -75,6 +75,7 @@ app() {
         app-alternatives/cpio \
         app-portage/cpuid2cpuflags \
         net-misc/proxychains \
+        app-arch/p7zip \
         eclean-kernel \
         gdb \
         usbutils
