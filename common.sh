@@ -54,6 +54,7 @@ sync() {
 }
 
 update() {
+    echo "*/* $(cpuid2cpuflags)" > /etc/portage/package.use/00cpu-flags
     emerge --ask --verbose --update --deep --newuse @world
 }
 
