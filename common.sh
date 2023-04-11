@@ -54,14 +54,15 @@ sync() {
 }
 
 update() {
+    emerge -u merge-usr \
+    merge-usr
+    emerge app-portage/cpuid2cpuflags
     echo "*/* $(cpuid2cpuflags)" > /etc/portage/package.use/00cpu-flags
+
     emerge --ask --verbose --update --deep --newuse @world
 }
 
 app() {
-    emerge -u merge-usr \
-    merge-usr
-
     emerge -u sudo app-eselect/eselect-repository eix gentoolkit dev-vcs/git \
         app-text/tree vim emacs dev-vcs/git app-misc/tmux \
         sys-apps/pciutils \
@@ -74,7 +75,6 @@ app() {
         net-misc/dhcpcd \
         sys-boot/grub efibootmgr \
         app-alternatives/cpio \
-        app-portage/cpuid2cpuflags \
         net-misc/proxychains \
         app-arch/p7zip \
         eclean-kernel \
