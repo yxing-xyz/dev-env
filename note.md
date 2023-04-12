@@ -52,6 +52,8 @@ sudo qemu-system-aarch64 -m 16384 -smp 8 \
 ### 创建qcow2磁盘文件
 ```bash
 qemu-img create -f qcow2 gentoo.qcow2 100G
+# 复制一块qcow2
+qemu-img create -f qcow2 -F qcow2 -b a.qcow2 b.qcow2
 ```
 
 
