@@ -1,0 +1,15 @@
+{
+  "ignition": {
+    "version": "3.3.0"
+  },
+  "passwd": {
+    "users": [
+      {
+        "name": "core",
+        "sshAuthorizedKeys": [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICy+mwRCcojeH/6mtE6oHdHsEv3o7HSOUBvEgFkJdap9 yxing.xyz@gmail.com"
+        ]
+      }
+    ]
+  }
+}

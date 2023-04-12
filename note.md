@@ -18,6 +18,7 @@
 -nographic
 -monitor none
 ```
+
 ### podman的qemu启动命令
 ```bash
 qemu-system-aarch64 -m 16384 -smp 8 \
@@ -36,18 +37,6 @@ qemu-system-aarch64 -m 16384 -smp 8 \
 -virtfs local,path=/private,mount_tag=vol1,security_model=none \
 -virtfs local,path=/var/folders,mount_tag=vol2,security_model=none \
 -drive if=virtio,file=/Users/x/.local/share/containers/podman/machine/qemu/podman-machine-default_fedora-coreos-37.20230322.2.0-qemu.aarch64.qcow2
-
-
-
-
-
-sudo qemu-system-aarch64 -m 16384 -smp 8 \
--accel hvf -accel tcg -cpu host -M virt,highmem=on \
--qmp tcp:localhost:4444,server=on,wait=off \
--drive file=/opt/homebrew/Cellar/qemu/7.2.1/share/qemu/edk2-aarch64-code.fd,if=pflash,format=raw,readonly=on \
--drive file=/Users/x/.local/share/containers/podman/machine/qemu/podman-machine-default_ovmf_vars.fd,if=pflash,format=raw \
--drive if=virtio,file=/Users/x/.local/share/containers/podman/machine/qemu/podman-machine-default_fedora-coreos-37.20230322.2.0-qemu.aarch64.qcow2 \
--nic user,hostfwd=tcp::22-:22,hostfwd=tcp::2222-:2222
 ```
 ### 创建qcow2磁盘文件
 ```bash

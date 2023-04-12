@@ -1,0 +1,22 @@
+# 生成配置文件
+butane --pretty --strict example.bu > example.ign
+
+## 生成rootfs
+STREAM="stable"
+docker run --pull=always --rm -v ~/tmp/:/data -w /data \
+    quay.io/coreos/coreos-installer:release download -s "${STREAM}" -p qemu -f qcow2.xz --decompress
+
+## 启动命令
+qemu-system-aarch64 -M virt,highmem=on \
+  -accel hvf \
+  -accel tcg \
+  -smp 8 \
+  -m 2048 -cpu host \
+  -drive if=pflash,format=raw,file=/opt/homebrew/Cellar/qemu/7.2.1/share/qemu/edk2-aarch64-code.fd \
+  -device virtio-gpu \
+  -device usb-ehci \
+  -device usb-kbd \
+  -device usb-mouse \
+  -drive if=virtio,file=./fedora-coreos-37.20230322.3.0-qemu.aarch64.qcow2 \
+  -fw_cfg name=opt/com.coreos/config,file=./example.ign \
+  -nic user,model=virtio,hostfwd=tcp::222-:22
