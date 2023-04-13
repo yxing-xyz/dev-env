@@ -2,13 +2,13 @@
 # init
 echo 'Server = https://mirrors.tencent.com/archlinux/$repo/os/$arch' > etc/pacman.d/mirrorlist && \
     tee >>/etc/pacman.conf <<EOF
-    archlinuxcn]
+    [archlinuxcn]
 SigLevel = Never
 Server = https://mirrors.tencent.com/archlinuxcn/\$arch
 EOF
 
 pacman -Syy && \
-    pacman -S glibc sudo git svn aria2 zsh lsd bat fzf lua ripgrep vim emacs net-tools fd --noconfirm && \
+    pacman -S glibc sudo git svn aria2 zsh lsd bat fzf lua ripgrep vim neovim emacs net-tools fd --noconfirm && \
     sed -i '/# %wheel/a\%wheel ALL=(ALL) ALL' /etc/sudoers && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     echo 'zh_CN.UTF-8 UTF-8' >> /etc/locale.gen && \
@@ -31,7 +31,7 @@ pacman -S openssh --noconfirm && \
 pacman -S gcc go rustup nvm --noconfirm && \
     rustup install stable && \
     rustup component add rls-preview rust-analysis rust-src && \
-    pacman -S docker mycli iredis trash-cli htop git-delta mtr wget tree lazygit zssh lrzsz --noconfirm
+    pacman -S docker mycli iredis trash-cli htop git-delta mtr wget tree lazygit zssh lrzsz podman trzsz --noconfirm
 
 RUN echo 'root:root' | chpasswd && \
     chsh -s /bin/bash
