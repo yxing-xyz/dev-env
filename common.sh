@@ -39,7 +39,7 @@ media-fonts/nerd-fonts codenewroman
 net-analyzer/mtr -gtk
 dev-lang/ghc -llvm
 net-wireless/wpa_supplicant tkip
-app-editors/emacs libxml2 json
+app-editors/emacs libxml2 json jit
 EOF
     ## private
     mkdir -p /etc/portage/profile/package.provided

@@ -1,11 +1,20 @@
 
 # init
-echo 'Server = https://mirrors.tencent.com/archlinux/$repo/os/$arch' > etc/pacman.d/mirrorlist && \
-    tee >>/etc/pacman.conf <<EOF
-    [archlinuxcn]
+if [[ `arch` =~ "x86_64" ]];then
+    echo 'Server = https://mirrors.tencent.com/archlinux/$repo/os/$arch' > etc/pacman.d/mirrorlist
+else
+    echo 'Server = http://mirror.archlinuxarm.org/$arch/$repo' > etc/pacman.d/mirrorlist
+fi
+
+tee >>/etc/pacman.conf <<EOF
+[archlinuxcn]
 SigLevel = Never
 Server = https://mirrors.tencent.com/archlinuxcn/\$arch
 EOF
+
+
+sed -i 's|#Color|Color|' /etc/pacman.conf
+sed -i 's|#ParallelDownloads|ParallelDownloads|' /etc/pacman.conf
 
 pacman -Syy && \
     pacman -S glibc sudo git svn aria2 zsh lsd bat fzf lua ripgrep vim neovim emacs net-tools fd --noconfirm && \
