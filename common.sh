@@ -64,7 +64,7 @@ update() {
 
 app() {
     emerge -u sudo app-eselect/eselect-repository eix gentoolkit dev-vcs/git \
-        app-text/tree vim emacs dev-vcs/git app-misc/tmux \
+        app-text/tree vim emacs dev-vcs/git app-misc/tmux app-misc/zellij \
         sys-apps/pciutils \
         sys-fs/e2fsprogs \
         sys-fs/xfsprogs \
