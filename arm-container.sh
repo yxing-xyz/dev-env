@@ -30,6 +30,6 @@ L10N="zh-CN"
 EOF
 
 sync
-eselect profile set default/linux/arm64/17.0/systemd
+eselect profile set default/linux/arm64/17.0/systemd/merged-usr
 update
 app
