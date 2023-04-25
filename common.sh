@@ -1,7 +1,7 @@
 #!/bin/sh
 
 init() {
-    chmod 777 /opt
+    mkdir -p -m 777 /opt/x
     ## portage tmp
     echo 'tmpfs /var/tmp/portage tmpfs rw,nosuid,noatime,nodev,size=16G,mode=775,uid=portage,gid=portage,x-mount.mkdir=775 0 0' >>/etc/fstab
     echo '/var/cache/swapfile none swap defaults 0 0' >> /etc/fstab
