@@ -56,7 +56,7 @@ sync() {
 }
 
 update() {
-    emerge -u merge-usr \
+    emerge -u merge-usr
     merge-usr
     emerge app-portage/cpuid2cpuflags
     echo "*/* $(cpuid2cpuflags)" > /etc/portage/package.use/00cpu-flags
@@ -65,23 +65,24 @@ update() {
 }
 
 app() {
-    emerge -u sudo app-eselect/eselect-repository eix gentoolkit dev-vcs/git \
-        app-text/tree vim emacs dev-vcs/git app-misc/tmux app-misc/zellij \
-        sys-apps/pciutils \
-        sys-fs/e2fsprogs \
-        sys-fs/xfsprogs \
-        sys-fs/dosfstools \
-        sys-fs/ntfs3g \
-        sys-fs/fuse-exfat \
-        sys-fs/exfat-utils \
-        net-misc/dhcpcd \
-        sys-boot/grub efibootmgr \
-        app-alternatives/cpio \
-        net-misc/proxychains \
-        app-arch/p7zip \
-        eclean-kernel \
-        gdb \
-        usbutils
+    emerge -u --autounmask-write --keep-going sudo app-eselect/eselect-repository eix gentoolkit dev-vcs/git \
+           app-text/tree vim emacs dev-vcs/git app-misc/tmux \
+           sys-apps/pciutils \
+           sys-fs/e2fsprogs \
+           sys-fs/xfsprogs \
+           sys-fs/dosfstools \
+           sys-fs/ntfs3g \
+           sys-fs/fuse-exfat \
+           sys-fs/exfat-utils \
+           net-misc/dhcpcd \
+           sys-boot/grub efibootmgr \
+           app-alternatives/cpio \
+           net-misc/proxychains \
+           app-arch/p7zip \
+           eclean-kernel \
+           gdb \
+           usbutils
+    ACCEPT_KEYWORDS='**' emerge -u --keep-going zellij
 
     eselect editor set emacs
     mkdir -p /etc/sudoers.d
@@ -91,21 +92,23 @@ app() {
     eix-sync
 
     ## net
-    emerge -u net-analyzer/mtr net-analyzer/netcat net-analyzer/tcpdump net-dialup/lrzsz \
-        net-misc/openssh net-misc/rsync net-misc/wget net-wireless/iwd net-misc/networkmanager \
-        net-misc/dhcpcd sys-apps/net-tools net-dns/bind-tools
+    emerge -u --autounmask-write --keep-going net-analyzer/mtr net-analyzer/netcat net-analyzer/tcpdump net-dialup/lrzsz \
+           net-misc/openssh net-misc/rsync net-misc/wget net-wireless/iwd net-misc/networkmanager \
+           net-misc/dhcpcd sys-apps/net-tools net-dns/bind-tools
 
-    ## dev
-    emerge -u dev-lang/go dev-lang/lua sys-devel/clang
-    USE='clippy rust-analyzer rust-src rustfmt' emerge --ask dev-lang/rust-bin
 
     # rust binary
     echo 'dev-lang/rust' >> /etc/portage/package.mask/x
+    ## dev
+    emerge -u --keep-going dev-lang/go dev-lang/lua sys-devel/clang
+    USE='clippy rust-analyzer rust-src rustfmt' emerge -u dev-lang/rust-bin
+
 
     ## terminal
-    emerge -u app-containers/docker-cli app-shells/zsh app-misc/neofetch app-misc/trash-cli \
-           app-shells/fzf app-text/tree dev-db/mycli dev-vcs/lazygit dev-util/git-delta sys-apps/bat \
+    emerge -u --keep-going app-containers/docker-cli app-shells/zsh app-misc/neofetch app-misc/trash-cli \
+           app-shells/fzf app-text/tree dev-vcs/lazygit dev-util/git-delta sys-apps/bat \
            sys-apps/fd sys-apps/sd sys-apps/lsd sys-process/lsof sys-apps/ripgrep sys-process/htop sys-process/iotop \
            strace cloc dev-util/shellcheck-bin app-admin/helm exa sshfs cmus app-misc/jq diff-so-fancy caddy \
            www-apps/hugo v2ray-bin ntp rustup zoxide stress dev-util/marksman-bin
+    ACCEPT_KEYWORDS='**' emerge -u --keep-going dev-db/mycli
 }
