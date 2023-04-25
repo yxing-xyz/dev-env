@@ -1,7 +1,14 @@
 #!/bin/sh
 source ./common.sh
-init
 
+# swapon
+echo '/var/cache/swapfile none swap defaults 0 0' >> /etc/fstab
+dd if=/dev/zero of=/var/cache/swap bs=1024M count=8
+chmod 600 /var/cache/swap
+mkswap /var/cache/swap
+
+# init
+init
 
 ## make.conf
 tee >/etc/portage/make.conf <<EOF

@@ -3,8 +3,7 @@
 init() {
     mkdir -p -m 777 /opt/x
     ## portage tmp
-    echo 'tmpfs /var/tmp/portage tmpfs rw,nosuid,noatime,nodev,size=16G,mode=775,uid=portage,gid=portage,x-mount.mkdir=775 0 0' >>/etc/fstab
-    echo '/var/cache/swapfile none swap defaults 0 0' >> /etc/fstab
+    echo 'tmpfs /var/tmp/portage tmpfs rw,nosuid,noatime,nodev,size=8G,mode=775,uid=portage,gid=portage,x-mount.mkdir=775 0 0' >>/etc/fstab
     mount /var/tmp/portage
 
     # 方法一指定特殊包不使用tmpfs
@@ -44,11 +43,11 @@ app-editors/emacs libxml2 json jit
 EOF
     ## private
     mkdir -p /etc/portage/profile/package.provided
-#    tee >/etc/portage/profile/package.provided/x <<EOF
-#net-libs/nodejs-18.14.2
-#    tee > /etc/portage/profile/profile.bashrc <<EOF
-#    export PATH=/opt/.nvm/versions/node/v18.15.0/bin:$PATH
-#EOF
+    #    tee >/etc/portage/profile/package.provided/x <<EOF
+    #net-libs/nodejs-18.14.2
+    #    tee > /etc/portage/profile/profile.bashrc <<EOF
+    #    export PATH=/opt/.nvm/versions/node/v18.15.0/bin:$PATH
+    #EOF
 }
 sync() {
     ## sync, set profile, update world
