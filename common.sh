@@ -90,15 +90,6 @@ app() {
     eselect repository enable guru gentoo-zh
     eix-sync
 
-
-    # nodejs binary
-    git clone https://github.com/nvm-sh/nvm.git --depth 1 /opt/.nvm && source /opt/.nvm/nvm.sh
-    nvm install --lts
-    nvm use --lts
-    tee >>/etc/portage/profile/profile.bashrc <<EOF
-    export PATH=/opt/.nvm/versions/node/v18.15.0/bin:\$PATH
-EOF
-
     ## net
     emerge -u net-analyzer/mtr net-analyzer/netcat net-analyzer/tcpdump net-dialup/lrzsz \
         net-misc/openssh net-misc/rsync net-misc/wget net-wireless/iwd net-misc/networkmanager \
@@ -107,7 +98,6 @@ EOF
     ## dev
     emerge -u dev-lang/go dev-lang/lua sys-devel/clang
     USE='clippy rust-analyzer rust-src rustfmt' emerge --ask dev-lang/rust-bin
-
 
     # rust binary
     echo 'dev-lang/rust' >> /etc/portage/package.mask/x
