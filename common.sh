@@ -48,6 +48,10 @@ EOF
     #    tee > /etc/portage/profile/profile.bashrc <<EOF
     #    export PATH=/opt/.nvm/versions/node/v18.15.0/bin:$PATH
     #EOF
+
+    echo 'dev-lang/rust' >> /etc/portage/package.mask/x
+    echo 'dev-qt/qtwebengine' >> /etc/portage/package.mask/x
+    echo 'net-libs/nodejs' >> /etc/portage/package.mask/x
 }
 sync() {
     ## sync, set profile, update world

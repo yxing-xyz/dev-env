@@ -23,4 +23,8 @@ COPY --from=base / /
 # code
 # podman run -dit --name code -p 2222:22 --privileged --hostname code ccr.ccs.tencentyun.com/yxing-xyz/linux:code /bin/bash
 # arch
-# docker run -dit --name arch --hostname arch --net=host --privileged ccr.ccs.tencentyun.com/yxing-xyz/linux:arch /bin/bash
+# podman run -dit --name arch --hostname arch --net=host --privileged ccr.ccs.tencentyun.com/yxing-xyz/linux:arch /bin/bash
+
+
+# arch desktop
+# podman run -it --name arch-amd64 --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" docker.io/archlinux

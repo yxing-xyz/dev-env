@@ -1,6 +1,6 @@
 
 # init
-if [[ `arch` =~ "x86_64" ]];then
+if [[ `uname -a` =~ "x86_64" ]];then
     echo 'Server = https://mirrors.tencent.com/archlinux/$repo/os/$arch' > etc/pacman.d/mirrorlist
 else
     echo 'Server = http://mirror.archlinuxarm.org/$arch/$repo' > etc/pacman.d/mirrorlist
