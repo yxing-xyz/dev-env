@@ -39,6 +39,7 @@ USE="binary -test grub git -selinux X systemd gtk -qt5 networkmanager alsa"
 ACCEPT_LICENSE="linux-fw-redistributable no-source-code google-chrome Microsoft-vscode Vic-Fieger-License WPS-EULA NetEase as-is"
 GENTOO_MIRRORS="http://mirrors.tencent.com/gentoo/"
 L10N="zh-CN"
+UNINSTALL_IGNORE="/bin /lib /lib64 /sbin"
 EOF
 
 sync
@@ -46,6 +47,8 @@ eselect profile set default/linux/amd64/17.1/desktop/systemd/merged-usr
 update
 app
 
+## terminal app
+emerge -u net-wireless/iwd net-misc/networkmanager cmus
 ## desktop app
 emerge -u sys-kernel/gentoo-sources sys-kernel/linux-firmware
 emerge -u x11-drivers/xf86-input-libinput x11-drivers/xf86-video-amdgpu acpi \

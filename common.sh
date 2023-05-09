@@ -41,13 +41,18 @@ dev-lang/ghc -llvm
 net-wireless/wpa_supplicant tkip
 app-editors/emacs libxml2 json jit
 EOF
-    ## private
+    ## profile
     mkdir -p /etc/portage/profile/package.provided
     #    tee >/etc/portage/profile/package.provided/x <<EOF
     #net-libs/nodejs-18.14.2
     #    tee > /etc/portage/profile/profile.bashrc <<EOF
     #    export PATH=/opt/.nvm/versions/node/v18.15.0/bin:$PATH
     #EOF
+    tee >> /etc/portage/profile/use.mask << EOF
+split-usr
+EOF
+
+
 
     echo 'dev-lang/rust' >> /etc/portage/package.mask/x
     echo 'dev-qt/qtwebengine' >> /etc/portage/package.mask/x
@@ -69,7 +74,7 @@ update() {
 }
 
 app() {
-    emerge -u --autounmask-write --keep-going sudo app-eselect/eselect-repository eix gentoolkit dev-vcs/git \
+    emerge -u --autounmask-write sudo app-eselect/eselect-repository eix gentoolkit dev-vcs/git \
            app-text/tree vim emacs dev-vcs/git app-misc/tmux \
            sys-apps/pciutils \
            sys-fs/e2fsprogs \
@@ -78,7 +83,6 @@ app() {
            sys-fs/ntfs3g \
            sys-fs/fuse-exfat \
            sys-fs/exfat-utils \
-           net-misc/dhcpcd \
            sys-boot/grub efibootmgr \
            app-alternatives/cpio \
            net-misc/proxychains \
@@ -86,7 +90,7 @@ app() {
            eclean-kernel \
            gdb \
            usbutils
-    ACCEPT_KEYWORDS='**' emerge -u --keep-going zellij
+    ACCEPT_KEYWORDS='**' emerge -u zellij
 
     eselect editor set emacs
     mkdir -p /etc/sudoers.d
@@ -96,23 +100,24 @@ app() {
     eix-sync
 
     ## net
-    emerge -u --autounmask-write --keep-going net-analyzer/mtr net-analyzer/netcat net-analyzer/tcpdump net-dialup/lrzsz \
-           net-misc/openssh net-misc/rsync net-misc/wget net-wireless/iwd net-misc/networkmanager \
-           net-misc/dhcpcd sys-apps/net-tools net-dns/bind-tools
+    emerge -u --autounmask-write net-analyzer/mtr net-analyzer/netcat net-analyzer/tcpdump \
+        net-dialup/lrzsz net-misc/openssh net-misc/rsync net-misc/wget \
+        net-misc/dhcpcd sys-apps/net-tools net-dns/bind-tools
 
 
     # rust binary
     echo 'dev-lang/rust' >> /etc/portage/package.mask/x
     ## dev
-    emerge -u --keep-going dev-lang/go dev-lang/lua sys-devel/clang
+    emerge -u dev-lang/go dev-lang/lua sys-devel/clang
     USE='clippy rust-analyzer rust-src rustfmt' emerge -u dev-lang/rust-bin
 
 
     ## terminal
-    emerge -u --keep-going app-containers/docker-cli app-shells/zsh app-misc/neofetch app-misc/trash-cli \
-           app-shells/fzf app-text/tree dev-vcs/lazygit dev-util/git-delta sys-apps/bat \
-           sys-apps/fd sys-apps/sd sys-apps/lsd sys-process/lsof sys-apps/ripgrep sys-process/htop sys-process/iotop \
-           strace cloc dev-util/shellcheck-bin app-admin/helm exa sshfs cmus app-misc/jq diff-so-fancy caddy \
-           www-apps/hugo v2ray-bin ntp rustup zoxide stress dev-util/marksman-bin
-    ACCEPT_KEYWORDS='**' emerge -u --keep-going dev-db/mycli
+    emerge -u app-containers/docker-cli app-shells/zsh app-misc/neofetch app-misc/trash-cli \
+        app-shells/fzf app-text/tree dev-util/git-delta sys-apps/bat \
+        sys-apps/fd sys-apps/lsd sys-process/lsof sys-apps/ripgrep sys-process/htop sys-process/iotop \
+        strace cloc dev-util/shellcheck-bin app-admin/helm exa sshfs app-misc/jq caddy \
+        ntp stress
+    ACCEPT_KEYWORDS='**' emerge -u dev-db/mycli dev-vcs/lazygit sys-apps/sd \
+        diff-so-fancy www-apps/hugo v2ray-bin rustup zoxide dev-util/marksman-bin
 }

@@ -292,6 +292,8 @@ grub-mkconfig -o /boot/grub/grub.cfg
 emerge --ask --update --deep --newuse @world
 # 深度清理
 emerge --ask --depclean
+# 修改USE, 编译所有依赖的包
+emerge --update --changed-use @world
 # 删除包，如果是顶层包，merge树会移除包，中间包只是移除顶层依赖关系
 emerge --ask -c sudo
 # 指定版本
@@ -337,4 +339,18 @@ dispatch-cofn
 ```bash
 systemd-firstboot --prompt --setup-machine-id
 systemctl preset-all
+```
+
+### 6. merge-usr
+```bash
+\cp -rv --preserve=all --remove-destination bin/* usr/bin
+\cp -rv --preserve=all --remove-destination lib/* usr/lib
+\cp -rv --preserve=all --remove-destination lib64/* usr/lib64
+\cp -rv --preserve=all --remove-destination sbin/* usr/bin
+
+rm -rf bin lib lib64 sbin
+ln -s usr/bin bin
+ln -s usr/lib lib
+ln -s usr/lib64 lib64
+ln -s usr/bin sbin
 ```

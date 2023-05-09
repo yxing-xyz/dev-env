@@ -23,13 +23,14 @@ LC_MESSAGES=C
 ## XXXXXX
 FEATURES="buildpkg nostrip"
 MAKEOPTS="-j8"
-USE="binary -test -X -qt -gtk -systemd -openrc -selinux"
+USE="binary -test -X -qt -gtk systemd -openrc -selinux"
 ACCEPT_LICENSE="linux-fw-redistributable no-source-code google-chrome Microsoft-vscode Vic-Fieger-License"
 GENTOO_MIRRORS="http://mirrors.tencent.com/gentoo/"
 L10N="zh-CN"
+UNINSTALL_IGNORE="/bin /lib /lib64 /sbin"
 EOF
 
 sync
-eselect profile set default/linux/arm64/17.0
+eselect profile set default/linux/arm64/17.0/systemd/merged-usr
 update
 app

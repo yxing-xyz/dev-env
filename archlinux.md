@@ -17,8 +17,9 @@ sed -i 's|#Color|Color|' /etc/pacman.conf
 sed -i 's|#ParallelDownloads|ParallelDownloads|' /etc/pacman.conf
 
 pacman -Syy && \
-    pacman -S glibc sudo git svn aria2 zsh lsd bat fzf lua ripgrep vim neovim emacs net-tools fd man-pages-zh_cn --noconfirm && \
-    sed -i '/# %wheel/a\%wheel ALL=(ALL) ALL' /etc/sudoers && \
+    pacman -S glibc sudo git svn aria2 zsh lsd bat fzf lua ripgrep vim neovim emacs net-tools fd man-pages-zh_cn fakeroot make --noconfirm && \
+    mkdir -p /etc/sudoers.d && \
+    echo '%wheel ALL=(ALL:ALL) ALL' > /etc/sudoers.d/wheel && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     echo 'zh_CN.UTF-8 UTF-8' >> /etc/locale.gen && \
     echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && \
@@ -46,5 +47,8 @@ pacman -S gcc go rustup nvm --noconfirm && \
     rustup install stable && \
     rustup component add rls-preview rust-analysis rust-src && \
     pacman -S docker mycli iredis trash-cli htop git-delta mtr wget tree lazygit zssh lrzsz podman trzsz --noconfirm
+source /usr/share/nvm/nvm.sh && nvm install --lts && nvm use --lts
 
-# source /usr/share/nvm/nvm.sh && nvm install --lts   &&  nvm use --lts && echo 'PATH=/usr/share/nvm/versions/node/v18.15.0/bin:$PATH' > /root/.bashrc
+## user
+su x
+yay -S trzsz --noconfirm
