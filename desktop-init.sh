@@ -132,7 +132,8 @@ mv ./v2raya /usr/local/bin/v2raya
 echo 'socks5  127.0.0.1 1080' >> /etc/proxychains.conf
 
 ## user
-useradd -m -G wheel,pcap,plugdev,audio -s /bin/bash x
+useradd -m -G wheel,pcap,plugdev,audio -s /bin/zsh x
+echo 'x:x' | chpasswd
 
 ## xorg config
 cp -f ./config/00-myinput.conf /etc/X11/xorg.conf.d
