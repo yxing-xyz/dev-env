@@ -20,11 +20,14 @@ COPY --from=base / /
 # ip route add default via 192.168.127.1
 
 
-# code
-# podman run -dit --name code -p 2222:22 --privileged --hostname code ccr.ccs.tencentyun.com/yxing-xyz/linux:code /bin/bash
-# arch
-# podman run -dit --name arch --hostname arch --net=host --privileged ccr.ccs.tencentyun.com/yxing-xyz/linux:arch /bin/bash
-
 
 # arch desktop
 # podman run -it --name arch-amd64 --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" docker.io/archlinux
+
+
+# 整理amd64 code
+url="ccr.ccs.tencentyun.com/yxing-xyz/linux:code-`date '+%Y-%m-%d-%H-%M'`"
+podman commit -s -a "yxing.xyz" code ${url} && \
+podman push ${url} && \
+podman rm -f code && \
+podman run -dit --name code -p 22:22  -v home:/home/x --privileged --hostname code ${url} /bin/bash
