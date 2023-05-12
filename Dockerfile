@@ -26,8 +26,27 @@ COPY --from=base / /
 
 
 # 整理amd64 code
-url="ccr.ccs.tencentyun.com/yxing-xyz/linux:code-`date '+%Y-%m-%d-%H-%M'`"
-podman commit -s -a "yxing.xyz" code ${url} && \
-podman push ${url} && \
-podman rm -f code && \
+url="ccr.ccs.tencentyun.com/yxing-xyz/linux:code-amd64"
+podman commit -s -a "yxing.xyz" code ${url}
+podman push ${url}
+podman rm -f code
 podman run -dit --name code -p 22:22  -v home:/home/x --privileged --hostname code ${url} /bin/bash
+
+
+# 整理arm64 code
+url="ccr.ccs.tencentyun.com/yxing-xyz/linux:code-arm64"
+docker commit -a "yxing.xyz" code ${url}
+tee >> Dockerfile <<EOF
+FROM ${url} as base
+RUN rm -r /var/cache/distfiles && \
+    rm -r /var/cache/binpkgs
+
+FROM scratch
+
+COPY --from=base / /
+EOF
+docker build -t ${url} .
+rm ./Dockerfile
+docker rm -f code
+docker run -dit --name code -p 22:22  -v home:/home/x --privileged --hostname code ${url} /bin/bash
+docker push ${url}
