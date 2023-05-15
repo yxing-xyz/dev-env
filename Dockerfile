@@ -38,8 +38,8 @@ url="ccr.ccs.tencentyun.com/yxing-xyz/linux:code-arm64"
 docker commit -a "yxing.xyz" code ${url}
 tee >> Dockerfile <<EOF
 FROM ${url} as base
-RUN rm -r /var/cache/distfiles && \
-    rm -r /var/cache/binpkgs
+RUN rm -rf /var/cache/distfiles && \
+    rm -rf /var/cache/binpkgs
 
 FROM scratch
 
