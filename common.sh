@@ -39,7 +39,6 @@ media-fonts/nerd-fonts codenewroman
 net-analyzer/mtr -gtk
 dev-lang/ghc -llvm
 net-wireless/wpa_supplicant tkip
-app-editors/emacs gmp gpm jit json libxml2 ssl threads xpm zlib dynamic-loading games gui gzipel source lcms gif gzip-el imagemagick jpeg png svg toolkit-scroll-bars
 EOF
     ## profile
     mkdir -p /etc/portage/profile/package.provided
