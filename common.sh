@@ -35,7 +35,7 @@ init() {
 EOF
     ## use
     tee >>/etc/portage/package.use/x <<EOF
-media-fonts/nerd-fonts codenewroman
+media-fonts/nerd-fonts codenewroman ubuntumono
 net-analyzer/mtr -gtk
 dev-lang/ghc -llvm
 net-wireless/wpa_supplicant tkip
