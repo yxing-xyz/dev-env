@@ -89,7 +89,7 @@ app() {
            eclean-kernel \
            gdb \
            usbutils
-    ACCEPT_KEYWORDS='**' emerge -u zellij
+    ACCEPT_KEYWORDS='~arm64 ~amd64' emerge -u zellij
 
     eselect editor set emacs
     mkdir -p /etc/sudoers.d
@@ -117,6 +117,6 @@ app() {
         sys-apps/fd sys-apps/lsd sys-process/lsof sys-apps/ripgrep sys-process/htop sys-process/iotop \
         strace cloc dev-util/shellcheck-bin app-admin/helm exa sshfs app-misc/jq caddy \
         ntp stress
-    ACCEPT_KEYWORDS='**' emerge -u dev-db/mycli dev-vcs/lazygit sys-apps/sd \
-        diff-so-fancy www-apps/hugo v2ray-bin rustup zoxide dev-util/marksman-bin
+    ACCEPT_KEYWORDS='~arm64 ~amd64' emerge -u dev-db/mycli dev-vcs/lazygit sys-apps/sd bear \
+    diff-so-fancy www-apps/hugo v2ray-bin rustup zoxide dev-util/marksman-bin
 }
