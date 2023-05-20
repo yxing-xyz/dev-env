@@ -56,8 +56,9 @@ emerge -u x11-drivers/xf86-input-libinput x11-drivers/xf86-video-amdgpu acpi \
        x11-misc/xsel x11-terms/xterm xfce-base/thunar bluez net-wireless/bluez-tools app-office/wps-office media-fonts/ttf-wps-fonts \
        www-client/google-chrome app-editors/vscode app-i18n/ibus-rime net-im/telegram-desktop-bin feh scrot media-gfx/flameshot \
        gnome-base/gnome-keyring seahorse gnome-extra/nm-applet lxde-base/lxappearance media-fonts/nerd-fonts media-fonts/source-han-mono \
-       media-fonts/source-han-sans media-fonts/source-han-serif scrot vlc mpv app-containers/podman media-sound/netease-cloud-music \
-       app-text/calibre peek
+       media-fonts/source-han-sans media-fonts/source-han-serif media-fonts/noto media-fonts/noto-cjk media-fonts/noto-emoji media-fonts/wqy-microhei \
+       scrot vlc mpv app-containers/podman media-sound/netease-cloud-music \
+       peek
 
 ## design
 emerge -u krita gimp mypaint
