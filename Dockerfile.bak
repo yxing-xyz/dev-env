@@ -1,0 +1,60 @@
+# machine
+#
+# 兼容docker
+# export DOCKER_HOST=unix:///Users/x/.local/share/containers/podman/machine/podman-machine-default/podman.sock
+
+# podman machine init --cpus 8 --memory 16384 --disk-size=128 --image-path stable --rootful --now
+# ip addr add 192.168.127.2/24 dev enp0s1
+# ip route add default via 192.168.127.1
+
+# arch desktop
+# podman run -it --name arch-amd64 --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" docker.io/archlinux
+
+
+
+
+
+
+## 本地构建镜像
+url="ccr.ccs.tencentyun.com/yxing-xyz/linux:tmp"
+docker commit code $url
+tee >> Dockerfile <<EOF
+FROM $url as base
+RUN rm -rf /var/cache/distfiles && \
+    rm -rf /var/cache/binpkgs
+
+FROM scratch
+
+COPY --from=base / /
+EOF
+docker build -t ${url} .
+docker push ${url}
+rm ./Dockerfile
+
+# 追加架构
+url="ccr.ccs.tencentyun.com/yxing-xyz/linux:arch"
+docker manifest rm ${url}
+docker manifest create --amend ${url} \
+ccr.ccs.tencentyun.com/yxing-xyz/linux:tmp
+docker manifest push $url
+
+## 运行容器
+url="ccr.ccs.tencentyun.com/yxing-xyz/linux:arch"
+docker rm -f code
+docker run -dit --name code -p 22:22  -v home:/home/x --privileged --hostname code ${url} /bin/bash
+
+
+
+## github action构建多镜像
+url="ccr.ccs.tencentyun.com/yxing-xyz/linux:arch"
+
+tee >> Dockerfile <<EOF
+FROM  ${url}as base
+RUN pacman -Syu --needed --noconfirm --overwrite '*'
+
+
+FROM scratch
+
+COPY --from=base / /
+EOF
+docker buildx build -t  ccr.ccs.tencentyun.com/yxing-xyz/linux:arch linux/arm64,linux/amd64 . --push

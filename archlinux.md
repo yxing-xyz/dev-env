@@ -17,7 +17,7 @@ sed -i 's|#Color|Color|' /etc/pacman.conf
 sed -i 's|#ParallelDownloads|ParallelDownloads|' /etc/pacman.conf
 
 pacman -Syy && \
-    pacman -S glibc sudo git svn aria2 zsh lsd bat fzf zoxide lua ripgrep vim neovim emacs net-tools fd man-pages-zh_cn fakeroot make --noconfirm && \
+    pacman -S glibc sudo git svn aria2 zsh lsd sd bat fzf zoxide lua ripgrep vim neovim emacs net-tools fd man-pages-zh_cn fakeroot make --noconfirm && \
     mkdir -p /etc/sudoers.d && \
     echo '%wheel ALL=(ALL:ALL) ALL' > /etc/sudoers.d/wheel && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
