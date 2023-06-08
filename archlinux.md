@@ -1,5 +1,6 @@
 
 # init
+systemd-firstboot --setup-machine-id
 if [[ `uname -a` =~ "x86_64" ]];then
     echo 'Server = https://mirrors.tencent.com/archlinux/$repo/os/$arch' > etc/pacman.d/mirrorlist
 else
@@ -46,7 +47,8 @@ pacman -S openssh --noconfirm && \
 pacman -S gcc go rustup nvm --noconfirm && \
     rustup install stable && \
     rustup component add rls-preview rust-analysis rust-src && \
-    pacman -S docker mycli iredis trash-cli htop git-delta mtr wget tree lazygit zssh lrzsz podman trzsz --noconfirm
+    pacman -S docker mycli iredis trash-cli htop git-delta mtr wget tree lazygit \
+    zssh lrzsz podman hugo --noconfirm
 source /usr/share/nvm/nvm.sh && nvm install --lts && nvm use --lts
 
 ## user
