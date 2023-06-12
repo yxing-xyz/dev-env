@@ -64,7 +64,6 @@ emerge -u x11-drivers/xf86-input-libinput x11-drivers/xf86-video-amdgpu acpi \
 emerge -u krita gimp mypaint
 
 
-
 # wpa 守护进程, 或者手动自己启动也可以
 #tee > /etc/wpa_supplicant/wpa_supplicant.conf-wlan0 <<EOF
 ## Allow users in the 'wheel' group to control wpa_supplicant
@@ -84,12 +83,11 @@ tee > /etc/modprobe.d/alsa-base.conf <<EOF
 options snd-hda-intel index=0 model=auto vid=1022 pid=15e3
 options snd-hda-intel index=1 model=auto vid=1002 pid=1637
 EOF
-
+## 插入鼠标禁用触摸板
 tee >/etc/udev/rules.d/01-touchpad.rules <<EOF
 SUBSYSTEM=="input", ATTRS{name}=="RAPOO BT4.0 Mouse", ACTION=="add", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/x/.Xauthority", RUN+="/usr/bin/xinput --disable 'UNIW0001:00 093A:0255 Touchpad'"
 SUBSYSTEM=="input", ATTRS{name}=="RAPOO BT4.0 Mouse", ACTION=="remove", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/x/.Xauthority", RUN+="/usr/bin/xinput --enable 'UNIW0001:00 093A:0255 Touchpad'"
 EOF
-
 
 # 关机之前记住网卡和蓝牙锁状态
 rfkill unlock all
@@ -124,7 +122,7 @@ ExecStart=/usr/bin/slock
 WantedBy=sleep.target
 EOF
 systemctl enable slock@x
-z
+
 ## proxy
 wget https://kgithub.com/v2rayA/v2rayA/releases/download/v2.0.1/v2raya_linux_x64_2.0.1 -o ./v2raya
 chmod u+x ./v2raya
@@ -147,18 +145,3 @@ cp -f  ./config/.asoundrc /home/x
 
 echo 'auth       optional     pam_gnome_keyring.so' >> /etc/pam.d/login
 echo 'session    optional     pam_gnome_keyring.so auto_start' >> /etc/pam.d/login
-
-## rustup-init-gentoo
-su x -c 'rustup-init-gentoo -s'
-
-## grub cmdline
-# quiet loglevel=3 systemd.show_status=auto rd.udev.log_level=3
-
-### grub boot window efi
-# menuentry "Windows 10" {
-#     insmod part_msdos
-#     insmod ntfs
-#     set root=(hd0,gpt1)
-#     chainloader /EFI/Microsoft/Boot/bootmgfw.efi
-#     boot
-# }
