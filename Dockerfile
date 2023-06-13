@@ -1,6 +1,7 @@
 FROM  ccr.ccs.tencentyun.com/yxing-xyz/linux:arch as base
-RUN pacman -Syu --needed --noconfirm --overwrite '*'
-RUN pacman -S expect --needed --noconfirm --overwrite '*'
+COPY ./build.sh /tmp/
+RUN /tmp/build.sh
+
 
 FROM scratch
 COPY --from=base / /
