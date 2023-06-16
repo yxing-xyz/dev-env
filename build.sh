@@ -15,4 +15,3 @@ expect -c '
 rm -rf /home/x/* || true
 rm -rf /home/x/.* || true
 rm -rf /tmp/* || true
-rm -rf /var/lib/pacman/* || true
