@@ -1,8 +1,8 @@
 name: Build and Push
 on:
- schedule:
-    - cron: '0 0 * * *'
-  # - push
+#  schedule:
+#     - cron: '0 0 * * *'
+  - push
 jobs:
   build:
     name: latest

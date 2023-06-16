@@ -48,8 +48,4 @@ pacman -S openssh --noconfirm && \
 pacman -S gcc go rustup --noconfirm && \
     pacman -S docker mycli iredis trash-cli htop git-delta mtr wget tree lazygit expect \
     zssh lrzsz podman hugo --noconfirm
-
-
-## user
-## su x -c "yay -S trzsz --noconfirm"
 ```
