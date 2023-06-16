@@ -1,7 +1,11 @@
 name: Build and Push
 on:
  schedule:
-    - cron: '0 0 * * *'
+    # 北京时间每个月1号4点执行
+    - cron: '0 12 1 * *'
+  # [push]
+env:
+  TZ: Asia/Shanghai
 jobs:
   build:
     name: latest

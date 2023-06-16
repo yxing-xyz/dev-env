@@ -11,11 +11,6 @@ expect -c '
 	expect \"*sudo*\"
 	send "x\\n"
 	expect eof'
-expect -c '
-	spawn yay -S trzsz --noconfirm --overwrite \"*\"
-	expect \"*sudo*\"
-	send "x\\n"
-	expect eof'
 "
 rm -rf /home/x/* || true
 rm -rf /home/x/.* || true
