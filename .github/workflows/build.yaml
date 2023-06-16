@@ -1,8 +1,7 @@
 name: Build and Push
 on:
-#  schedule:
-#     - cron: '0 0 * * *'
-  - push
+ schedule:
+    - cron: '0 0 * * *'
 jobs:
   build:
     name: latest
@@ -20,6 +19,13 @@ jobs:
           registry: ccr.ccs.tencentyun.com
           username: ${{ secrets.TCR_USERNAME }}
           password: ${{ secrets.TCR_PASSWORD }}
+      - name: Generate Tag List
+        run: |
+          echo "TAGS<<EOF" >> $GITHUB_ENV
+          DATE="$(date +'%Y-%m-%d')"
+          echo ccr.ccs.tencentyun.com/yxing-xyz/archlinux:latest >> $GITHUB_ENV
+          echo ccr.ccs.tencentyun.com/yxing-xyz/archlinux:${DATE} >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
       - name: Build and Push
         uses: docker/build-push-action@v4
         with:
@@ -28,4 +34,4 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           push: true
-          tags: ccr.ccs.tencentyun.com/yxing-xyz/linux:arch
+          tags: ${{ env.TAGS }}

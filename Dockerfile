@@ -1,4 +1,4 @@
-FROM  ccr.ccs.tencentyun.com/yxing-xyz/linux:arch as base
+FROM  ccr.ccs.tencentyun.com/yxing-xyz/archlinux as base
 COPY ./build.sh /tmp/
 RUN /tmp/build.sh
 
