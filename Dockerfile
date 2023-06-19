@@ -1,6 +1,7 @@
 FROM  ccr.ccs.tencentyun.com/yxing-xyz/archlinux:latest as base
-COPY ./build.sh /tmp/
-RUN /tmp/build.sh
+
+RUN pacman -Syu --needed --noconfirm --overwrite '*' && \
+    rm -f /tmp/* || true
 
 
 FROM scratch
