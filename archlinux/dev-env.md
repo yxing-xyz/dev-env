@@ -1,7 +1,10 @@
 # init
 ```bash
+mkdir /opt/x
+chmod 777 /opt/x
+
 # tool
-pacman -Syy && \
+pacman -Syu --noconfirm && \
     pacman -S glibc sudo git svn aria2 zsh lsd sd bat fzf zoxide lua ripgrep vim neovim emacs net-tools fd man-pages-zh_cn fakeroot make expect --noconfirm && \
     mkdir -p /etc/sudoers.d && \
     echo '%wheel ALL=(ALL:ALL) ALL' > /etc/sudoers.d/wheel && \

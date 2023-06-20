@@ -1,8 +1,8 @@
 name: Build and Push
 on:
  schedule:
-    # 北京时间每个月1号4点执行
-    - cron: '0 12 * * *'
+    # 北京时间每个月5号4点执行
+    - cron: '0 12 5 * *'
   # [push]
 env:
   TZ: Asia/Shanghai
