@@ -1,23 +1,7 @@
 
 # init
 ```bash
-systemd-firstboot --setup-machine-id
-if [[ `uname -a` =~ "x86_64" ]];then
-    echo 'Server = https://mirrors.tencent.com/archlinux/$repo/os/$arch' > etc/pacman.d/mirrorlist
-else
-    echo 'Server = https://mirrors.tencent.com/archlinuxarm/$arch/$repo' > etc/pacman.d/mirrorlist
-fi
-
-tee >>/etc/pacman.conf <<EOF
-[archlinuxcn]
-SigLevel = Never
-Server = https://mirrors.tencent.com/archlinuxcn/\$arch
-EOF
-
-
-sed -i 's|#Color|Color|' /etc/pacman.conf
-sed -i 's|#ParallelDownloads|ParallelDownloads|' /etc/pacman.conf
-
+# tool
 pacman -Syy && \
     pacman -S glibc sudo git svn aria2 zsh lsd sd bat fzf zoxide lua ripgrep vim neovim emacs net-tools fd man-pages-zh_cn fakeroot make expect --noconfirm && \
     mkdir -p /etc/sudoers.d && \
