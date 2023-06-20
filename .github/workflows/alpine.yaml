@@ -1,8 +1,9 @@
-name: Build and Push
+name: alpine
 on:
  schedule:
     # 北京时间每个月5号4点执行
-    - cron: '0 12 5 * *'
+    - cron: '12 0 * * *'
+  # [push]
 env:
   TZ: Asia/Shanghai
 jobs:
@@ -25,17 +26,12 @@ jobs:
       - name: Generate Tag List
         run: |
           echo "TAGS<<EOF" >> $GITHUB_ENV
-          DATE="$(date +'%Y-%m-%d')"
-          echo ccr.ccs.tencentyun.com/yxing-xyz/alpine:latest >> $GITHUB_ENV
-          echo ccr.ccs.tencentyun.com/yxing-xyz/alpine:${DATE} >> $GITHUB_ENV
+          echo ccr.ccs.tencentyun.com/yxing-xyz/linux:alpine >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
       - name: Build and Push
         uses: docker/build-push-action@v4
         with:
           platforms: linux/arm64,linux/amd64,linux/ppc64le,linux/s390x,linux/386,linux/arm/v7,linux/arm/v6
-          # context: .
-          # cache-from: type=gha
-          # cache-to: type=gha,mode=max
           push: true
           file: './alpine.Dockerfile'
           tags: ${{ env.TAGS }}

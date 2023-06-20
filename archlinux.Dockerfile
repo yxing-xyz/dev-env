@@ -1,8 +1,7 @@
-FROM  ccr.ccs.tencentyun.com/yxing-xyz/archlinux:latest as base
+FROM  ccr.ccs.tencentyun.com/yxing-xyz/linux:arch as bootstrapper
 
-RUN pacman -Syu --needed --noconfirm --overwrite '*' && \
-    rm -f /tmp/* || true
-
+COPY ./build.sh /tmp/
+RUN sh /tmp/build.sh
 
 FROM scratch
-COPY --from=base / /
+COPY --from=bootstrapper / /
