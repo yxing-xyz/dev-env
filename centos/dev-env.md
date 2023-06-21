@@ -5,7 +5,6 @@ docker run -dit -p 22:22 --hostname centos --name centos -v root:/root centos /b
 ```
 # dev
 ```bash
-docker exec -it centos /bin/bash
 sed -i.bak \
     -e 's|^mirrorlist=|#mirrorlist=|' \
     -e 's|^#baseurl=|baseurl=|' \
@@ -19,8 +18,12 @@ sed -i 's/[# ]*UsePAM.*/UsePAM no/' /etc/ssh/sshd_config
 sed -i 's/[# ]*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 ssh-keygen -A
 echo 'root:root' | chpasswd
+if [[ `uname -a` =~ "x86_64" ]];then
+wget https://github.com/voidint/g/releases/download/v1.5.0/g1.5.0.linux-amd64.tar.gz
+else
 wget https://github.com/voidint/g/releases/download/v1.5.0/g1.5.0.linux-arm64.tar.gz
 tar -xzvf ./g1.5.0.linux-arm64.tar.gz
+fi
 mv ./g /usr/local/bin/
 g install 1.15.15
 g install 1.17.13
