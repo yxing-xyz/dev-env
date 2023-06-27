@@ -1,4 +1,4 @@
-name: centos
+name: debian
 on:
  schedule:
     # 北京时间每个月5号4点执行
@@ -26,12 +26,12 @@ jobs:
       - name: Generate Tag List
         run: |
           echo "TAGS<<EOF" >> $GITHUB_ENV
-          echo ccr.ccs.tencentyun.com/yxing-xyz/linux:centos >> $GITHUB_ENV
+          echo ccr.ccs.tencentyun.com/yxing-xyz/linux:debian >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
       - name: Build and Push
         uses: docker/build-push-action@v4
         with:
-          platforms: linux/arm64,linux/amd64,linux/ppc64le
+          platforms: linux/386,linux/amd64,linux/arm/v5,linux/arm/v7,linux/arm64/v8,linux/mips64le,linux/ppc64le,linux/s390x
           push: true
-          file: './centos.Dockerfile'
+          file: './debian.Dockerfile'
           tags: ${{ env.TAGS }}

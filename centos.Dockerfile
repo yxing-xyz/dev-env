@@ -4,7 +4,7 @@ ARG TARGETARCH
 RUN sed -i.bak \
     -e 's|^mirrorlist=|#mirrorlist=|' \
     -e 's|^#baseurl=|baseurl=|' \
-    -e 's|http://mirror.centos.org|https://mirrors.tencent.com|' \
+    -e 's|http://mirror.centos.org|https://mirrors.aliyun.com|' \
     /etc/yum.repos.d/CentOS-*.repo   && \
 yum clean all && \
 yum makecache && \
