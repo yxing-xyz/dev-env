@@ -1,23 +1,10 @@
 # init
 ```bash
 docker rm -f centos
-docker run -dit -p 22:22 --hostname centos --name centos -v root:/root centos /bin/bash
+docker run -dit -p 22:22 --hostname centos --name centos -v root:/root ccr.ccs.tencentyun.com/yxing-xyz/linux:centos /bin/bash
 ```
-# dev
+# golang
 ```bash
-sed -i.bak \
-    -e 's|^mirrorlist=|#mirrorlist=|' \
-    -e 's|^#baseurl=|baseurl=|' \
-    -e 's|http://mirror.centos.org|https://mirrors.tencent.com|' \
-    /etc/yum.repos.d/CentOS-*.repo    #要修改的对象文件
-yum clean all
-yum makecache
-yum update -y
-yum install -y openssh-server wget git lrzsz
-sed -i 's/[# ]*UsePAM.*/UsePAM no/' /etc/ssh/sshd_config
-sed -i 's/[# ]*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
-ssh-keygen -A
-echo 'root:root' | chpasswd
 if [[ `uname -a` =~ "x86_64" ]];then
 wget https://github.com/voidint/g/releases/download/v1.5.0/g1.5.0.linux-amd64.tar.gz
 else
@@ -52,11 +39,11 @@ password: root
 ```
 2. 生成ssh
 ```bash
-ssh-keygen -t rsa -C "你的腾讯邮箱"
+ssh-keygen -t rsa -C "你的邮箱"
 ```
 3. 粘贴ssh信息到git网站中
 4. 配置git信息
 ```bashq
-git config --global user.name "你的腾讯英文名"
-git config --global user.email "你的腾讯邮箱"
+git config --global user.name "你的英文名"
+git config --global user.email "你的邮箱"
 ```
