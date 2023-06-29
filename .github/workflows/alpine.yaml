@@ -1,8 +1,8 @@
 name: alpine
 on:
  schedule:
-    # 北京时间每个月5号4点执行
-    - cron: '12 0 1 * *'
+    # UTC周日0点执行
+    - cron: '0 0 * * 0'
   # [push]
 env:
   TZ: Asia/Shanghai
