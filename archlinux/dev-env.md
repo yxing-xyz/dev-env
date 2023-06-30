@@ -31,7 +31,7 @@ pacman -S openssh --noconfirm && \
     ssh-keygen -A
 
 # dev
-pacman -S gcc go rustup --noconfirm && \
+pacman -S gcc go rustup pyenv nvm --noconfirm && \
     pacman -S docker mycli iredis trash-cli htop git-delta mtr wget tree lazygit expect \
     zssh lrzsz podman hugo --noconfirm
 ```
