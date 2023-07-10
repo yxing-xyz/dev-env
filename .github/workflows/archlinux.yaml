@@ -1,7 +1,7 @@
 name: archlinux
 on:
+ push:
  schedule:
-    # UTC周日0点执行
     - cron: '0 0 * * 0'
 env:
   TZ: Asia/Shanghai

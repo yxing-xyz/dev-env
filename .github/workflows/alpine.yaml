@@ -1,9 +1,8 @@
 name: alpine
 on:
+ push:
  schedule:
-    # UTC周日0点执行
     - cron: '0 0 * * 0'
-  # [push]
 env:
   TZ: Asia/Shanghai
 jobs:
