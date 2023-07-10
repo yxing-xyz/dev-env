@@ -3,7 +3,7 @@
 docker rm -f debian
 docker run -dit -p 2222:22 --hostname debian --name debian -v root:/root ccr.ccs.tencentyun.com/yxing-xyz/linux:debian
 ```
-# golang
+# dev
 ```bash
 if [[ `uname -a` =~ "x86_64" ]];then
 wget https://github.com/voidint/g/releases/download/v1.5.0/g1.5.0.linux-amd64.tar.gz
@@ -26,10 +26,6 @@ tee > ~/.gitconfig <<EOF
     insteadOf = http://git.woa.com
 EOF
 source ~/.bashrc
-# 启动sshd
-/usr/sbin/sshd
-# 退出容器
-exit
 ```
 
 1. 进入开发环境
