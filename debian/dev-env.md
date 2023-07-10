@@ -1,7 +1,7 @@
 # init
 ```bash
-docker rm -f centos
-docker run -dit -p 22:22 --hostname centos --name centos -v root:/root ccr.ccs.tencentyun.com/yxing-xyz/linux:centos /bin/bash
+docker rm -f debian
+docker run -dit -p 2222:22 --hostname debian --name debian -v root:/root ccr.ccs.tencentyun.com/yxing-xyz/linux:debian
 ```
 # golang
 ```bash
