@@ -8,7 +8,10 @@ echo '%wheel ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/wheel
 su x -c '
 export GO111MODULE=on
 export GOPROXY=https://goproxy.cn
-yay -S archlinux-keyring --nouseask --needed --noconfirm --overwrite "*"
+pacman -Sy
+pacman -S archlinux-keyring
+sudo pacman-key --init
+sudo pacman-key --populate
 yay -Syu --nouseask --needed --noconfirm --overwrite "*"
 '
 
