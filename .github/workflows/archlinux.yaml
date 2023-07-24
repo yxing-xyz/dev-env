@@ -2,7 +2,8 @@ name: archlinux
 on:
  push:
     paths:
-      - '*.Dockerfile'
+      - 'archlinux.Dockerfile'
+      - 'archlinux-build.sh'
  schedule:
     - cron: '0 0 * * 0'
 env:

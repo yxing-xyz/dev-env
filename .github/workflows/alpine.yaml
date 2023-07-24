@@ -2,7 +2,7 @@ name: alpine
 on:
  push:
     paths:
-      - '*.Dockerfile'
+      - 'alpine.Dockerfile'
  schedule:
     - cron: '0 0 * * 0'
 env:
