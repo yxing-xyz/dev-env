@@ -57,7 +57,7 @@ emerge -u x11-drivers/xf86-input-libinput x11-drivers/xf86-video-amdgpu acpi \
        www-client/google-chrome app-editors/vscode app-i18n/ibus-rime net-im/telegram-desktop-bin feh scrot media-gfx/flameshot \
        gnome-base/gnome-keyring seahorse gnome-extra/nm-applet lxde-base/lxappearance media-fonts/nerd-fonts media-fonts/source-han-mono \
        media-fonts/source-han-sans media-fonts/source-han-serif media-fonts/noto media-fonts/noto-cjk media-fonts/noto-emoji media-fonts/wqy-microhei \
-       scrot vlc mpv app-containers/podman media-sound/netease-cloud-music \
+       scrot vlc mpv app-containers/docker docker-cli media-sound/netease-cloud-music \
        peek
 
 ## design
@@ -105,7 +105,7 @@ tee >>/etc/systemd/system.conf <<EOF
 DefaultTimeoutStartSec=10s
 DefaultTimeoutStopSec=10s
 EOF
-
+systemctl enable docker.service
 ## systemd.serivce
 tee >>/etc/systemd/system/slock@.service <<EOF
 [Unit]
@@ -131,7 +131,7 @@ mv ./v2raya /usr/local/bin/v2raya
 echo 'socks5  127.0.0.1 1080' >> /etc/proxychains.conf
 
 ## user
-useradd -m -G wheel,pcap,plugdev,audio -s /bin/zsh x
+useradd -m -G wheel,pcap,plugdev,audio,docker -s /bin/zsh x
 echo 'x:x' | chpasswd
 
 ## xorg config
