@@ -4,7 +4,7 @@ on:
     paths:
       - 'debian.Dockerfile'
  schedule:
-    - cron: '0 0 * * 0'
+    - cron: '0 0 * * 2'
 env:
   TZ: Asia/Shanghai
 jobs:
@@ -26,6 +26,7 @@ jobs:
           password: ${{ secrets.TCR_PASSWORD }}
       - name: Generate Tag List
         run: |
+          docker system prune -af
           echo "TAGS<<EOF" >> $GITHUB_ENV
           echo ccr.ccs.tencentyun.com/yxing-xyz/linux:debian >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV

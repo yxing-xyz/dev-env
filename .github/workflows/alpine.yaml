@@ -26,6 +26,7 @@ jobs:
           password: ${{ secrets.TCR_PASSWORD }}
       - name: Generate Tag List
         run: |
+          docker system prune -af
           echo "TAGS<<EOF" >> $GITHUB_ENV
           echo ccr.ccs.tencentyun.com/yxing-xyz/linux:alpine >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
