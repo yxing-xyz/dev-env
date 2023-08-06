@@ -5,7 +5,7 @@ chmod 777 /opt/x
 
 # tool
 pacman -Syu --noconfirm && \
-    pacman -S glibc sudo git svn aria2 zsh lsd sd bat fzf zoxide lua ripgrep vim neovim emacs net-tools fd man-pages-zh_cn fakeroot make expect --noconfirm && \
+    pacman -S glibc sudo git svn aria2 zsh lsd sd bat fzf zoxide lua ripgrep vim neovim emacs net-tools fd man-pages-zh_cn fakeroot make expect bear dnsutils net-tools --noconfirm && \
     mkdir -p /etc/sudoers.d && \
     echo '%wheel ALL=(ALL:ALL) ALL' > /etc/sudoers.d/wheel && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
@@ -31,7 +31,7 @@ pacman -S openssh --noconfirm && \
     ssh-keygen -A
 
 # dev
-pacman -S gcc go rustup pyenv nvm --noconfirm && \
+pacman -S gcc clang go rustup --noconfirm && \
     pacman -S docker mycli iredis trash-cli htop git-delta mtr wget tree lazygit expect \
-    zssh lrzsz podman hugo --noconfirm
+    zssh lrzsz hugo python2 --noconfirm
 ```
