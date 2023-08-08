@@ -58,7 +58,7 @@ emerge -u x11-drivers/xf86-input-libinput x11-drivers/xf86-video-amdgpu acpi \
        gnome-base/gnome-keyring seahorse gnome-extra/nm-applet lxde-base/lxappearance media-fonts/nerd-fonts media-fonts/source-han-mono \
        media-fonts/source-han-sans media-fonts/source-han-serif media-fonts/noto media-fonts/noto-cjk media-fonts/noto-emoji media-fonts/wqy-microhei \
        scrot vlc mpv app-containers/docker docker-cli media-sound/netease-cloud-music \
-       peek
+       peek gnome-extra/zenity
 
 ## design
 emerge -u krita gimp mypaint
