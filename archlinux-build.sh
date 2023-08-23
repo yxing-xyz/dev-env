@@ -1,26 +1,15 @@
 #!/bin/sh
+set -e
 
-set -o errexit
+if [[ $(uname -a) == *"x86_64"* ]]; then
+  echo 'Server = https://mirrors.aliyun.com/archlinux/$repo/os/$arch' > etc/pacman.d/mirrorlist
+else
+  echo 'Server = https://mirrors.aliyun.com/archlinuxarm/$arch/$repo' > /etc/pacman.d/mirrorlist
+fi
 
-echo '%wheel ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/wheel
-
-
-su x -c '
-sudo pacman -R $(pacman -Qtdq)
-export GO111MODULE=on
-export GOPROXY=https://goproxy.cn
-pacman -Sy
-pacman -S archlinux-keyring
-sudo pacman-key --init
-sudo pacman-key --populate
-yay -Syu --nouseask --needed --noconfirm --overwrite "*"
-'
+pacman -Sy --needed --noconfirm
+pacman -S archlinux-keyring --needed --noconfirm
+pacman -Su --needed --noconfirm
 
 rm -rf /rootfs/var/lib/pacman/sync/* || true
-rm -rf /home/x/.* || true
-rm -rf /home/x/* || true
 rm -rf /tmp/* || true
-
-
-
-echo '%wheel ALL=(ALL:ALL) ALL' > /etc/sudoers.d/wheel
