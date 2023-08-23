@@ -6,6 +6,7 @@ echo '%wheel ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/wheel
 
 
 su x -c '
+sudo pacman -R $(pacman -Qtdq)
 export GO111MODULE=on
 export GOPROXY=https://goproxy.cn
 pacman -Sy
