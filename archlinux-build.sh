@@ -4,7 +4,9 @@ set -e
 if [[ $(uname -a) == *"x86_64"* ]]; then
   echo 'Server = https://mirrors.aliyun.com/archlinux/$repo/os/$arch' > etc/pacman.d/mirrorlist
 else
-  echo 'Server = https://mirrors.aliyun.com/archlinuxarm/$arch/$repo' > /etc/pacman.d/mirrorlist
+  # echo 'Server = https://mirrors.aliyun.com/archlinuxarm/$arch/$repo' > /etc/pacman.d/mirrorlist
+  echo 'Server = https://mirror.archlinuxarm.org/$arch/$repo' > /etc/pacman.d/mirrorlist
+
 fi
 
 pacman -Sy --needed --noconfirm
