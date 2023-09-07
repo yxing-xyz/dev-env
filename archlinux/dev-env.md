@@ -46,4 +46,8 @@ pacman -S yay bash expect git svn aria2 vim neovim emacs lsof \
         hugo --noconfirm
 yay trzsz
 yay bear2-git
+
+# rustup default stable
+# rustup component add rust-analyzer
+# rustup component add rust-src
 ```
