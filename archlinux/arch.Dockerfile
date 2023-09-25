@@ -1,7 +1,7 @@
 FROM  ccr.ccs.tencentyun.com/yxing-xyz/linux:arch as bootstrapper
 
-COPY ./archlinux-build.sh /tmp/
-RUN sh /tmp/archlinux-build.sh
+COPY ./arch.sh /tmp/
+RUN sh /tmp/arch.sh
 
 FROM scratch
 COPY --from=bootstrapper / /

@@ -32,9 +32,10 @@ jobs:
           echo ccr.ccs.tencentyun.com/yxing-xyz/linux:arch >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
       - name: Build and Push
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           platforms: linux/amd64,linux/arm64
           push: true
-          file: './archlinux.Dockerfile'
-          tags: ${{ env.TAGS }}
+          file: ./archlinux/rootfs.Dockerfile
+          context: ./archlinux
+          tags: ${{ env.TAGS }}          
