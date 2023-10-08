@@ -75,8 +75,8 @@ pacman -S net-tools dnsutils inetutils iproute2 bridge-utils --needed --noconfir
 pacman -S bmon bwm-ng nload iftop conntrack-tools ipvsadm aircrack-ng --needed --noconfirm --overwrite '*'
 # 进程统计网络带宽
 pacman -S nethogs bandwhich --needed --noconfirm --overwrite '*'
-# 查看ip连接 端口扫描namp、端口netcat、端口数据发送端口转发socat、http测试 nmap -Pn -v -A www.baidu.com  -p 0-10000
-pacman -S iptstate nmap openbsd-netcat socat httpie --needed --noconfirm --overwrite '*'
+# 查看ip连接 端口扫描namp、端口netcat、端口数据发送端口转发socat、http测试 nmap -Pn -v -A www.baidu.com  -p 0-10000 websocket客户端
+pacman -S iptstate nmap openbsd-netcat socat httpie websocat --needed --noconfirm --overwrite '*'
 # 测试本机发送tcp/udp最大带宽 时延 丢包, 路由测试工具mtr
 pacman -S iperf mtr --needed --noconfirm --overwrite '*'
 # 抓包
