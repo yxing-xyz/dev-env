@@ -17,8 +17,8 @@ pacman -S gnome-keyring seahorse --needed --noconfirm --overwrite '*'
 # 导入CPG key/
 pacman -S archlinux-keyring --needed --noconfirm --overwrite '*'
 pacman -S archlinuxcn-keyring --needed --noconfirm --overwrite '*'
-# 安装 yay       降级
-pacman -S yay downgrade --needed --noconfirm --overwrite '*'
+# 安装 yay    asp   降级
+pacman -S yay asp downgrade --needed --noconfirm --overwrite '*'
 # 用户态依赖
 pacman -S glibc musl gcc clang --needed --noconfirm --overwrite '*'
 
