@@ -17,6 +17,7 @@ else
 fi
 sed -i 's|#Color|Color|' /etc/pacman.conf
 sed -i 's|#ParallelDownloads|ParallelDownloads|' /etc/pacman.conf
+sed -i 's|#MAKEFLAGS.*|MAKEFLAGS="-j17"|' /etc/makepkg.conf
 pacman-key --init
 mkdir -p /rootfs
 mkdir -m 0755 -p /rootfs/var/cache/pacman/pkg
