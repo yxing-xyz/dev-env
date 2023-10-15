@@ -13,6 +13,7 @@ else
 fi
 sed -i 's|#Color|Color|' /etc/pacman.conf
 sed -i 's|#ParallelDownloads|ParallelDownloads|' /etc/pacman.conf
+sed -i 's|#MAKEFLAGS.*|MAKEFLAGS="-j17"|' /etc/makepkg.conf
 mkdir -p /etc/sudoers.d && \
 echo '%wheel ALL=(ALL:ALL) ALL' > /etc/sudoers.d/wheel && \
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
