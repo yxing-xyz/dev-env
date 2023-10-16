@@ -80,16 +80,12 @@ app() {
            sys-fs/xfsprogs \
            sys-fs/dosfstools \
            sys-fs/ntfs3g \
-           sys-fs/fuse-exfat \
-           sys-fs/exfat-utils \
            sys-boot/grub efibootmgr \
            app-alternatives/cpio \
-           net-misc/proxychains \
            app-arch/p7zip \
-           eclean-kernel \
            gdb \
            usbutils
-    ACCEPT_KEYWORDS='~arm64 ~amd64' emerge -u zellij
+    ACCEPT_KEYWORDS='~arm64 ~amd64' emerge -u zellij sys-fs/fuse-exfat  sys-fs/exfat-utils net-misc/proxychains  eclean-kernel 
 
     eselect editor set emacs
     mkdir -p /etc/sudoers.d
