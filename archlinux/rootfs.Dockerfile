@@ -12,5 +12,4 @@ RUN ln -sf /usr/lib/os-release /etc/os-release && \
 	pacman-key --init && \
 	pacman-key --populate
 
-
 CMD ["/usr/bin/bash"]
