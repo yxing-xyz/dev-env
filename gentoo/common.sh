@@ -85,7 +85,7 @@ app() {
            app-arch/p7zip \
            gdb \
            usbutils
-    ACCEPT_KEYWORDS='~arm64 ~amd64' emerge -u zellij sys-fs/fuse-exfat  sys-fs/exfat-utils net-misc/proxychains  eclean-kernel 
+    ACCEPT_KEYWORDS='~arm64 ~amd64' emerge -u zellij sys-fs/fuse-exfat  sys-fs/exfat-utils net-misc/proxychains  eclean-kernel
 
     eselect editor set emacs
     mkdir -p /etc/sudoers.d
@@ -114,5 +114,5 @@ app() {
         strace cloc dev-util/shellcheck-bin app-admin/helm exa sshfs app-misc/jq caddy \
         ntp stress
     ACCEPT_KEYWORDS='~arm64 ~amd64' emerge -u dev-db/mycli dev-vcs/lazygit sys-apps/sd bear \
-    diff-so-fancy www-apps/hugo v2ray-bin rustup zoxide dev-util/marksman-bin
+    diff-so-fancy www-apps/hugo v2ray-bin rustup zoxide dev-util/marksman-bin crosstool-ng
 }
