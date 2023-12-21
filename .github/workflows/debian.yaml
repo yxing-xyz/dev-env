@@ -1,10 +1,12 @@
 name: debian
 on:
- push:
+  push:
+    branches:
+      - main
     paths:
-      - 'debian.Dockerfile'
- schedule:
-    - cron: '0 0 * * 2'
+      - "./debian/**"
+  schedule:
+    - cron: "0 0 * * 5"
 env:
   TZ: Asia/Shanghai
 jobs:
@@ -26,6 +28,7 @@ jobs:
           password: ${{ secrets.TCR_PASSWORD }}
       - name: Generate Tag List
         run: |
+          sed -i -e 's|${IMAGE}|debian|' ./rootfs.Dockerfile
           docker system prune -af
           echo "TAGS<<EOF" >> $GITHUB_ENV
           echo ccr.ccs.tencentyun.com/yxing-xyz/linux:debian >> $GITHUB_ENV
@@ -35,5 +38,6 @@ jobs:
         with:
           platforms: linux/386,linux/amd64,linux/arm/v5,linux/arm/v7,linux/arm64/v8,linux/mips64le,linux/ppc64le,linux/s390x
           push: true
-          file: './debian.Dockerfile'
+          file: "./rootfs.Dockerfile"
           tags: ${{ env.TAGS }}
+          context: ./debian

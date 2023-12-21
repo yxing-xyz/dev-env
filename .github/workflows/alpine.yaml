@@ -1,10 +1,12 @@
 name: alpine
 on:
- push:
+  push:
+    branches:
+      - main
     paths:
-      - 'alpine.Dockerfile'
- schedule:
-    - cron: '0 0 * * 0'
+      - "alpine/**"
+  schedule:
+    - cron: "0 0 * * 0"
 env:
   TZ: Asia/Shanghai
 jobs:
@@ -26,6 +28,7 @@ jobs:
           password: ${{ secrets.TCR_PASSWORD }}
       - name: Generate Tag List
         run: |
+          sed -i -e 's|${IMAGE}|alpine|' ./rootfs.Dockerfile
           docker system prune -af
           echo "TAGS<<EOF" >> $GITHUB_ENV
           echo ccr.ccs.tencentyun.com/yxing-xyz/linux:alpine >> $GITHUB_ENV
@@ -35,5 +38,6 @@ jobs:
         with:
           platforms: linux/arm64,linux/amd64,linux/ppc64le,linux/s390x,linux/386,linux/arm/v7,linux/arm/v6
           push: true
-          file: './alpine.Dockerfile'
+          file: "./rootfs.Dockerfile"
           tags: ${{ env.TAGS }}
+          context: ./alpine

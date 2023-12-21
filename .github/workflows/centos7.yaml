@@ -1,13 +1,12 @@
-name: archlinux
+name: centos7
 on:
   push:
     branches:
       - main
     paths:
-      - "./archlinux/rootfs.Dockerfile"
-      - "./archlinux/rootfs.sh"
+      - "centos7/**"
   schedule:
-    - cron: "0 0 * * 1"
+    - cron: "0 0 * * 2"
 env:
   TZ: Asia/Shanghai
 jobs:
@@ -29,15 +28,16 @@ jobs:
           password: ${{ secrets.TCR_PASSWORD }}
       - name: Generate Tag List
         run: |
+          sed -i -e 's|${IMAGE}|centos:centos7|' ./rootfs.Dockerfile
           docker system prune -af
           echo "TAGS<<EOF" >> $GITHUB_ENV
-          echo ccr.ccs.tencentyun.com/yxing-xyz/linux:arch >> $GITHUB_ENV
+          echo ccr.ccs.tencentyun.com/yxing-xyz/linux:centos7 >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
       - name: Build and Push
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v4
         with:
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64,linux/arm64/v8,linux/arm/v7,linux/386,linux/ppc64le
           push: true
-          file: ./archlinux/rootfs.Dockerfile
-          context: ./archlinux
+          file: "./rootfs.Dockerfile"
           tags: ${{ env.TAGS }}
+          context: ./centos7
