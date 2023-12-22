@@ -40,7 +40,7 @@ yum update -y
 
 yum install -y gcc gcc-c++ make automake autoconf libtool perl procps
 yum install -y openssh-server zlib-devel openssl-devel pcre-devel
-yum install -y git net-tools
+yum install -y git net-tools lrzsz
 
 sed -i 's/[# ]*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 ssh-keygen -A

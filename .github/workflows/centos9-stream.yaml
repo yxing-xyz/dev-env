@@ -1,11 +1,10 @@
 name: centos9-stream
-
 on:
   push:
     branches:
       - main
     paths:
-      - "./centos9-stream/**"
+      - "centos9-stream/**"
   schedule:
     - cron: "0 0 * * 4"
 env:
