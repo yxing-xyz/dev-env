@@ -4,8 +4,9 @@ on:
     branches:
       - main
     paths:
-      - "./archlinux/rootfs.Dockerfile"
-      - "./archlinux/rootfs.sh"
+      - "rootfs.Dockerfile"
+      - "archlinux/rootfs.Dockerfile"
+      - "archlinux/rootfs.sh"
   schedule:
     - cron: "0 0 * * 1"
 env:

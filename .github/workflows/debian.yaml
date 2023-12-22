@@ -4,7 +4,8 @@ on:
     branches:
       - main
     paths:
-      - "./debian/**"
+      - "rootfs.Dockerfile"
+      - "debian/**"
   schedule:
     - cron: "0 0 * * 5"
 env:

@@ -4,6 +4,7 @@ on:
     branches:
       - main
     paths:
+      - "rootfs.Dockerfile"
       - "centos8-stream/**"
   schedule:
     - cron: "0 0 * * 3"

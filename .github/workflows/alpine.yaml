@@ -4,6 +4,7 @@ on:
     branches:
       - main
     paths:
+      - "rootfs.Dockerfile"
       - "alpine/**"
   schedule:
     - cron: "0 0 * * 0"
