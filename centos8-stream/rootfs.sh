@@ -15,4 +15,5 @@ yum install -y tcpdump lsof net-tools bind-utils mtr wget curl
 
 sed -i 's/[# ]*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 ssh-keygen -A
+
 echo 'root:root' | chpasswd
