@@ -23,11 +23,10 @@ tee >>/etc/pacman.conf <<EOF
 SigLevel = Never
 Server = https://mirrors.nju.edu.cn/archlinuxcn/\$arch
 EOF
-
-cat /etc/pacman.d/mirrorlist
 sed -i 's|#Color|Color|' /etc/pacman.conf
 sed -i 's|#ParallelDownloads|ParallelDownloads|' /etc/pacman.conf
 sed -i 's|#MAKEFLAGS.*|MAKEFLAGS="-j17"|' /etc/makepkg.conf
+
 pacman-key --init
 mkdir -p /rootfs
 mkdir -m 0755 -p /rootfs/var/cache/pacman/pkg
@@ -43,6 +42,8 @@ mkdir -m 0555 -p /rootfs/proc
 sed -i 's|Include = /etc/pacman.d/mirrorlist|Include = /etc/pacman.d/mirrorlist\nSigLevel = Never|g' /etc/pacman.conf
 pacman -r /rootfs -Sy --noconfirm $PACKAGE_GROUP
 pacman -r /rootfs -Sy --noconfirm $BOOTSTRAP_EXTRA_PACKAGES
+cp /etc/pacman.d/mirrorlist /rootfs/etc/pacman.d/
+cp /etc/pacman.conf /rootfs/etc/
 sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /rootfs/etc/locale.gen
 echo "LANG=en_US.UTF-8" >/rootfs/etc/locale.conf
 chroot /rootfs locale-gen
