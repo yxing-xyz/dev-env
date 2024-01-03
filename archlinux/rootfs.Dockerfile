@@ -1,9 +1,8 @@
-FROM alpine AS bootstrapper
+FROM ccr.ccs.tencentyun.com/yxing-xyz/linux:alpine AS bootstrapper
 ARG TARGETARCH
 
 COPY ./rootfs.sh /tmp/rootfs.sh
 RUN sh /tmp/rootfs.sh $TARGETARCH
-
 
 FROM scratch
 COPY --from=bootstrapper /rootfs/ /

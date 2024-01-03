@@ -3,7 +3,6 @@ set -e
 TARGETARCH=$1
 PACKAGE_GROUP='base base-devel'
 BOOTSTRAP_EXTRA_PACKAGES=""
-sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 apk add arch-install-scripts pacman-makepkg curl zstd
 mkdir -p /etc/pacman.d
 if [[ $TARGETARCH == *"amd64"* ]]; then
