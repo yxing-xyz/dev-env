@@ -6,10 +6,10 @@ BOOTSTRAP_EXTRA_PACKAGES=""
 sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 apk add arch-install-scripts pacman-makepkg curl zstd
 mkdir -p /etc/pacman.d
-if [[ $(uname -a) == *"x86_64"* ]]; then
+if [[ $TARGETARCH == *"amd64"* ]]; then
     curl -L https://gitlab.archlinux.org/archlinux/packaging/packages/pacman/-/raw/main/pacman.conf -o /etc/pacman.conf
     echo 'Server = https://mirrors.nju.edu.cn/archlinux/$repo/os/$arch' >/etc/pacman.d/mirrorlist
-elif [[ $(uname -a) == *"aarch"* ]]; then
+elif [[ $TARGETARCH == *"arm"* ]]; then
     curl -L https://raw.githubusercontent.com/archlinuxarm/PKGBUILDs/master/core/pacman/pacman.conf -o /etc/pacman.conf
     sed -i 's/@CARCH@/auto/g' /etc/pacman.conf
     echo 'Server = https://mirrors.nju.edu.cn/archlinuxarm/$arch/$repo' >/etc/pacman.d/mirrorlist
