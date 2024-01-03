@@ -1,6 +1,17 @@
 #!/bin/env bash
 
 ###################  mirror ######################
+if [[ $(uname -a) == *"x86_64"* ]]; then
+  echo 'Server = https://mirrors.nju.edu.cn/archlinux/$repo/os/$arch' >/etc/pacman.d/mirrorlist
+else
+  echo 'Server = https://mirrors.nju.edu.cn/archlinuxarm/$arch/$repo' >/etc/pacman.d/mirrorlist
+fi
+
+tee >>/etc/pacman.conf <<EOF
+[archlinuxcn]
+SigLevel = Never
+Server = https://mirrors.nju.edu.cn/archlinuxcn/\$arch
+EOF
 
 pacman -Syu --noconfirm &&
   pacman -S glibc musl gcc clang sudo man-pages-zh_cn zsh --noconfirm
@@ -33,10 +44,10 @@ pacman -S yay bash expect git svn aria2 vim neovim emacs lsof \
   tcpdump net-tools dnsutils mtr wget curl zssh lrzsz \
   docker mycli iredis trash-cli \
   hugo --noconfirm
-yay trzsz
-yay bear2-git
-yay lazydocker
 
+# yay trzsz
+# yay bear2-git
+# yay lazydocker
 # rustup default stable
 # rustup component add rust-analyzer
 # rustup component add rust-src

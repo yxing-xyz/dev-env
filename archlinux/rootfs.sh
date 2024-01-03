@@ -17,12 +17,6 @@ else
     echo 'unknown architecture'
     exit 1
 fi
-
-tee >>/etc/pacman.conf <<EOF
-[archlinuxcn]
-SigLevel = Never
-Server = https://mirrors.nju.edu.cn/archlinuxcn/\$arch
-EOF
 sed -i 's|#Color|Color|' /etc/pacman.conf
 sed -i 's|#ParallelDownloads|ParallelDownloads|' /etc/pacman.conf
 sed -i 's|#MAKEFLAGS.*|MAKEFLAGS="-j17"|' /etc/makepkg.conf
