@@ -6,17 +6,25 @@ BOOTSTRAP_EXTRA_PACKAGES=""
 sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 apk add arch-install-scripts pacman-makepkg curl zstd
 mkdir -p /etc/pacman.d
-if [[ "$TARGETARCH" == "arm*" ]]; then
+if [[ $(uname -a) == *"x86_64"* ]]; then
+    curl -L https://gitlab.archlinux.org/archlinux/packaging/packages/pacman/-/raw/main/pacman.conf -o /etc/pacman.conf
+    echo 'Server = https://mirrors.nju.edu.cn/archlinux/$repo/os/$arch' >/etc/pacman.d/mirrorlist
+elif [[ $(uname -a) == *"aarch"* ]]; then
     curl -L https://raw.githubusercontent.com/archlinuxarm/PKGBUILDs/master/core/pacman/pacman.conf -o /etc/pacman.conf
     sed -i 's/@CARCH@/auto/g' /etc/pacman.conf
-    # echo 'Server = https://mirrors.aliyun.com/archlinuxarm/$arch/$repo' > /etc/pacman.d/mirrorlist
-    echo 'Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxarm/$arch/$repo' > /etc/pacman.d/mirrorlist
+    echo 'Server = https://mirrors.nju.edu.cn/archlinuxarm/$arch/$repo' >/etc/pacman.d/mirrorlist
     BOOTSTRAP_EXTRA_PACKAGES="archlinuxarm-keyring"
 else
-    curl -L https://gitlab.archlinux.org/archlinux/packaging/packages/pacman/-/raw/main/pacman.conf -o /etc/pacman.conf
-    # echo 'Server = https://mirrors.aliyun.com/archlinux/$repo/os/$arch' > etc/pacman.d/mirrorlist
-    echo 'Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch' >  /etc/pacman.d/mirrorlist
+    echo 'unknown architecture'
+    exit 1
 fi
+
+tee >>/etc/pacman.conf <<EOF
+[archlinuxcn]
+SigLevel = Never
+Server = https://mirrors.nju.edu.cn/archlinuxcn/\$arch
+EOF
+
 cat /etc/pacman.d/mirrorlist
 sed -i 's|#Color|Color|' /etc/pacman.conf
 sed -i 's|#ParallelDownloads|ParallelDownloads|' /etc/pacman.conf
@@ -37,5 +45,5 @@ sed -i 's|Include = /etc/pacman.d/mirrorlist|Include = /etc/pacman.d/mirrorlist\
 pacman -r /rootfs -Sy --noconfirm $PACKAGE_GROUP
 pacman -r /rootfs -Sy --noconfirm $BOOTSTRAP_EXTRA_PACKAGES
 sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /rootfs/etc/locale.gen
-echo "LANG=en_US.UTF-8" > /rootfs/etc/locale.conf
+echo "LANG=en_US.UTF-8" >/rootfs/etc/locale.conf
 chroot /rootfs locale-gen

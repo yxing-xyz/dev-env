@@ -1,20 +1,6 @@
 #!/bin/env bash
 
 ###################  mirror ######################
-tee >>/etc/pacman.conf <<EOF
-[archlinuxcn]
-SigLevel = Never
-Server = https://mirrors.tencent.com/archlinuxcn/\$arch
-EOF
-
-if [[ $(uname -a) == *"x86_64"* ]]; then
-  echo 'Server = https://mirrors.tencent.com/archlinux/$repo/os/$arch' >etc/pacman.d/mirrorlist
-elif [[ $(uname -a) == *"aarch"* ]]; then
-  echo 'Server = https://mirrors.tencent.com/archlinuxarm/$arch/$repo' >/etc/pacman.d/mirrorlist
-else
-  echo 'unknown architecture'
-  exit 1
-fi
 
 pacman -Syu --noconfirm &&
   pacman -S glibc musl gcc clang sudo man-pages-zh_cn zsh --noconfirm

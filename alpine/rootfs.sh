@@ -1,7 +1,7 @@
 #!/bin/sh
 
-sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
-echo 'https://mirrors.aliyun.com/alpine/edge/testing' >>/etc/apk/repositories
+sed -i 's/dl-cdn.alpinelinux.org/mirrrors.nju.edu.cn/g' /etc/apk/repositories
+echo 'https://mirrrors.nju.edu.cn/alpine/edge/testing' >>/etc/apk/repositories
 
 apk update
 

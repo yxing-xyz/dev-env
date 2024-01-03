@@ -1,6 +1,6 @@
 #!/bin/env bash
 
-sed -i 's#\w*\.debian\.org#mirrors\.aliyun\.com#g' /etc/apt/sources.list.d/debian.sources
+sed -i 's#\w*\.debian\.org#mirrors\.nju.edu.cn\.com#g' /etc/apt/sources.list.d/debian.sources
 
 apt update
 
