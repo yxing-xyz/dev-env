@@ -32,7 +32,7 @@ mkdir -m 0755 -p /rootfs/etc
 mkdir -m 1777 -p /rootfs/tmp
 mkdir -m 0555 -p /rootfs/sys
 mkdir -m 0555 -p /rootfs/proc
-# 修复arm key错误
+# 修复arm archlinux key错误
 sed -i 's|Include = /etc/pacman.d/mirrorlist|Include = /etc/pacman.d/mirrorlist\nSigLevel = Never|g' /etc/pacman.conf
 pacman -r /rootfs -Sy --noconfirm $PACKAGE_GROUP
 pacman -r /rootfs -Sy --noconfirm $BOOTSTRAP_EXTRA_PACKAGES
