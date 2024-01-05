@@ -36,8 +36,6 @@ mkdir -m 0555 -p /rootfs/proc
 sed -i 's|Include = /etc/pacman.d/mirrorlist|Include = /etc/pacman.d/mirrorlist\nSigLevel = Never|g' /etc/pacman.conf
 pacman -r /rootfs -Sy --noconfirm $PACKAGE_GROUP
 pacman -r /rootfs -Sy --noconfirm $BOOTSTRAP_EXTRA_PACKAGES
-cp /etc/pacman.d/mirrorlist /rootfs/etc/pacman.d/
-cp /etc/pacman.conf /rootfs/etc/
 sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /rootfs/etc/locale.gen
 echo "LANG=en_US.UTF-8" >/rootfs/etc/locale.conf
 chroot /rootfs locale-gen
