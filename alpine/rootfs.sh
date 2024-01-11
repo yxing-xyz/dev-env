@@ -5,7 +5,7 @@ echo 'https://mirrors.nju.edu.cn/alpine/edge/testing' >>/etc/apk/repositories
 
 apk update
 
-apk add gcc g++ make automake autoconf libtool perl bash git lrzsz
+apk add gcc g++ make automake autoconf libtool perl bash git lrzsz procps
 apk add openssh-server zlib-dev openssl-dev pcre-dev pcre2-dev
 apk add tcpdump lsof net-tools bind-tools mtr wget curl
 
