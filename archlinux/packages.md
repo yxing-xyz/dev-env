@@ -252,4 +252,6 @@ pacman -S kicad --needed --noconfirm --overwrite '*'
 pacman -S bluez bluez-utils pulseaudio-bluetooth --needed --noconfirm --overwrite '*'
 systemctl start bluetooth.service
 systemctl enable bluetooth.service
+# ssl
+pacman -S openssl easy-rsa mkcert --needed --noconfirm --overwrite '*'
 ```
