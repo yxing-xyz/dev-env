@@ -1,5 +1,4 @@
 #!/bin/sh
-
 sed -e 's|^mirrorlist=|#mirrorlist=|g' \
     -e 's|^#baseurl=http://mirror.centos.org/$contentdir|baseurl=https://mirrors.nju.edu.cn/centos|g' \
     -i.bak \
