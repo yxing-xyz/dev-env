@@ -30,7 +30,6 @@ go install github.com/derailed/k9s@latest
 go install github.com/jesseduffield/lazygit@latest
 go install github.com/trzsz/trzsz-go/cmd/trz@latest
 go install github.com/trzsz/trzsz-go/cmd/tsz@latest
-go install github.com/trzsz/trzsz-go/cmd/tszsz@latest
 go install github.com/jesseduffield/lazydocker@latest
 go install github.com/tsenart/vegeta@latest
 
