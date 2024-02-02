@@ -1,0 +1,37 @@
+[core]
+  	pager    = delta
+	safecrlf = warn
+	autocrlf = false
+	fileMode = true
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
+[credential]
+	helper = store
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	line-numbers = true
+	navigate = true
+    	light = false
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
+[user]
+	email = yxing.xyz@gmail.com
+	name = yx
+# [http "https://github.com"]
+# 	proxy = socks5://127.0.0.1:1080
+# [https "https://github.com"]
+# 	proxy = socks5://127.0.0.1:1080
+[oh-my-zsh]
+	hide-dirty = 1
+
+[url "git@git.code.oa.com:"]
+        insteadOf = https://git.code.oa.com/
+        insteadOf = http://git.code.oa.com/
+[url "git@git.woa.com:"]
+        insteadOf = https://git.woa.com/
+        insteadOf = http://git.woa.com/

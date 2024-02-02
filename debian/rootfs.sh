@@ -1,13 +1,12 @@
 #!/bin/env bash
 
 export DEBIAN_FRONTEND=noninteractive
-# debian 12容器修改了配置文件格式
-sed -i 's/deb.debian.org/mirrors.nju.edu.cn/g' /etc/apt/sources.list.d/debian.sources
 
 apt update
 apt upgrade
 
-apt install -y gcc g++ make automake autoconf libtool perl bash git lrzsz procps
+apt install -y gcc g++ make automake autoconf libtool perl bash git lrzsz procps \
+    sudo vim
 apt install -y openssh-server zlib1g-dev libssl-dev libpcre2-dev libpcre3-dev
 apt install -y tcpdump lsof net-tools bind9-utils bind9-dnsutils mtr wget curl
 
@@ -18,3 +17,7 @@ ssh-keygen -A
 
 echo 'root:root' | chpasswd
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+## china
+# debian 12容器修改了配置文件格式
+sed -i 's/deb.debian.org/mirrors.nju.edu.cn/g' /etc/apt/sources.list.d/debian.sources

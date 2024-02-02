@@ -1,5 +1,18 @@
 #!/bin/sh
+yum clean all && yum makecache
+yum update -y
 
+yum install -y gcc gcc-c++ make automake autoconf libtool perl bash git lrzsz procps \
+    sudo vim
+yum install -y openssh-server zlib-devel openssl-devel pcre-devel
+yum install -y tcpdump lsof net-tools bind-utils mtr wget curl
+
+sed -i 's/[# ]*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+ssh-keygen -A
+echo 'root:root' | chpasswd
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+## china
 sed -i -e 's|^metalink=|#metalink=|' /etc/yum.repos.d/*.repo
 
 sed -i '/\[baseos\]/abaseurl=https://mirrors.nju.edu.cn/centos-stream/$releasever-stream/BaseOS/$basearch/os/\' /etc/yum.repos.d/centos.repo
@@ -33,16 +46,3 @@ sed -i '/\[resilientstorage-source\]/abaseurl=https://mirrors.nju.edu.cn/centos-
 
 sed -i '/\[extras-common\]/abaseurl=https://mirrors.nju.edu.cn/centos-stream/SIGs/$releasever-stream/extras/$basearch/extras-common\' /etc/yum.repos.d/centos-addons.repo
 sed -i '/\[extras-common-source\]/abaseurl=https://mirrors.nju.edu.cn/centos-stream/SIGs/$releasever-stream/extras/source/extras-common\' /etc/yum.repos.d/centos-addons.repo
-
-yum clean all && yum makecache
-
-yum update -y
-
-yum install -y gcc gcc-c++ make automake autoconf libtool perl bash git lrzsz procps
-yum install -y openssh-server zlib-devel openssl-devel pcre-devel
-yum install -y tcpdump lsof net-tools bind-utils mtr wget curl
-
-sed -i 's/[# ]*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
-ssh-keygen -A
-echo 'root:root' | chpasswd
-ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime

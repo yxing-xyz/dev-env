@@ -1,0 +1,103 @@
+live_config_reload = true
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "0x808080"
+blue = "0x0066ff"
+cyan = "0x00ffff"
+green = "0x33ff00"
+magenta = "0xcc00ff"
+red = "0xfe0100"
+white = "0xFFFFFF"
+yellow = "0xfeff00"
+
+[colors.cursor]
+cursor = "0xffffff"
+text = "0xF81CE5"
+
+[colors.normal]
+black = "0x000000"
+blue = "0x0066ff"
+cyan = "0x00ffff"
+green = "0x33ff00"
+magenta = "0xcc00ff"
+red = "0xfe0100"
+white = "0xd0d0d0"
+yellow = "0xfeff00"
+
+[colors.primary]
+background = "0x000000"
+foreground = "0xffffff"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+builtin_box_drawing = true
+size = 9
+
+[font.bold]
+family = "CodeNewRoman Nerd Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "CodeNewRoman Nerd Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "CodeNewRoman Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "CodeNewRoman Nerd Font"
+style = "Regular"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "Insert"
+mods = "Shift"
+
+[[keyboard.bindings]]
+chars = "\u0000"
+key = "Space"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u001F"
+key = "Slash"
+mods = "Control"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[selection]
+save_to_clipboard = true
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+
+[shell]
+program = "/bin/zsh"
+
+[window]
+decorations = "full"
+dynamic_padding = true
+dynamic_title = true
+opacity = 0.7
+option_as_alt = "Both"
+resize_increments = true
+startup_mode = "Windowed"
+title = "Terminal"
+
+[window.class]
+general = "Alacritty"
+instance = "Alacritty"
+
+[window.dimensions]
+columns = 120
+lines = 30
+
+[window.padding]
+x = 0
+y = 0

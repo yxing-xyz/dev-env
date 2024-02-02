@@ -7,11 +7,11 @@ apk add arch-install-scripts pacman-makepkg curl zstd
 mkdir -p /etc/pacman.d
 if [[ $TARGETARCH == *"amd64"* ]]; then
     curl -L https://gitlab.archlinux.org/archlinux/packaging/packages/pacman/-/raw/main/pacman.conf -o /etc/pacman.conf
-    echo 'Server = https://mirrors.nju.edu.cn/archlinux/$repo/os/$arch' >/etc/pacman.d/mirrorlist
+    echo 'Server = https://geo.mirror.pkgbuild.com/$repo/os/$arch' >/etc/pacman.d/mirrorlist
 elif [[ $TARGETARCH == *"arm"* ]]; then
     curl -L https://raw.githubusercontent.com/archlinuxarm/PKGBUILDs/master/core/pacman/pacman.conf -o /etc/pacman.conf
     sed -i 's/@CARCH@/auto/g' /etc/pacman.conf
-    echo 'Server = https://mirrors.nju.edu.cn/archlinuxarm/$arch/$repo' >/etc/pacman.d/mirrorlist
+    echo 'Server = http://ca.us.mirror.archlinuxarm.org/$arch/$repo' >/etc/pacman.d/mirrorlist
     BOOTSTRAP_EXTRA_PACKAGES="archlinuxarm-keyring"
 else
     echo 'unknown architecture'
@@ -40,7 +40,6 @@ pacman -r /rootfs -Sy --noconfirm $PACKAGE_GROUP
 pacman -r /rootfs -Sy --noconfirm $BOOTSTRAP_EXTRA_PACKAGES
 sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /rootfs/etc/locale.gen
 echo "LANG=en_US.UTF-8" >/rootfs/etc/locale.conf
-
 
 curl -L https://github.com/archlinuxarm/archlinuxarm-keyring/archive/refs/heads/master.zip -o master.zip
 unzip -o ./master.zip

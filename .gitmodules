@@ -1,0 +1,9 @@
+[submodule "dotfiles/home/.config/awesome/awesome-copycats"]
+path = dotfiles/home/.config/awesome/awesome-copycats
+url = https://github.com/lcpz/awesome-copycats.git
+[submodule "dotfiles/home/.config/slock"]
+path = dotfiles/home/.config/slock
+url = https://git.suckless.org/slock
+[submodule "dotfiles/home/.local/share/zinit/zinit.git"]
+path = dotfiles/home/.local/share/zinit/zinit.git
+url = https://github.com/zdharma-continuum/zinit.git
