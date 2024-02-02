@@ -47,3 +47,4 @@ fi
 
 go env -w GO111MODULE=on
 go env -w GOPROXY="https://repo.nju.edu.cn/repository/go/,direct"
+echo success
