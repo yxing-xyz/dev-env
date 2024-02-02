@@ -6,7 +6,8 @@ yum update -y
 yum install -y gcc gcc-c++ make automake autoconf libtool perl bash git lrzsz procps \
     sudo vim tmux
 yum install -y openssh-server zlib-devel openssl-devel pcre-devel
-yum install -y tcpdump lsof net-tools bind-utils mtr wget curl
+yum install -y tcpdump lsof net-tools bind-utils mtr wget
+yum install -y curl --allowerasing
 
 sed -i 's/[# ]*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 ssh-keygen -A
