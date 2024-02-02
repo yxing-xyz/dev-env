@@ -3,7 +3,7 @@ echo https://dl-cdn.alpinelinux.org/alpine/edge/testing/ >>/etc/apk/repositories
 apk update
 
 apk add gcc gdb g++ make automake autoconf libtool perl bash git lrzsz procps tzdata \
-    sudo vim tmux
+    sudo vim tmux htop
 apk add openssh-server zlib-dev openssl-dev pcre-dev pcre2-dev
 apk add tcpdump lsof net-tools bind-tools mtr wget curl
 

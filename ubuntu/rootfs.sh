@@ -6,7 +6,7 @@ apt -y update
 apt -y upgrade
 
 apt install -y gcc g++ make automake autoconf libtool perl bash git lrzsz procps \
-    sudo vim tmux bsdmainutils
+    sudo vim tmux bsdmainutils htop
 apt install -y openssh-server zlib1g-dev libssl-dev libpcre2-dev libpcre3-dev
 apt install -y tcpdump lsof net-tools bind9-utils bind9-dnsutils mtr wget curl iputils-arping iputils-ping iputils-tracepath
 
@@ -23,6 +23,3 @@ if [[ $(uname -a) == *"x86_64"* ]]; then
 else
     sed 's|ports.ubuntu.com|mirrors.nju.edu.cn|' -i /etc/apt/sources.list
 fi
-
-go env -w GO111MODULE=on
-go env -w GOPROXY="https://repo.nju.edu.cn/repository/go/,direct"
