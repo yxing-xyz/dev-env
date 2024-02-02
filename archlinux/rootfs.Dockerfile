@@ -1,4 +1,4 @@
-FROM ccr.ccs.tencentyun.com/yxing-xyz/linux:alpine AS bootstrapper
+FROM alpine AS bootstrapper
 ARG TARGETARCH
 
 COPY ./rootfs.sh /tmp/rootfs.sh
