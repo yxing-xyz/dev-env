@@ -4,3 +4,5 @@ stage3-*.tar.xz
 linux.qcow2
 bak
 tmp
+dotfiles/home/.ssh/id_ed25519
+dotfiles/home/.git-credentials
