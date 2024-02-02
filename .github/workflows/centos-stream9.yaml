@@ -1,11 +1,11 @@
-name: centos8-stream
+name: centos-stream9
 on:
   push:
     branches:
       - main
     paths:
       - "rootfs.Dockerfile"
-      - "centos8-stream/**"
+      - "centos-stream9/**"
   schedule:
     - cron: "0 0 * * 0"
 env:
@@ -29,16 +29,16 @@ jobs:
           password: ${{ secrets.TCR_PASSWORD }}
       - name: Generate Tag List
         run: |
-          sed -i -e 's|${IMAGE}|quay.io/centos/centos:stream8|' ./rootfs.Dockerfile
+          sed -i -e 's|${IMAGE}|quay.io/centos/centos:stream9|' ./rootfs.Dockerfile
           docker system prune -af
           echo "TAGS<<EOF" >> $GITHUB_ENV
-          echo ccr.ccs.tencentyun.com/yxing-xyz/linux:centos8-stream >> $GITHUB_ENV
+          echo ccr.ccs.tencentyun.com/yxing-xyz/linux:centos-stream9 >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
       - name: Build and Push
         uses: docker/build-push-action@v4
         with:
-          platforms: linux/amd64,linux/ppc64le,linux/arm64/v8
+          platforms: linux/amd64,linux/arm64/v8,linux/ppc64le,linux/s390x
           push: true
           file: "./rootfs.Dockerfile"
           tags: ${{ env.TAGS }}
-          context: ./centos8-stream
+          context: ./centos-stream9
