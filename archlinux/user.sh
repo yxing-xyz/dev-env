@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/bin/sh
 
 ###################  mirror ######################
 if [[ $(uname -a) == *"x86_64"* ]]; then
@@ -18,7 +18,6 @@ tee >>/etc/pacman.conf <<EOF
 SigLevel = Never
 Server = https://mirrors.nju.edu.cn/archlinuxcn/\$arch
 EOF
-
 
 pacman -Syu --noconfirm &&
   pacman -S glibc musl gcc clang sudo man-pages-zh_cn zsh --noconfirm
