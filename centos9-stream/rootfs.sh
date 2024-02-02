@@ -3,7 +3,7 @@ yum clean all && yum makecache
 yum update -y
 
 yum install -y gcc gcc-c++ make automake autoconf libtool perl bash git lrzsz procps \
-    sudo vim
+    sudo vim tmux
 yum install -y openssh-server zlib-devel openssl-devel pcre-devel
 yum install -y tcpdump lsof net-tools bind-utils mtr wget curl
 

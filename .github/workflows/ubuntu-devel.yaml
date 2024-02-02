@@ -29,8 +29,6 @@ jobs:
           password: ${{ secrets.TCR_PASSWORD }}
       - name: Generate Tag List
         run: |
-          echo 'COPY ./dotfiles /root/workspace/dotfiles' >> ./rootfs.Dockerfile
-          cp -rf ./dotfiles ./ubuntu-devel
           sed -i -e 's|${IMAGE}|ubuntu:devel|' ./rootfs.Dockerfile
           docker system prune -af
           echo "TAGS<<EOF" >> $GITHUB_ENV

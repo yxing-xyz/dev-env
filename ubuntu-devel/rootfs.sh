@@ -2,13 +2,13 @@
 export DEBIAN_FRONTEND=noninteractive
 echo "Asia/Shanghai" >/etc/timezone
 
-apt update
-apt upgrade
+apt -y update
+apt -y upgrade
 
 apt install -y gcc g++ make automake autoconf libtool perl bash git lrzsz procps \
-    sudo vim tmux
+    sudo vim tmux bsdmainutils
 apt install -y openssh-server zlib1g-dev libssl-dev libpcre2-dev libpcre3-dev
-apt install -y tcpdump lsof net-tools bind9-utils bind9-dnsutils mtr wget curl
+apt install -y tcpdump lsof net-tools bind9-utils bind9-dnsutils mtr wget curl iputils-arping iputils-ping iputils-tracepath
 
 sed -i 's/[# ]*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 ssh-keygen -A
@@ -17,10 +17,9 @@ echo 'root:root' | chpasswd
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 # dev
-apt install -y mycli pgcli iredis trash-cli xz-utils libncurses-dev
+apt install -y mycli pgcli iredis trash-cli xz-utils
 
 apt install -y zsh
-git clone https://github.com/zdharma-continuum/zinit.git ~/.local/share/zinit/zinit.git
 chsh -s /usr/bin/zsh root
 
 apt install -y emacs fzf delta bat ripgrep zoxide lsd fd-find mkcert
@@ -34,7 +33,10 @@ go install github.com/trzsz/trzsz-go/cmd/tszsz@latest
 go install github.com/jesseduffield/lazydocker@latest
 go install github.com/tsenart/vegeta@latest
 
-sh /root/workspace/dotfiles/linux.sh
+git clone https://github.com/yxing-xyz/dev-env --recurse-submodules ~/workspace/github/dev-env
+bash /root/workspace/github/dev-env/dotfiles/linux.sh
+zsh -i -c "zinit update"
+
 ## china
 if [[ $(uname -a) == *"x86_64"* ]]; then
     sed 's|archive.ubuntu.com|mirrors.nju.edu.cn|' -i /etc/apt/sources.list
