@@ -7,7 +7,7 @@ on:
       - "rootfs.Dockerfile"
       - "centos9-stream/**"
   schedule:
-    - cron: "0 0 * * 4"
+    - cron: "0 0 * * 0"
 env:
   TZ: Asia/Shanghai
 jobs:

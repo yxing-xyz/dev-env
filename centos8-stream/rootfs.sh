@@ -16,3 +16,4 @@ sed -i 's/[# ]*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 ssh-keygen -A
 
 echo 'root:root' | chpasswd
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime

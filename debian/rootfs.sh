@@ -1,7 +1,6 @@
 #!/bin/env bash
 
 export DEBIAN_FRONTEND=noninteractive
-ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 # debian 12容器修改了配置文件格式
 sed -i 's/deb.debian.org/mirrors.nju.edu.cn/g' /etc/apt/sources.list.d/debian.sources
 
@@ -18,3 +17,4 @@ mkdir /var/run/sshd
 ssh-keygen -A
 
 echo 'root:root' | chpasswd
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime

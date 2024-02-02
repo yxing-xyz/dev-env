@@ -8,7 +8,7 @@ on:
       - "archlinux/rootfs.Dockerfile"
       - "archlinux/rootfs.sh"
   schedule:
-    - cron: "0 0 * * 1"
+    - cron: "0 0 * * 0"
 env:
   TZ: Asia/Shanghai
 jobs:
