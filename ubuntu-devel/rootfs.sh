@@ -36,8 +36,10 @@ go install github.com/tsenart/vegeta@latest
 
 git clone https://github.com/yxing-xyz/dev-env --recurse-submodules ~/workspace/github/dev-env
 bash /root/workspace/github/dev-env/dotfiles/linux.sh
-zsh -i -c "zinit update"
+zsh -c ". ~/.zshrc; zinit update"
 
+rm -rf ~/.go/pkg
+rm -rf ~/.cache/*
 ## china
 if [[ $(uname -a) == *"x86_64"* ]]; then
     sed 's|archive.ubuntu.com|mirrors.nju.edu.cn|' -i /etc/apt/sources.list
