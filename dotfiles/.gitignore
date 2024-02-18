@@ -23,7 +23,6 @@ home/.config/ibus/rime
 home/.ssh/.tmp.zshrc
 home/.cargo/bin
 home/.cargo/env
-home/.ssh/authorized_keys
 home/.config/lazygit/config.yml
 home/.config/lazygit/state.yml
 home/.ssh/podman
