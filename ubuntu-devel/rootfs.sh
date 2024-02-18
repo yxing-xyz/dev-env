@@ -1,5 +1,4 @@
-#!/bin/sh
-echo start
+#!/bin/bash
 set -e
 export DEBIAN_FRONTEND=noninteractive
 echo "Asia/Shanghai" >/etc/timezone
@@ -25,6 +24,7 @@ apt install -y zsh
 chsh -s /usr/bin/zsh root
 
 apt install -y emacs fzf delta bat ripgrep zoxide lsd fd-find mkcert
+ln -sf /usr/bin/batcat /usr/bin/bat
 
 apt install -y golang
 go install github.com/derailed/k9s@latest
@@ -47,7 +47,5 @@ if [[ $(uname -a) == *"x86_64"* ]]; then
 else
     sed 's|ports.ubuntu.com|mirrors.nju.edu.cn|' -i /etc/apt/sources.list
 fi
-
 go env -w GO111MODULE=on
 go env -w GOPROXY="https://repo.nju.edu.cn/repository/go/,direct"
-echo success
