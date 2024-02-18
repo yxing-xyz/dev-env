@@ -33,7 +33,10 @@ go install github.com/trzsz/trzsz-go/cmd/trz@latest
 go install github.com/trzsz/trzsz-go/cmd/tsz@latest
 go install github.com/jesseduffield/lazydocker@latest
 go install github.com/tsenart/vegeta@latest
+rm -rf ~/.go/pkg
+rm -rf ~/.cache/*
 
+## dotfiles
 git clone https://github.com/yxing-xyz/dev-env --recurse-submodules ~/workspace/github/dev-env
 bash /root/workspace/github/dev-env/dotfiles/linux.sh
 zsh -i -c "zinit update"
@@ -42,8 +45,6 @@ zsh -i -c "zinit lucid for zdharma-continuum/fast-syntax-highlighting"
 zsh -i -c "zinit lucid for zsh-users/zsh-completions"
 zsh -i -c "zinit lucid for zsh-users/zsh-autosuggestions"
 
-rm -rf ~/.go/pkg
-rm -rf ~/.cache/*
 ## china
 if [[ $(uname -a) == *"x86_64"* ]]; then
     sed 's|archive.ubuntu.com|mirrors.nju.edu.cn|' -i /etc/apt/sources.list
