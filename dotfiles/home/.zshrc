@@ -115,6 +115,9 @@ setProxy() {
         ;;
     esac
 }
+
+typeset -A ZINIT
+ZINIT[NO_ALIASES]=1
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 # # 快速跳转
 eval "$(zoxide init zsh)"
