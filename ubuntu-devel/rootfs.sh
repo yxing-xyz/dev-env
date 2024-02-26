@@ -37,7 +37,7 @@ rm -rf ~/go/pkg
 rm -rf ~/.cache/*
 
 ## dotfiles
-git clone https://github.com/yxing-xyz/dev-env --recurse-submodules ~/workspace/github/dev-env
+git clone https://github.com/yxing-xyz/scripts --recurse-submodules ~/workspace/github/dev-env
 bash /root/workspace/github/dev-env/dotfiles/linux.sh
 zsh -i -c "zinit update"
 zsh -i -c "zinit lucid light-mode for lukechilds/zsh-nvm"
