@@ -33,7 +33,7 @@ go install github.com/trzsz/trzsz-go/cmd/trz@latest
 go install github.com/trzsz/trzsz-go/cmd/tsz@latest
 go install github.com/jesseduffield/lazydocker@latest
 go install github.com/tsenart/vegeta@latest
-rm -rf ~/.go/pkg
+rm -rf ~/go/pkg
 rm -rf ~/.cache/*
 
 ## dotfiles
