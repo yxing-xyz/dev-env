@@ -2,7 +2,7 @@
 source ./common.sh
 
 # swapon
-echo '/var/cache/swapfile none swap defaults 0 0' >> /etc/fstab
+echo '/var/cache/swapfile none swap defaults 0 0' >>/etc/fstab
 dd if=/dev/zero of=/var/cache/swap bs=1024M count=8
 chmod 600 /var/cache/swap
 mkswap /var/cache/swap
@@ -50,11 +50,11 @@ app
 ## terminal app
 emerge -u net-wireless/iwd net-misc/networkmanager cmus
 ## desktop app
-emerge -u sys-kernel/gentoo-sources sys-kernel/linux-firmware
+emerge -u sys-kernel/gentoo-kernel-bin sys-kernel/linux-firmware
 emerge -u x11-drivers/xf86-input-libinput x11-drivers/xf86-video-amdgpu acpi \
        x11-wm/awesome media-sound/alsa-utils x11-apps/xinput x11-apps/xset x11-misc/picom x11-misc/rofi x11-misc/xautolock x11-misc/slock \
        x11-misc/xsel x11-terms/xterm xfce-base/thunar bluez net-wireless/bluez-tools app-office/wps-office media-fonts/ttf-wps-fonts \
-       www-client/google-chrome app-editors/vscode app-i18n/ibus-rime net-im/telegram-desktop-bin feh scrot media-gfx/flameshot \
+       www-client/google-chrome app-editors/vscode app-i18n/ibus-rime rime-luna-pinyin net-im/telegram-desktop-bin feh scrot media-gfx/flameshot \
        gnome-base/gnome-keyring seahorse gnome-extra/nm-applet lxde-base/lxappearance media-fonts/nerd-fonts media-fonts/source-han-mono \
        media-fonts/source-han-sans media-fonts/source-han-serif media-fonts/noto media-fonts/noto-cjk media-fonts/noto-emoji media-fonts/wqy-microhei \
        scrot vlc mpv app-containers/docker docker-cli media-sound/netease-cloud-music \
@@ -62,7 +62,6 @@ emerge -u x11-drivers/xf86-input-libinput x11-drivers/xf86-video-amdgpu acpi \
 
 ## design
 emerge -u krita gimp mypaint
-
 
 # wpa 守护进程, 或者手动自己启动也可以
 #tee > /etc/wpa_supplicant/wpa_supplicant.conf-wlan0 <<EOF
@@ -79,7 +78,7 @@ localectl set-keymap us
 localectl set-locale LANG=zh_CN.utf8
 
 ## 调整声卡顺序, lspci -nn | grep -i audio, 修改后面两个ID
-tee > /etc/modprobe.d/alsa-base.conf <<EOF
+tee >/etc/modprobe.d/alsa-base.conf <<EOF
 options snd-hda-intel index=0 model=auto vid=1022 pid=15e3
 options snd-hda-intel index=1 model=auto vid=1002 pid=1637
 EOF
@@ -93,14 +92,14 @@ EOF
 rfkill unlock all
 systemctl restart systemd-rfkill
 systemctl enable systemd-rfkill
-systemctl restart  NetworkManager.service
-systemctl enable  NetworkManager.service
+systemctl restart NetworkManager.service
+systemctl enable NetworkManager.service
 systemctl enable NetworkManager-wait-online.service
-systemctl start  alsa-restore
+systemctl start alsa-restore
 systemctl enable alsa-restore
 
 ## systemd配置
-echo 'HandlePowerKey=hibernate' >> /etc/systemd/logind.conf
+echo 'HandlePowerKey=hibernate' >>/etc/systemd/logind.conf
 tee >>/etc/systemd/system.conf <<EOF
 DefaultTimeoutStartSec=10s
 DefaultTimeoutStopSec=10s
@@ -128,7 +127,7 @@ wget https://kgithub.com/v2rayA/v2rayA/releases/download/v2.0.1/v2raya_linux_x64
 chmod u+x ./v2raya
 mv ./v2raya /usr/local/bin/v2raya
 ## proxychains
-echo 'socks5  127.0.0.1 1080' >> /etc/proxychains.conf
+echo 'socks5  127.0.0.1 1080' >>/etc/proxychains.conf
 
 ## user
 useradd -m -G wheel,pcap,plugdev,audio,docker -s /bin/zsh x
@@ -141,10 +140,10 @@ cp -f ./config/us.map.gz /usr/share/keymaps/i386/qwerty/us.map.gz
 # xorg key map
 cp -f ./config/pc /usr/share/X11/xkb/symbols/pc
 ### 声卡
-cp -f  ./config/.asoundrc /home/x
+cp -f ./config/.asoundrc /home/x
 
-echo 'auth       optional     pam_gnome_keyring.so' >> /etc/pam.d/login
-echo 'session    optional     pam_gnome_keyring.so auto_start' >> /etc/pam.d/login
+echo 'auth       optional     pam_gnome_keyring.so' >>/etc/pam.d/login
+echo 'session    optional     pam_gnome_keyring.so auto_start' >>/etc/pam.d/login
 
 # rustup
 # rustup-init
