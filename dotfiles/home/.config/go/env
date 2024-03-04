@@ -1,3 +1,3 @@
 GO111MODULE=on
 GOPRIVATE=git.woa.com
-GOPROXY=https://goproxy.cn,direct
+GOPROXY=https://repo.nju.edu.cn/repository/go/,direct
