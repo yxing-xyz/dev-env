@@ -6,3 +6,4 @@ bak
 tmp
 dotfiles/home/.ssh/id_ed25519
 dotfiles/home/.git-credentials
+dotfiles/home/.config/go/telemetry/local
