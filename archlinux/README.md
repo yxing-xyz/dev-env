@@ -1,4 +1,15 @@
-## 软件包
+# 安装系统核心命令
+```bash
+# 安装archlinux基本包
+pacstrap -i /mnt base base-devel linux linux-firmware linux-headers
+# 保存新系统分区表到/mnt/etc/fstab
+genfstab -U -p /mnt >> /mnt/etc/fstab
+# arch-chroot切换
+arch-chroot /mnt /bin/bash
+# amdgpu驱动
+pacman -S xf86-video-amdgpu --needed --noconfirm --overwrite '*'
+```
+# 软件包
 ```bash
 #!/usr/bin/sh
 # set -euxo pipefail

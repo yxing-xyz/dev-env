@@ -26,7 +26,7 @@ init() {
     ## sync mirros
     mkdir --parents /etc/portage/repos.conf
     cp /usr/share/portage/config/repos.conf /etc/portage/repos.conf/gentoo.conf
-    sed -i "s|rsync://rsync.gentoo.org/gentoo-portage|rsync://mirrors.tuna.tsinghua.edu.cn/gentoo-portage|" /etc/portage/repos.conf/gentoo.conf
+    sed -i "s|rsync://rsync.gentoo.org/gentoo-portage|rsync://mirrors.tuna.nju.edu.cn/gentoo-portage|" /etc/portage/repos.conf/gentoo.conf
 
     ## accept keyword
     tee >>/etc/portage/package.accept_keywords/x <<EOF
@@ -47,15 +47,13 @@ EOF
     #    tee > /etc/portage/profile/profile.bashrc <<EOF
     #    export PATH=/opt/.nvm/versions/node/v18.15.0/bin:$PATH
     #EOF
-    tee >> /etc/portage/profile/use.mask << EOF
+    tee >>/etc/portage/profile/use.mask <<EOF
 split-usr
 EOF
 
-
-
-    echo 'dev-lang/rust' >> /etc/portage/package.mask/x
-    echo 'dev-qt/qtwebengine' >> /etc/portage/package.mask/x
-    echo 'net-libs/nodejs' >> /etc/portage/package.mask/x
+    echo 'dev-lang/rust' >>/etc/portage/package.mask/x
+    echo 'dev-qt/qtwebengine' >>/etc/portage/package.mask/x
+    echo 'net-libs/nodejs' >>/etc/portage/package.mask/x
 }
 sync() {
     ## sync, set profile, update world
@@ -67,29 +65,29 @@ update() {
     emerge -u merge-usr
     merge-usr
     emerge app-portage/cpuid2cpuflags
-    echo "*/* $(cpuid2cpuflags)" > /etc/portage/package.use/00cpu-flags
+    echo "*/* $(cpuid2cpuflags)" >/etc/portage/package.use/00cpu-flags
 
     emerge --ask --verbose --update --deep --newuse @world
 }
 
 app() {
     emerge -u --autounmask-write sudo app-eselect/eselect-repository eix gentoolkit dev-vcs/git \
-           app-text/tree vim emacs dev-vcs/git app-misc/tmux \
-           sys-apps/pciutils \
-           sys-fs/e2fsprogs \
-           sys-fs/xfsprogs \
-           sys-fs/dosfstools \
-           sys-fs/ntfs3g \
-           sys-boot/grub efibootmgr \
-           app-alternatives/cpio \
-           app-arch/p7zip \
-           gdb \
-           usbutils
-    ACCEPT_KEYWORDS='~arm64 ~amd64' emerge -u zellij sys-fs/fuse-exfat  sys-fs/exfat-utils net-misc/proxychains  eclean-kernel
+        app-text/tree vim emacs dev-vcs/git app-misc/tmux \
+        sys-apps/pciutils \
+        sys-fs/e2fsprogs \
+        sys-fs/xfsprogs \
+        sys-fs/dosfstools \
+        sys-fs/ntfs3g \
+        sys-boot/grub efibootmgr \
+        app-alternatives/cpio \
+        app-arch/p7zip \
+        gdb \
+        usbutils
+    ACCEPT_KEYWORDS='~arm64 ~amd64' emerge -u zellij sys-fs/fuse-exfat sys-fs/exfat-utils net-misc/proxychains eclean-kernel
 
     eselect editor set emacs
     mkdir -p /etc/sudoers.d
-    echo '%wheel ALL=(ALL:ALL) ALL' > /etc/sudoers.d/wheel
+    echo '%wheel ALL=(ALL:ALL) ALL' >/etc/sudoers.d/wheel
     eselect locale set zh_CN.utf8
     eselect repository enable guru gentoo-zh
     eix-sync
@@ -99,13 +97,11 @@ app() {
         net-dialup/lrzsz net-misc/openssh net-misc/rsync net-misc/wget \
         net-misc/dhcpcd sys-apps/net-tools net-dns/bind-tools
 
-
     # rust binary
-    echo 'dev-lang/rust' >> /etc/portage/package.mask/x
+    echo 'dev-lang/rust' >>/etc/portage/package.mask/x
     ## dev
     emerge -u dev-lang/go dev-lang/lua sys-devel/clang
     USE='clippy rust-analyzer rust-src rustfmt' emerge -u dev-lang/rust-bin
-
 
     ## terminal
     emerge -u app-containers/docker-cli app-shells/zsh app-misc/neofetch app-misc/trash-cli \
@@ -114,5 +110,5 @@ app() {
         strace cloc dev-util/shellcheck-bin app-admin/helm exa sshfs app-misc/jq caddy \
         ntp stress
     ACCEPT_KEYWORDS='~arm64 ~amd64' emerge -u dev-db/mycli dev-vcs/lazygit sys-apps/sd bear \
-    diff-so-fancy www-apps/hugo v2ray-bin rustup zoxide dev-util/marksman-bin crosstool-ng
+        diff-so-fancy www-apps/hugo v2ray-bin rustup zoxide dev-util/marksman-bin crosstool-ng
 }
