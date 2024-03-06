@@ -40,7 +40,7 @@ pacman -S emacs vim nvim --needed --noconfirm --overwrite '*'
 # language
 pacman -S go rustup nvm pyenv --needed --noconfirm --overwrite '*'
 # 打印进程调用 修改elf
-pacman -S strace patchelf --needed --noconfirm --overwrite '*'
+pacman -S strace patchelf pax-utils --needed --noconfirm --overwrite '*'
 # 数据库命令行
 yay -S iredis mycli pgcli-git litecli --needed --noconfirm --overwrite '*'
 # 手册
