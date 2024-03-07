@@ -23,7 +23,7 @@ apt install -y mycli pgcli iredis trash-cli xz-utils
 apt install -y zsh
 chsh -s /usr/bin/zsh root
 
-apt install -y emacs fzf delta bat ripgrep zoxide lsd fd-find mkcert p7zip-full p7zip-rar rsync pax-utils patchelf
+apt install -y emacs fzf delta bat ripgrep zoxide lsd fd-find mkcert p7zip-full p7zip-rar rsync pax-utils patchelf cmake
 ln -sf /usr/bin/batcat /usr/bin/bat
 
 apt install -y golang
