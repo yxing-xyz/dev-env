@@ -5,7 +5,7 @@ on:
       - main
     paths:
       - "rootfs.Dockerfile"
-      - "centos-stream8/**"
+      - "centos/centos-stream8/**"
   schedule:
     - cron: "0 0 * * 0"
 env:
@@ -41,4 +41,4 @@ jobs:
           push: true
           file: "./rootfs.Dockerfile"
           tags: ${{ env.TAGS }}
-          context: ./centos-stream8
+          context: ./centos/centos-stream8
