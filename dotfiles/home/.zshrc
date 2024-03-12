@@ -196,6 +196,13 @@ x-input-current-path() {
 zle -N x-input-current-path
 bindkey -e '^[\' x-input-current-path
 
+x-input-empty-dir() {
+    CUTBUFFER='rm -rf ./*'
+    zle yank
+}
+zle -N x-input-empty-dir
+bindkey -e '^[`' x-input-empty-dir
+
 x-backward-delete-char() {
     if (($REGION_ACTIVE == 1)); then
         zle kill-region
