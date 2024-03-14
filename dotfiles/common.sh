@@ -1,22 +1,22 @@
 #!/bin/bash
 
 # dir
-mkdir ${HOME}/.config > /dev/null 2>&1
+mkdir ${HOME}/.config >/dev/null 2>&1
 mkdir -p ${HOME}/.local/bin || true
 mkdir -p ${HOME}/.local/share || true
 
 # .config
-mkdir ${HOME}/.config > /dev/null 2>&1
-for item in `ls ${home_dir}/.config/`; do
+mkdir ${HOME}/.config >/dev/null 2>&1
+for item in $(ls ${home_dir}/.config/); do
     rm -rf ${HOME}/.config/${item}
     ln -sf ${home_dir}/.config/${item} ${HOME}/.config/
 done
 
-ln -sf $home_dir/.zshrc  ~
-ln -sf $home_dir/.gitconfig  ~
-ln -sf $home_dir/.git-credentials  ~
-ln -sf $home_dir/.npmrc  ~
-tee >> ~/.tmux.conf.local <<EOF
+ln -sf $home_dir/.zshrc ~
+ln -sf $home_dir/.gitconfig ~
+ln -sf $home_dir/.git-credentials ~
+ln -sf $home_dir/.npmrc ~
+tee >>~/.tmux.conf.local <<EOF
 # copy os clipboard
 tmux_conf_copy_to_os_clipboard=true
 
@@ -28,11 +28,11 @@ bind M-m send-prefix
 # set-option -g default-shell /bin/zsh
 EOF
 rm -rf ~/.pip
-ln -snf $home_dir/.pip  ~/.pip
+ln -snf $home_dir/.pip ~/.pip
 rm -rf ~/.ssh
-ln -snf $home_dir/.ssh  ~/.ssh
+ln -snf $home_dir/.ssh ~/.ssh
 rm -rf ~/.cargo
-ln -snf $home_dir/.cargo  ~/.cargo
+ln -snf $home_dir/.cargo ~/.cargo
 
 # .local/bin
 src_dir="${home_dir}/.local/bin"
@@ -51,23 +51,3 @@ path=".local/share/zinit"
 mkdir -p ~/${path} || true
 rm -rf ~/${path}/zinit.git
 ln -snf "${home_dir}/$path/zinit.git" ~/.local/share/zinit/zinit.git
-
-# gvm
-if [ ! -d "${HOME}/.gvm" ]; then
-    export GVM_NO_UPDATE_PROFILE=1
-    bash -c "$(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)"
-fi
-
-# pyenv
-[[ -z "$PYENV_HOME" ]] && export PYENV_HOME="$HOME/.pyenv"
-export PATH="$HOME/.pyenv/bin":$PATH
-if ! command -v pyenv &>/dev/null; then
-    echo "Installing pyenv..."
-    GITHUB="https://github.com"
-    git clone "${GITHUB}/pyenv/pyenv.git"            "${PYENV_HOME}"
-    git clone "${GITHUB}/pyenv/pyenv-doctor.git"     "${PYENV_HOME}/plugins/pyenv-doctor"
-    git clone "${GITHUB}/pyenv/pyenv-installer.git"  "${PYENV_HOME}/plugins/pyenv-installer"
-    git clone "${GITHUB}/pyenv/pyenv-update.git"     "${PYENV_HOME}/plugins/pyenv-update"
-    git clone "${GITHUB}/pyenv/pyenv-virtualenv.git" "${PYENV_HOME}/plugins/pyenv-virtualenv"
-    git clone "${GITHUB}/pyenv/pyenv-which-ext.git"  "${PYENV_HOME}/plugins/pyenv-which-ext"
-fi

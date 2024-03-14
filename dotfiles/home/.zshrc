@@ -40,15 +40,6 @@ case ":${PATH}:" in
     export PATH=$HOME/.local/bin:$PATH
     export PATH=$HOME/.cargo/bin:$PATH
     export PATH=$HOME/go/bin:$PATH
-    # pyenv
-    export PATH="$HOME/.pyenv/bin":$PATH
-    if command -v pyenv &>/dev/null; then
-        eval "$(pyenv init --path)"
-        #        eval "$(pyenv init - --no-rehash zsh)"
-        #        eval "$(pyenv virtualenv-init - zsh)"
-    fi
-    # gvm
-    [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
     ;;
 esac
 
@@ -140,12 +131,6 @@ zinit wait lucid for \
     zsh-users/zsh-completions \
     atload"!_zsh_autosuggest_start" \
     zsh-users/zsh-autosuggestions
-
-# nvm
-# export NVM_DIR="/opt/x/.nvm"
-export NVM_COMPLETION=true
-export NVM_SYMLINK_CURRENT="true"
-zinit wait lucid light-mode for lukechilds/zsh-nvm
 
 zinit snippet OMZ::lib/theme-and-appearance.zsh
 zinit snippet ${OMZTHEME}
@@ -251,7 +236,7 @@ alias hz="sshuttle --dns -vr root@112.124.55.199 10.0.0.0/8 192.168.0.0/16 --ssh
 alias ssh="TERM=xterm-256color ${TRZSZ_ENABLE} ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
 alias docker="TERM=xterm-256color ${TRZSZ_ENABLE} docker"
 alias lzd="${TRZSZ_ENABLE} lazydocker"
-# alias git
+# git alias
 alias glg="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --stat"
 alias grv='git branch -r | grep -v HEAD | while read b; do git log --color --format="%ci _%C(magenta)%cr %C(bold cyan)$b%Creset %s %C(bold blue)<%an>%Creset" $b | head -n 1; done | sort -r | cut -d_ -f2- | sed "s;origin/;;g" | head -50'
 alias gau='git update-index --assume-unchanged'
@@ -273,3 +258,4 @@ if [ ! -z ${ALACRITTY_LOG+x} ]; then
         fi
     fi
 fi
+eval "$(vfox activate zsh)"

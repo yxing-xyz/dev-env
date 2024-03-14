@@ -54,6 +54,15 @@ pacman -S yay bash expect git svn aria2 vim neovim emacs lsof \
 # yay trzsz
 # yay bear2-git
 # yay lazydocker
+
+curl -sSL https://raw.githubusercontent.com/version-fox/vfox/main/install.sh | bash
+vfox add nodejs/nodejs
+vfox add python/python
+vfox add golang/golang
+vfox install nodejs@14.21.3
+vfox install python@2.7.18
+vfox install golang@1.15.15
+
 # rustup default stable
 # rustup component add rust-analyzer
 # rustup component add rust-src

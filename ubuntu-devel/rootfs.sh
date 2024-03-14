@@ -36,6 +36,9 @@ go install github.com/tsenart/vegeta@latest
 rm -rf ~/go/pkg
 rm -rf ~/.cache/*
 
+# vfox
+curl -sSL https://raw.githubusercontent.com/version-fox/vfox/main/install.sh | bash
+
 ## dotfiles
 git clone https://github.com/yxing-xyz/scripts --recurse-submodules ~/workspace/github/scripts
 bash /root/workspace/github/scripts/dotfiles/linux.sh
