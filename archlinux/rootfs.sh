@@ -13,18 +13,17 @@ elif [[ $TARGETARCH == *"arm"* ]]; then
     sed -i 's/@CARCH@/auto/g' /etc/pacman.conf
     echo 'Server = http://ca.us.mirror.archlinuxarm.org/$arch/$repo' >/etc/pacman.d/mirrorlist
     BOOTSTRAP_EXTRA_PACKAGES="archlinuxarm-keyring"
+    # 修复arm archlinux key错误
+    sed -i 's|Include = /etc/pacman.d/mirrorlist|Include = /etc/pacman.d/mirrorlist\nSigLevel = Never|g' /etc/pacman.conf
 else
     echo 'unknown architecture'
     exit 1
 fi
-# 修复arm archlinux key错误
-sed -i 's|Include = /etc/pacman.d/mirrorlist|Include = /etc/pacman.d/mirrorlist\nSigLevel = Never|g' /etc/pacman.conf
-
 sed -i 's|#Color|Color|' /etc/pacman.conf
 sed -i 's|#ParallelDownloads|ParallelDownloads|' /etc/pacman.conf
 sed -i 's|#MAKEFLAGS.*|MAKEFLAGS="-j17"|' /etc/makepkg.conf
-
 pacman-key --init
+
 mkdir -p /rootfs
 mkdir -m 0755 -p /rootfs/var/cache/pacman/pkg
 mkdir -m 0755 -p /rootfs/var/lib/pacman
@@ -35,14 +34,10 @@ mkdir -m 0755 -p /rootfs/etc
 mkdir -m 1777 -p /rootfs/tmp
 mkdir -m 0555 -p /rootfs/sys
 mkdir -m 0555 -p /rootfs/proc
-
 pacman -r /rootfs -Sy --noconfirm $PACKAGE_GROUP
 pacman -r /rootfs -Sy --noconfirm $BOOTSTRAP_EXTRA_PACKAGES
+cp /etc/pacman.conf /rootfs/etc/pacman.conf
+cp /etc/makepkg.conf /rootfs/etc/makepkg.conf
 sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /rootfs/etc/locale.gen
 echo "LANG=en_US.UTF-8" >/rootfs/etc/locale.conf
-
-curl -L https://github.com/archlinuxarm/archlinuxarm-keyring/archive/refs/heads/master.zip -o master.zip
-unzip -o ./master.zip
-rm -rf /usr/share/pacman/keyrings
-mv ./archlinuxarm-keyring-master/ /usr/share/pacman/keyrings
 chroot /rootfs locale-gen
