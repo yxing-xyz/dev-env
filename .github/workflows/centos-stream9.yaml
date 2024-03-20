@@ -37,7 +37,7 @@ jobs:
       - name: Build and Push
         uses: docker/build-push-action@v4
         with:
-          platforms: linux/amd64,linux/arm64/v8,linux/ppc64le,linux/s390x
+          platforms: linux/amd64,linux/arm64/v8
           push: true
           file: "./rootfs.Dockerfile"
           tags: ${{ env.TAGS }}
