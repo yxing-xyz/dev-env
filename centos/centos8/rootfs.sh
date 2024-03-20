@@ -3,7 +3,7 @@ set -e
 yum clean all && yum makecache
 yum update -y
 
-yum install -y gcc gcc-c++ make automake autoconf libtool perl bash git lrzsz procps \
+yum install -y gcc gcc-c++ make automake autoconf libtool perl bash git lrzsz procps epel-release \
     sudo vim tmux
 yum install -y openssh-server zlib-devel openssl-devel pcre-devel
 yum install -y tcpdump lsof net-tools bind-utils mtr wget curl
@@ -19,7 +19,6 @@ sed -e "s|^mirrorlist=|#mirrorlist=|g" \
     -i.bak \
     /etc/yum.repos.d/CentOS-*.repo
 
-yum install -y epel-release
 sed -e 's!^metalink=!#metalink=!g' \
     -e 's!^#baseurl=!baseurl=!g' \
     -e 's!https\?://download\.fedoraproject\.org/pub/epel!https://mirror.nju.edu.cn/epel!g' \

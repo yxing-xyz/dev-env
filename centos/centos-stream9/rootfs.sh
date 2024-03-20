@@ -3,7 +3,7 @@ set -e
 yum clean all && yum makecache
 yum update -y
 
-yum install -y gcc gcc-c++ make automake autoconf libtool perl bash git lrzsz procps \
+yum install -y gcc gcc-c++ make automake autoconf libtool perl bash git lrzsz procps epel-release \
     sudo vim tmux
 yum install -y openssh-server zlib-devel openssl-devel pcre-devel
 yum install -y tcpdump lsof net-tools bind-utils mtr wget
@@ -49,9 +49,9 @@ sed -i '/\[resilientstorage-source\]/abaseurl=https://mirrors.nju.edu.cn/centos-
 sed -i '/\[extras-common\]/abaseurl=https://mirrors.nju.edu.cn/centos-stream/SIGs/$releasever-stream/extras/$basearch/extras-common\' /etc/yum.repos.d/centos-addons.repo
 sed -i '/\[extras-common-source\]/abaseurl=https://mirrors.nju.edu.cn/centos-stream/SIGs/$releasever-stream/extras/source/extras-common\' /etc/yum.repos.d/centos-addons.repo
 
-yum install -y epel-release
+
 sed -e 's!^metalink=!#metalink=!g' \
     -e 's!^#baseurl=!baseurl=!g' \
     -e 's!https\?://download\.fedoraproject\.org/pub/epel!https://mirror.nju.edu.cn/epel!g' \
     -e 's!https\?://download\.example/pub/epel!https://mirror.nju.edu.cn/epel!g' \
-    -i /etc/yum.repos.d/epel{,-testing}.repo
+    -i /etc/yum.repos.d/epel*.repo
