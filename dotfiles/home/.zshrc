@@ -236,6 +236,7 @@ alias hz="sshuttle --dns -vr root@112.124.55.199 10.0.0.0/8 192.168.0.0/16 --ssh
 alias ssh="TERM=xterm-256color ${TRZSZ_ENABLE} ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
 alias docker="TERM=xterm-256color ${TRZSZ_ENABLE} docker"
 alias lzd="${TRZSZ_ENABLE} lazydocker"
+alias k9s="${TRZSZ_ENABLE} k9s"
 # git alias
 alias glg="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --stat"
 alias grv='git branch -r | grep -v HEAD | while read b; do git log --color --format="%ci _%C(magenta)%cr %C(bold cyan)$b%Creset %s %C(bold blue)<%an>%Creset" $b | head -n 1; done | sort -r | cut -d_ -f2- | sed "s;origin/;;g" | head -50'
