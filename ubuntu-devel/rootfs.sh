@@ -50,10 +50,10 @@ zsh -i -c "zinit lucid for zsh-users/zsh-autosuggestions"
 
 ## china
 if [[ $(uname -a) == *"x86_64"* ]]; then
-    sed 's|archive.ubuntu.com|mirrors.nju.edu.cn|' -i /etc/apt/sources.list
-    sed 's|security.ubuntu.com|mirrors.nju.edu.cn|' -i /etc/apt/sources.list
+    sed -i 's|^URIs: http://archive.ubuntu.com/ubuntu/|URIs: http://mirror.nju.edu.cn/ubuntu/|g' /etc/apt/sources.list.d/ubuntu.sources
+    sed -i 's|^URIs: http://security.ubuntu.com/ubuntu/|URIs: http://mirror.nju.edu.cn/ubuntu/|g' /etc/apt/sources.list.d/ubuntu.sources
 else
-    sed 's|ports.ubuntu.com|mirrors.nju.edu.cn|' -i /etc/apt/sources.list
+    sed -i 's|^URIs: http://ports.ubuntu.com/ubuntu-ports/|URIs: http://mirror.nju.edu.cn/ubuntu-ports/|g' /etc/apt/sources.list.d/ubuntu.sources
 fi
 go env -w GO111MODULE=on
 go env -w GOPROXY="https://repo.nju.edu.cn/repository/go/,direct"
