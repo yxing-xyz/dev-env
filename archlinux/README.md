@@ -1,7 +1,7 @@
 # 安装系统核心命令
 ```bash
 # 安装archlinux基本包
-pacstrap -i /mnt base base-devel linux linux-firmware linux-headers
+pacstrap -i /mnt base base-devel linux linux-firmware linux-headers grub networkmanager dhcpcd vim net-tools
 # 保存新系统分区表到/mnt/etc/fstab
 genfstab -U -p /mnt >> /mnt/etc/fstab
 # arch-chroot切换

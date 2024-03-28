@@ -12,6 +12,7 @@ sed -i 's|#ParallelDownloads|ParallelDownloads|' /etc/pacman.conf
 sed -i 's|#MAKEFLAGS.*|MAKEFLAGS="-j17"|' /etc/makepkg.conf
 
 pacman-key --init
+pacman-key --populate
 
 tee >>/etc/pacman.conf <<EOF
 [archlinuxcn]
