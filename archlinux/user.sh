@@ -53,7 +53,7 @@ pacman -S yay bash expect git svn aria2 vim neovim emacs lsof \
   hugo cmake --noconfirm
 
 # yay trzsz
-# yay bear2-git
+# yay bear-git
 # yay lazydocker
 
 curl -sSL https://raw.githubusercontent.com/version-fox/vfox/main/install.sh | bash
