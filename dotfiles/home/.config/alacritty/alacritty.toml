@@ -1,42 +1,44 @@
 live_config_reload = true
 
 [colors]
+# 绘制粗体文本时使用亮色
 draw_bold_text_with_bright_colors = true
 
-[colors.bright]
-black = "0x808080"
-blue = "0x0066ff"
-cyan = "0x00ffff"
-green = "0x33ff00"
-magenta = "0xcc00ff"
-red = "0xfe0100"
-white = "0xFFFFFF"
-yellow = "0xfeff00"
+# Colours (Monokai Charcoal)
 
-[colors.cursor]
-cursor = "0xffffff"
-text = "0xF81CE5"
-
-[colors.normal]
-black = "0x000000"
-blue = "0x0066ff"
-cyan = "0x00ffff"
-green = "0x33ff00"
-magenta = "0xcc00ff"
-red = "0xfe0100"
-white = "0xd0d0d0"
-yellow = "0xfeff00"
-
+# Default Colours
 [colors.primary]
-background = "0x000000"
-foreground = "0xffffff"
+background = '#000000'
+foreground = '#FFFFFF'
+
+# Normal Colours
+[colors.normal]
+black   = '#1a1a1a'
+red     = '#f4005f'
+green   = '#98e024'
+yellow  = '#fa8419'
+blue    = '#9d65ff'
+magenta = '#f4005f'
+cyan    = '#58d1eb'
+white   = '#c4c5b5'
+
+# Bright Colours
+[colors.bright]
+black   = '#625e4c'
+red     = '#f4005f'
+green   = '#98e024'
+yellow  = '#e0d561'
+blue    = '#9d65ff'
+magenta = '#f4005f'
+cyan    = '#58d1eb'
+white   = '#f6f6ef'
 
 [env]
 TERM = "xterm-256color"
 
 [font]
 builtin_box_drawing = true
-size = 9
+size = 14
 
 [font.bold]
 family = "CodeNewRoman Nerd Font"
