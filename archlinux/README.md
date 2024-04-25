@@ -9,6 +9,73 @@ arch-chroot /mnt /bin/bash
 # amdgpu驱动
 pacman -S xf86-video-amdgpu --needed --noconfirm --overwrite '*'
 ```
+
+# pacman
+```bash
+# 列出仓库中的所有包
+pacman -Sl extra
+# 列出所有单独指定安装的软件包
+pacman -Qe
+# 删除软件包
+pacman -R nvm --noconfirm
+# 清空未使用的包
+pacman -R $(pacman -Qtdq)
+# 安装构建包
+pacman -U ./构建包名
+# 检查文件属性
+pacman -Qkk | grep mime
+# 解决keyring过期问题
+pacman -S archlinux-keyring
+pacman-key --init
+pacman-key --populate
+```
+
+# asp
+```bash
+# 下载gcc的PKGBUILD
+asp checkout gcc
+```
+
+# makepkg
+makepkg可以在PKGBUILD文件目录下执行，构建arch包
+
+● --ignorearch 忽略arch
+
+● --nodeps  忽略依赖
+
+● --skippgpcheck 忽略pgp检查
+
+● --skipchecksums 忽略hash检查
+
+# aur自动更新脚本
+确保有一个x名称的普通用户
+```bash
+set -e
+echo '%wheel ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/wheel
+
+if [[ $(uname -a) == *"x86_64"* ]]; then
+  echo 'Server = https://mirrors.nju.edu.cn/archlinux/$repo/os/$arch' > etc/pacman.d/mirrorlist
+else
+  echo 'Server = https://mirrors.nju.edu.cn/archlinuxarm/$arch/$repo' > /etc/pacman.d/mirrorlist
+fi
+
+pacman -Sy
+pacman -S archlinux-keyring --needed --noconfirm
+pacman -Su --needed --noconfirm
+pacman-key --init
+pacman-key --populate
+su x -c '
+export GO111MODULE=on
+export GOPROXY=https://repo.nju.edu.cn/repository/go/,direct
+yay -Syu --nouseask --needed --noconfirm --overwrite "*"
+'
+rm -rf /var/lib/pacman/sync/* || true
+rm -rf /home/x/.* || true
+rm -rf /home/x/* || true
+rm -rf /tmp/* || true
+
+echo '%wheel ALL=(ALL:ALL) ALL' > /etc/sudoers.d/wheel
+```
 # 软件包
 ```bash
 #!/usr/bin/sh
