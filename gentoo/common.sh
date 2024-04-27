@@ -30,8 +30,6 @@ init() {
 
     ## accept keyword
     tee >>/etc/portage/package.accept_keywords/x <<EOF
-=www-servers/caddy-2.6.4 ~amd64 ~arm64
-=media-video/peek-1.5.1-r1 ~amd64 ~arm64
 EOF
     ## use
     tee >>/etc/portage/package.use/x <<EOF

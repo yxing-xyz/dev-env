@@ -43,7 +43,7 @@ UNINSTALL_IGNORE="/bin /lib /lib64 /sbin"
 EOF
 
 sync
-eselect profile set default/linux/amd64/17.1/desktop/systemd/merged-usr
+eselect profile set default/linux/amd64/23.0/desktop/systemd
 update
 app
 

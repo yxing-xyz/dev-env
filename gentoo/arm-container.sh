@@ -33,6 +33,6 @@ EOF
 echo 'app-editors/emacs dynamic-loading games gif gmp gpm gui gzip-el jit jpeg json lcms libxml2 png source svg threads tiff toolkit-scroll-bars wide-int zlib imagemagick harfbuzz xft' >> /etc/portage/package.use/x
 
 sync
-eselect profile set default/linux/arm64/17.0/systemd/merged-usr
+eselect profile set default/linux/arm64/23.0/systemd
 update
 app
