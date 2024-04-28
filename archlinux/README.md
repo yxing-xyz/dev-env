@@ -84,6 +84,10 @@ set -o errexit
 set -o nounset
 set -o pipefail
 ################################
+# 蓝牙
+pacman -S bluez bluez-utils pulseaudio-bluetooth --needed --noconfirm --overwrite '*'
+systemctl start bluetooth.service
+systemctl enable bluetooth.service
 # 安装图形界面                     剪切板 窗口特效 合并X11配置   xorg-xev查看x的输入事件   setxkbmap设置键盘
 pacman -S xorg-server xorg-xinit xclip xsel picom xorg-xrdb  xorg-xinput light xorg-xev xorg-setxkbmap --needed --noconfirm --overwrite '*'
 # awesome
@@ -110,7 +114,7 @@ pacman -S strace patchelf pax-utils --needed --noconfirm --overwrite '*'
 # 数据库命令行
 yay -S iredis mycli pgcli-git litecli --needed --noconfirm --overwrite '*'
 # 手册
-yay -S cheat-git tldr man-pages man-pages-zh_cn--needed --noconfirm --overwrite '*'
+yay -S man-pages man-pages-zh_cn--needed navi --noconfirm --overwrite '*'
 # 代码行数统计
 pacman -S cloc --needed --noconfirm --overwrite '*'
 # shell脚本检查
@@ -119,10 +123,6 @@ pacman -S shellcheck --needed --noconfirm --overwrite '*'
 pacman -S bear --needed --noconfirm --overwrite '*'
 # cosmo编译器
 yay -S cosmocc-bin --noconfirm --overwrite '*'
-
-
-# k8s
-pacman -S k9s helm tekton-cli --needed --noconfirm --overwrite '*'
 
 ############# 虚拟机相关 ##############
 # rdesktop -f 222.240.148.238:50010 -u administrator -p hngat2015 -a 32 -r clipboard:PRIMARYCLIPBOARD -r disk:h=/home/x
@@ -203,9 +203,11 @@ pacman -S fd --needed --noconfirm --overwrite '*'
 # 文件内容搜索 rg ag ack
 pacman -S ripgrep the_silver_searcher ack --needed --noconfirm --overwrite '*'
 # 彩色ls 彩色cat、彩色日志、彩色diff
-pacman -S lsd bat ccze diff-so-fancy colordiff --noconfirm --needed --overwrite '*'
+pacman -S lsd bat ccze  --noconfirm --needed --overwrite '*'
+# 文件系统空间计算类似du
+pacman -S erdtree  --noconfirm --needed --overwrite '*'
 #         diff
-pacman -S git-delta difftastic --noconfirm --needed --overwrite '*'
+pacman -S difftastic --noconfirm --needed --overwrite '*'
 #         sed
 pacman -S sd --noconfirm --needed --overwrite '*'
 #         shell任务管理器
@@ -249,13 +251,10 @@ pacman -S expect  --needed --noconfirm --overwrite '*'
 pacman -S genact  --needed --noconfirm --overwrite '*'
 # 视频网站资源下载器
 yay -S lux-dl --needed --noconfirm --overwrite '*'
-# 文件或者命令输出转png
-yay -S freeze-bin --needed --noconfirm --overwrite '*'
 # 终端查看markdown
 pacman -S glow --needed --noconfirm --overwrite '*'
-
-
-
+# ssl
+pacman -S openssl easy-rsa mkcert --needed --noconfirm --overwrite '*'
 # 图片处理
 pacman -S  imagemagick --needed --noconfirm --overwrite '*'
 # 终端GIF,终端录屏
@@ -264,23 +263,20 @@ pacman -S asciinema --needed --noconfirm --overwrite '*'
 pacman -S graphviz --needed --noconfirm --overwrite '*'
 # 文档转换
 pacman -S pandoc --needed --noconfirm --overwrite '*'
-# 处理 Excel 或 CSV ，csvkit 提供了 in2csv，csvcut，csvjoin，csvgrep 等方便易用的工具
-yay -S csvkit --needed --noconfirm --overwrite '*'
-# json文件处理以及格式化显示
-pacman -S jq --needed --noconfirm --overwrite '*'
 # 终端艺术字体
 pacman -S figlet --needed --noconfirm --overwrite '*'
 # 字体集格式转换  sudo python -m fontTools.ttLib ./CodeNewRomanNerdFont-Regular.otf -o ./CodeNewRomanNerdFont-Regular.ttf
 pacman -S fonttools --needed --noconfirm --overwrite '*'
-
+# 处理 Excel 或 CSV ，csvkit 提供了 in2csv，csvcut，csvjoin，csvgrep 等方便易用的工具
+yay -S csvkit --needed --noconfirm --overwrite '*'
+# json文件处理以及格式化显示
+pacman -S jq --needed --noconfirm --overwrite '*'
 # 计算工具
 pacman -S datamash --needed --noconfirm --overwrite '*'
 # 监听文件变更运行命令
 pacman -S entr --needed --noconfirm --overwrite '*'
-# 文件传输 rsync
-pacman -S rsync  --needed --noconfirm --overwrite '*'
-
-
+# 文件传输
+pacman -S rsync restic --needed --noconfirm --overwrite '*'
 # cpu限速
 pacman -S cpulimit --needed --noconfirm --overwrite '*'
 # 网络限速
@@ -290,10 +286,22 @@ pacman -S swaks --needed --noconfirm --overwrite '*'
 # 暴力破解工具
 pacman -S hydra hashcat fcrackzip --needed --noconfirm --overwrite '*'
 # 制作ISO镜像
-# xorriso -as mkisofs -R -J -T -v --no-emul-boot --boot-load-size 4 --boot-info-table -V "CentOS" -c isolinux/boot.cat -b isolinux/isolinux.bin -o ./boot.iso ./centos7-cdrom/
+# xorriso -as mkisofs -R -J -T -v --no-emul-boot --boot-load-size 4 --boot-info-table -V "CentOS" \
+# -c isolinux/boot.cat -b isolinux/isolinux.bin -o ./boot.iso ./centos7-cdrom/
 pacman -S xorriso mkisolinux --needed --noconfirm --overwrite '*'
+# git tui
+pacma lazygit --needed --noconfirm --overwrite '*'
+# docker工具 dive查看镜像层 slim合并镜像层
+pacma lazydocker dive --needed --noconfirm --overwrite '*'
+yay -S docker-slim-bin --needed --noconfirm --overwrite '*'
+# k8s
+pacman -S k9s helm tekton-cli --needed --noconfirm --overwrite '*'
+# android
+pacman -S android-apktool --needed --noconfirm --overwrite '*'
 
 ############### GUI  ###########
+# 文件管理
+yay -S sigma-file-manager --needed --noconfirm --overwrite '*'
 # 启动工具
 pacman -S rofi --needed --noconfirm --overwrite '*'
 # 截图
@@ -312,8 +320,8 @@ pacman -S lxappearance-gtk3 deepin-gtk-theme gtk-engine-murrine deepin-icon-them
 pacman -S `sudo pacman -Ssq 'wqy-*'` --needed --noconfirm --overwrite '*'
 # adobe
 pacman -S `sudo pacman -Ssq 'adobe-source-*'` --needed --noconfirm --overwrite '*'
-# 安装浏览器
-pacman -S chromium firefox firefox-i18n-zh-cn pepper-flash --needed --noconfirm
+# 浏览器
+yay -S google-chrome ungoogled-chromium-bin chromium firefox firefox-i18n-zh-cn pepper-flash --needed --noconfirm
 # Telegram
 pacman -S telegram-desktop --needed --noconfirm --overwrite '*'
 # 影音播放
@@ -337,10 +345,4 @@ pacman -S kchmviewer --needed --noconfirm --overwrite '*'         # CHM
 pacman -S calibre --needed --noconfirm --overwrite '*'            # 图书转换器
 # 开源CAD
 pacman -S kicad --needed --noconfirm --overwrite '*'
-# 蓝牙
-pacman -S bluez bluez-utils pulseaudio-bluetooth --needed --noconfirm --overwrite '*'
-systemctl start bluetooth.service
-systemctl enable bluetooth.service
-# ssl
-pacman -S openssl easy-rsa mkcert --needed --noconfirm --overwrite '*'
 ```

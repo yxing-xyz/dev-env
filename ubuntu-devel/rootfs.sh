@@ -19,12 +19,12 @@ useradd -m -s /bin/bash x
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 # dev
-apt install -y mycli pgcli iredis trash-cli xz-utils
+apt install -y mycli pgcli iredis trash-cli xz-utils fuse3
 
 apt install -y zsh
 chsh -s /usr/bin/zsh root
 
-apt install -y emacs-nox fzf delta bat ripgrep zoxide lsd fd-find mkcert p7zip-full p7zip-rar rsync pax-utils patchelf cmake
+apt install -y emacs-nox fzf delta bat ripgrep zoxide lsd fd-find mkcert p7zip-full p7zip-rar restic pax-utils patchelf cmake
 ln -sf /usr/bin/batcat /usr/bin/bat
 
 apt install -y golang
