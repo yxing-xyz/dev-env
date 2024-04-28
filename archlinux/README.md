@@ -100,7 +100,6 @@ pacman -S yay asp downgrade --needed --noconfirm --overwrite '*'
 # 用户态依赖
 pacman -S glibc musl gcc clang --needed --noconfirm --overwrite '*'
 
-
 # 常用开发工具
 # 编辑
 pacman -S emacs vim nvim --needed --noconfirm --overwrite '*'
@@ -118,6 +117,8 @@ pacman -S cloc --needed --noconfirm --overwrite '*'
 pacman -S shellcheck --needed --noconfirm --overwrite '*'
 # Makefile生成clangd提示配置文件
 pacman -S bear --needed --noconfirm --overwrite '*'
+# cosmo编译器
+yay -S cosmocc-bin --noconfirm --overwrite '*'
 
 
 # k8s
@@ -204,7 +205,7 @@ pacman -S ripgrep the_silver_searcher ack --needed --noconfirm --overwrite '*'
 # 彩色ls 彩色cat、彩色日志、彩色diff
 pacman -S lsd bat ccze diff-so-fancy colordiff --noconfirm --needed --overwrite '*'
 #         diff
-pacman -S git-delta --noconfirm --needed --overwrite '*'
+pacman -S git-delta difftastic --noconfirm --needed --overwrite '*'
 #         sed
 pacman -S sd --noconfirm --needed --overwrite '*'
 #         shell任务管理器
@@ -244,6 +245,14 @@ pacman -S wget curl axel aria2 transmission-cli you-get youtube-dl --needed --no
 pacman -S translate-shell  --needed --noconfirm --overwrite '*'
 # 交互式shell自动化
 pacman -S expect  --needed --noconfirm --overwrite '*'
+# 假装很忙
+pacman -S genact  --needed --noconfirm --overwrite '*'
+# 视频网站资源下载器
+yay -S lux-dl --needed --noconfirm --overwrite '*'
+# 文件或者命令输出转png
+yay -S freeze-bin --needed --noconfirm --overwrite '*'
+# 终端查看markdown
+pacman -S glow --needed --noconfirm --overwrite '*'
 
 
 
@@ -261,6 +270,8 @@ yay -S csvkit --needed --noconfirm --overwrite '*'
 pacman -S jq --needed --noconfirm --overwrite '*'
 # 终端艺术字体
 pacman -S figlet --needed --noconfirm --overwrite '*'
+# 字体集格式转换  sudo python -m fontTools.ttLib ./CodeNewRomanNerdFont-Regular.otf -o ./CodeNewRomanNerdFont-Regular.ttf
+pacman -S fonttools --needed --noconfirm --overwrite '*'
 
 # 计算工具
 pacman -S datamash --needed --noconfirm --overwrite '*'

@@ -46,7 +46,7 @@ pacman -S openssh --noconfirm &&
 mkdir /opt/x
 chmod 777 /opt/x
 pacman -S yay bash expect git svn aria2 vim neovim emacs lsof \
-  htop lsd sd bat fzf fd zoxide ripgrep lazygit git-delta \
+  htop lsd sd bat fzf fd zoxide ripgrep lazygit difftastic \
   go rustup rsync \
   tcpdump net-tools dnsutils mtr wget curl zssh lrzsz \
   docker mycli iredis trash-cli 7-zip-full pax-utils patchelf \

@@ -1,5 +1,4 @@
 [core]
-  	pager    = delta
 	safecrlf = warn
 	autocrlf = false
 	fileMode = true
@@ -9,25 +8,20 @@
 	rebase = true
 [credential]
 	helper = store
-[interactive]
-	diffFilter = delta --color-only
-[delta]
-	line-numbers = true
-	navigate = true
-    	light = false
-[merge]
-    conflictstyle = diff3
-[diff]
-    colorMoved = default
 [user]
 	email = yxing.xyz@gmail.com
-	name = yx
-# [http "https://github.com"]
-# 	proxy = socks5://127.0.0.1:1080
-# [https "https://github.com"]
-# 	proxy = socks5://127.0.0.1:1080
+	name = Ethan
 [oh-my-zsh]
 	hide-dirty = 1
+[alias]
+	dlog = "-c diff.external='difft --display inline' log -p --ext-diff"
+	dshow = "-c diff.external='difft --display inline' show HEAD --ext-diff"
+[diff]
+        external = difft --display inline
+[http "https://github.com"]
+ 	proxy = socks5://127.0.0.1:1080
+[https "https://github.com"]
+ 	proxy = socks5://127.0.0.1:1080
 
 [url "git@git.code.oa.com:"]
         insteadOf = https://git.code.oa.com/

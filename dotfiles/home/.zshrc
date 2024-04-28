@@ -226,7 +226,7 @@ bindkey -e '^T' transpose-chars
 alias rm='trash-put'
 alias ls='lsd'
 alias cat="bat"
-alias diff="delta"
+alias diff="difft --display inline"
 alias lzg='lazygit'
 alias ect='emacsclient -t'
 alias ecc='emacsclient -c'
