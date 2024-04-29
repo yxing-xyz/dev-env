@@ -180,6 +180,9 @@ pacman -S e2fsprogs --needed --noconfirm --overwrite '*'
 pacman -S fio --needed --noconfirm --overwrite '*'
 # lsof
 pacman -S lsof --needed --noconfirm --overwrite '*'
+# kpartx创建loop设备子设备 mkinitcpio,dracut是initramfs工具
+pacman -S multipath-tools mkinitcpio dracut --needed --noconfirm --overwrite '*'
+
 
 
 ################### 终端神器 #####################
