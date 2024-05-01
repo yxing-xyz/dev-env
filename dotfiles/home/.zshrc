@@ -43,17 +43,6 @@ case ":${PATH}:" in
     ;;
 esac
 
-# 天气
-wearth() {
-    if [ $1 ]; then
-        city=$1
-    else
-        city="wuhan"
-    fi
-    url="wttr.in/!:1=$city"
-    curl $url
-}
-
 cheat.sh() {
     curl -L cheat.sh/$1
 }
