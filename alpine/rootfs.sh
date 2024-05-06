@@ -21,7 +21,7 @@ apk add alpine-conf
 
 # china
 tee >/etc/apk/repositories <<EOF
-http://mirrors.nju.edu.cn/alpine/edge/main
-http://mirrors.nju.edu.cn/alpine/edge/community
+http://mirrors.nju.edu.cn/alpine/latest-stable/main
+http://mirrors.nju.edu.cn/alpine/latest-stable/community
 http://mirrors.nju.edu.cn/alpine/edge/testing/
 EOF
