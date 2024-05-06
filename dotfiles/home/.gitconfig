@@ -18,10 +18,10 @@
 	dshow = "-c diff.external='difft --display inline' show HEAD --ext-diff"
 [diff]
         external = difft --display inline
-[http "https://github.com"]
- 	proxy = socks5://127.0.0.1:1080
-[https "https://github.com"]
- 	proxy = socks5://127.0.0.1:1080
+#[http "https://github.com"]
+	#proxy = socks5://127.0.0.1:1080
+#[https "https://github.com"]
+	#proxy = socks5://127.0.0.1:1080
 
 [url "git@git.code.oa.com:"]
         insteadOf = https://git.code.oa.com/

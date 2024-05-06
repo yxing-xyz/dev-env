@@ -222,6 +222,8 @@ pacman -S hydra hashcat fcrackzip --needed --noconfirm --overwrite '*'
 # xorriso -as mkisofs -R -J -T -v --no-emul-boot --boot-load-size 4 --boot-info-table -V "CentOS" \
 # -c isolinux/boot.cat -b isolinux/isolinux.bin -o ./boot.iso ./centos7-cdrom/
 pacman -S xorriso mkisolinux --needed --noconfirm --overwrite '*'
+# github lfs
+pacman -S git-lfs --needed --noconfirm --overwrite '*'
 # git tui
 pacma lazygit --needed --noconfirm --overwrite '*'
 # docker工具 dive查看镜像层 slim合并镜像层
