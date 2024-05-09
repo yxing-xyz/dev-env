@@ -330,6 +330,8 @@ pacman -S kchmviewer --needed --noconfirm --overwrite '*'         # CHM
 pacman -S calibre --needed --noconfirm --overwrite '*'            # 图书转换器
 # 开源CAD
 pacman -S kicad --needed --noconfirm --overwrite '*'
+# inotify
+pacman -S inotify --needed --noconfirm --overwrite '*'
 # 协议调试
 yay -S insomnia-bin --needed --noconfirm --overwrite '*'
 # 跨平台互传工具
