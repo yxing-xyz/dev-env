@@ -1,31 +1,45 @@
 [core]
-	safecrlf = warn
-	autocrlf = false
-	fileMode = true
+safecrlf = warn
+autocrlf = false
+fileMode = true
 [init]
-	defaultBranch = main
+defaultBranch = main
 [pull]
-	rebase = true
+rebase = true
 [credential]
-	helper = store
+helper = store
 [user]
 	email = yxing.xyz@gmail.com
 	name = Ethan
 [oh-my-zsh]
-	hide-dirty = 1
+hide-dirty = 1
 [alias]
-	dlog = "-c diff.external='difft --display inline' log -p --ext-diff"
-	dshow = "-c diff.external='difft --display inline' show HEAD --ext-diff"
+dlog = "-c diff.external='difft --display inline' log -p --ext-diff"
+dshow = "-c diff.external='difft --display inline' show HEAD --ext-diff"
+
+x-log = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --stat
+remote-recent-commits = "!f() { git branch -r | grep -v HEAD | while read b; do git log --color --format=\"%ci _%C(magenta)%cr %C(bold cyan)$b%Creset %s %C(bold blue)<%an>%Creset\" $b | head -n 1; done | sort -r | cut -d_ -f2- | sed 's;origin/;;g' | head -50; }; f"
+assume-unchanged = update-index --assume-unchanged
+no-assume-unchanged = update-index --no-assume-unchanged
+untracked-files = "!f() { git ls-files -v | grep '^[a-z]'; }; f"
+show-exclude = "!f() { cat \"$(git rev-parse --git-dir)/info/exclude\"; }; f"
+archive-dir = "!f() { cd ${GIT_PREFIX:-.}; mkdir -p $3; git archive --format=tar $1 $2 | tar -x -C $3; }; f"
+
 [diff]
-        external = difft --display inline
+external = difft --display inline
 #[http "https://github.com"]
-	#proxy = socks5://127.0.0.1:1080
+#proxy = socks5://127.0.0.1:1080
 #[https "https://github.com"]
-	#proxy = socks5://127.0.0.1:1080
+#proxy = socks5://127.0.0.1:1080
 
 [url "git@git.code.oa.com:"]
-        insteadOf = https://git.code.oa.com/
-        insteadOf = http://git.code.oa.com/
+insteadOf = https://git.code.oa.com/
+insteadOf = http://git.code.oa.com/
 [url "git@git.woa.com:"]
-        insteadOf = https://git.woa.com/
-        insteadOf = http://git.woa.com/
+insteadOf = https://git.woa.com/
+insteadOf = http://git.woa.com/
+[filter "lfs"]
+process = git-lfs filter-process
+required = true
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
