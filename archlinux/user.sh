@@ -50,7 +50,7 @@ pacman -S yay bash expect git svn aria2 vim neovim emacs lsof \
   go rustup restic \
   tcpdump net-tools dnsutils mtr wget curl zssh lrzsz fuse2 \
   docker mycli iredis trash-cli 7-zip-full pax-utils patchelf \
-  hugo cmake translate-shell navi qrencode --noconfirm
+  hugo cmake translate-shell navi qrencode vcpkg ninja zip --noconfirm
 
 # yay trzsz
 # yay bear-git
