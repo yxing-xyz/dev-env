@@ -1,4 +1,4 @@
-# yum
+# yum/dnf
 ```bash
 ## 清除缓存
 yum clean all && yum makecache
@@ -18,4 +18,7 @@ yum reinstall curl
 rpm -ivh https://github.com/trzsz/trzsz-go/releases/download/v1.1.7/trzsz_1.1.7_linux_x86_64.rpm
 ## 删除包
 yum remove curl
+
+## 安装库的debuginfo
+dnf debuginfo-install libxcrypt
 ```
