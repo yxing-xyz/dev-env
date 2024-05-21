@@ -11,6 +11,8 @@ yum list installed
 
 ## 查看包文件
 rpm -ql bash
+## 查看文件属于哪个包
+yum provides /lib64/libc.so.6
 ## 重新安装包
 yum reinstall curl
 
