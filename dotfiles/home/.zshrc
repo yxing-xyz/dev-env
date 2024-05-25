@@ -7,7 +7,7 @@ export HISTSIZE=10000000
 # 注销后保存的历史纪录条目数量
 export SAVEHIST=10000000
 
-export LANG=zh_CN.UTF-8
+export LANG=en_US.UTF-8
 # export LC_ALL=C
 export LC_CTYPE=en_US.UTF-8
 
