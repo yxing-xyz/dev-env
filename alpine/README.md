@@ -28,10 +28,7 @@ EOF
 apk add linux-virt linux-headers alpine-conf apk-tools bash zsh sudo go gcc g++ automake autoconf \
     wget curl e2fsprogs-extra dhcpcd psutils mkinitfs dracut cloud-utils-growpart \
     ripgrep fd fzf vim emacs-nox zsh musl-locales py3-pip tree ip6tables iptables docker
-## glibc lib目录位于/usr/glibc-compat/lib
-wget https://gh.bink.cc/github.com/sgerrand/alpine-pkg-glibc/releases/download/2.35-r1/glibc-2.35-r1.apk
-apk add --allow-untrusted glibc-2.35-r1.apk
-rm -rf glibc-2.35-r1.apk
+## 自定义glibc
 # 启用/etc/local.d/
 rc-update add local
 rc-update add docker
@@ -49,14 +46,11 @@ sudo chmod 4777 /sbin/shutdown
 
 sync
 reboot
-
-# 重启完后执行setup
-/sbin/setup-alpine
 ```
 
 
 ## aliyun
-## nvme
+### nvme
 编辑`etc/mkinitfs/mkinitfs.conf`
 
 添加`features="nvme"` nvme驱动
@@ -66,7 +60,7 @@ reboot
 mkinitfs -c /etc/mkinitfs/mkinitfs.conf -b / $(ls /lib/modules/)
 ```
 
-## cloud-init
+### cloud-init
 ```bash
 apk add cloud-init
 sed -i 's/disable_root.*/disable_root: false/' /etc/cloud/cloud.cfg
@@ -81,22 +75,22 @@ rc-update add cloud-config
 rc-update add cloud-final
 ```
 
-## service
-### agent
+### service
+#### agent
 ```bash
 去一台官方镜像阿里云机器拷贝整个agent目录出来，然后放入alpine linux中，将缺失的库拷贝到glibc混合层中
 ```
-### assist
+#### assist
 ```bash
 wget "https://aliyun-client-assist.oss-accelerate.aliyuncs.com/linux/aliyun_assist_latest_update.zip"
 unzip  -o ./aliyun_assist_latest_update.zip -d /usr/local/share/aliyun-assist/
 rm -f ./aliyun_assist_latest_update.zip
 ```
-### 主机监控
+#### 主机监控
 ```bash
 ARGUS_VERSION=3.5.11 /bin/bash -c "$(curl -s https://cms-agent-cn-hangzhou.oss-cn-hangzhou-internal.aliyuncs.com/Argus/agent_install-1.10.sh)"
 ```
-### init script
+#### init script
 ```bash
 tee <<EOF > /etc/local.d/aliyun-service.start
 /usr/local/share/aliyun-assist/*/aliyun-service -d
