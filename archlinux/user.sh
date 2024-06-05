@@ -48,14 +48,14 @@ chmod 777 /opt/x
 pacman -S yay bash expect git svn aria2 vim neovim emacs lsof \
   htop lsd sd bat fzf fd zoxide ripgrep lazygit difftastic \
   go rustup restic \
-  tcpdump net-tools dnsutils mtr wget curl zssh lrzsz fuse2 \
+  openbsd-netcat tcpdump net-tools dnsutils mtr wget curl zssh lrzsz fuse2 \
   docker mycli iredis trash-cli 7-zip-full pax-utils patchelf \
   hugo cmake translate-shell navi qrencode vcpkg ninja zip --noconfirm
 
-# yay trzsz
-# yay bear-git
-# yay lazydocker
-
+# yay -S trzsz --needed --noconfirm --overwrite '*'
+# yay -S bear-git --needed --noconfirm --overwrite '*'
+# yay -S plazydocker --needed --noconfirm --overwrite '*'
+# yay -S superfile-bin --needed --noconfirm --overwrite '*'
 curl -sSL https://raw.githubusercontent.com/version-fox/vfox/main/install.sh | bash
 vfox add nodejs/nodejs
 vfox add python/python

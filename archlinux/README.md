@@ -291,7 +291,7 @@ pacman -S networkmanager network-manager-applet networkmanager-openvpn networkma
 
 ############### GUI  ###########
 # 文件管理
-yay -S sigma-file-manager --needed --noconfirm --overwrite '*'
+yay -S sigma-file-manager  superfile-bin --needed --noconfirm --overwrite '*'
 # 启动工具
 pacman -S rofi --needed --noconfirm --overwrite '*'
 # 截图
@@ -335,7 +335,7 @@ pacman -S inotify --needed --noconfirm --overwrite '*'
 # 协议调试
 yay -S insomnia-bin --needed --noconfirm --overwrite '*'
 # 跨平台互传工具
-yay localsend-bin --needed --noconfirm --overwrite '*'
+yay -S localsend-bin --needed --noconfirm --overwrite '*'
 # 传输文件
 # zenity拉起文件管理  trzsz(lrzsz zssh) croc中继服务器传输文件
 yay -S zenity trzsz croc --needed --noconfirm --overwrite '*'
