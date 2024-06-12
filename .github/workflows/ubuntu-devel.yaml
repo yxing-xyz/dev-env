@@ -43,4 +43,4 @@ jobs:
           push: true
           file: "./rootfs.Dockerfile"
           tags: ${{ env.TAGS }}
-          context: ./ubuntu-devel
+          context: ./ubuntu/devel
