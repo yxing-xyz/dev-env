@@ -4,6 +4,7 @@ yum clean all && yum makecache
 yum update -y
 
 yum install -y epel-release
+yum update -y
 yum install -y gcc gcc-c++ make automake autoconf libtool perl bash git lrzsz procps \
     psmisc sudo vim tmux netcat
 yum install -y openssh-server zlib-devel openssl-devel pcre-devel

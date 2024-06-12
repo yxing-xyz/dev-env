@@ -16,26 +16,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-      - name: Login to Tencent
-        uses: docker/login-action@v2
+        uses: docker/setup-buildx-action@v3
+      - name: Login to Registry
+        uses: docker/login-action@v3
         with:
-          registry: ccr.ccs.tencentyun.com
-          username: ${{ secrets.TCR_USERNAME }}
-          password: ${{ secrets.TCR_PASSWORD }}
+          # registry.cn-hangzhou.aliyuncs.com
+          # ccr.ccs.tencentyun.com
+          registry: ${{ secrets.REGISTRY }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
       - name: Generate Tag List
         run: |
           sed -i -e 's|${IMAGE}|centos:centos7|' ./rootfs.Dockerfile
           docker system prune -af
           echo "TAGS<<EOF" >> $GITHUB_ENV
-          echo ccr.ccs.tencentyun.com/yxing-xyz/linux:centos7 >> $GITHUB_ENV
+          echo  ${{ secrets.REGISTRY }}/yxing-xyz/linux:centos7 >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
       - name: Build and Push
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           platforms: linux/amd64,linux/arm64/v8
           push: true
