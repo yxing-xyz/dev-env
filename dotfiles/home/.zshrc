@@ -103,6 +103,7 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 eval "$(zoxide init zsh)"
 zinit snippet OMZ::plugins/svn # svn
 zinit snippet OMZ::lib/git.zsh # git
+zinit snippet OMZ::lib/async_prompt.zsh
 zinit snippet OMZ::lib/history.zsh
 zinit snippet OMZ::lib/key-bindings.zsh
 zinit snippet OMZ::lib/clipboard.zsh # 剪剪切板
