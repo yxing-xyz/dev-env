@@ -169,7 +169,9 @@ pacman -S qrencode --needed --noconfirm --overwrite '*'
 # 局域网的二维码上下传文件 server->web->client
 yay -S qrcp --needed --noconfirm --overwrite '*'
 # HTTP代理
-pacman -S squid
+pacman -S squid  --needed --noconfirm --overwrite '*'
+# ssr代理
+pacman -S v2raya  --needed --noconfirm --overwrite '*'
 # 进程tcp代理
 proxychains --needed --noconfirm --overwrite '*'
 # http共享
