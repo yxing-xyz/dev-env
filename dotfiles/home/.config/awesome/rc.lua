@@ -632,7 +632,7 @@ clientkeys = my_table.join( --[[     awful.key({ altkey, "Conntrol", "Shift" }, 
     end, {
         description = "toggle fullscreen",
         group = "client"
-    }), awful.key({ modkey, "Control" }, "q", function(c)
+    }), awful.key({ modkey }, "q", function(c)
         c:kill()
     end, {
         description = "close",
