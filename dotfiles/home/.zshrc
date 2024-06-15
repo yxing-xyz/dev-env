@@ -201,7 +201,7 @@ bindkey -e '^[[3~' x-delete-char
 bindkey -e '^x^e' edit-command-line
 
 # FZF
-zinit snippet https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh
+source <(fzf --zsh)
 bindkey -e '^S' fzf-history-widget
 bindkey -e '\e[' fzf-file-widget
 bindkey -e '\e]' fzf-cd-widget
