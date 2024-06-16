@@ -26,10 +26,14 @@ init() {
     ## sync mirros
     mkdir --parents /etc/portage/repos.conf
     cp /usr/share/portage/config/repos.conf /etc/portage/repos.conf/gentoo.conf
-    sed -i "s|rsync://rsync.gentoo.org/gentoo-portage|rsync://mirrors.tuna.nju.edu.cn/gentoo-portage|" /etc/portage/repos.conf/gentoo.conf
+    sed -i "s|sync-type = rsync|sync-type = git|" /etc/portage/repos.conf/gentoo.conf
+    sed -i "s|rsync://rsync.gentoo.org/gentoo-portage|https://mirror.nju.edu.cn/git/gentoo-portage.git|" /etc/portage/repos.conf/gentoo.conf
+    rm -rf /var/db/repos/gentoo
 
     ## accept keyword
     tee >>/etc/portage/package.accept_keywords/x <<EOF
+    x11-terms/alacritty ~amd64
+    dev-util/bear ~amd64
 EOF
     ## use
     tee >>/etc/portage/package.use/x <<EOF
