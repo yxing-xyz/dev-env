@@ -228,8 +228,9 @@ pacman -S xorriso mkisolinux --needed --noconfirm --overwrite '*'
 pacman -S git-lfs --needed --noconfirm --overwrite '*'
 # git tui
 pacma lazygit --needed --noconfirm --overwrite '*'
-# docker工具 dive查看镜像层 slim合并镜像层
-pacma lazydocker dive --needed --noconfirm --overwrite '*'
+# docker工具 dive查看镜像层 skopeo容器镜像和镜像存储库执行各种操作
+pacma lazydocker dive skopeo --needed --noconfirm --overwrite '*'
+# slim合并镜像层, 减少镜像大小
 yay -S docker-slim-bin --needed --noconfirm --overwrite '*'
 # k8s
 pacman -S k9s helm tekton-cli --needed --noconfirm --overwrite '*'
