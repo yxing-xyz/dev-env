@@ -44,9 +44,9 @@ jobs:
           file: ./archlinux/rootfs.Dockerfile
           context: ./archlinux
           tags: ${{ env.TAGS }}
-      - name: Setup Debug Session
-        if: ${{ failure() }}
-        uses: mxschmitt/action-tmate@v3
-        timeout-minutes: 15
-        with:
-          detached: true
+      # - name: Setup Debug Session
+      #   if: ${{ failure() }}
+      #   uses: mxschmitt/action-tmate@v3
+      #   timeout-minutes: 120
+      #   with:
+      #     detached: true
