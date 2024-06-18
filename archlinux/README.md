@@ -14,11 +14,11 @@ pacman -S xf86-video-amdgpu --needed --noconfirm --overwrite '*'
 ```bash
 # 列出仓库中的所有包
 pacman -Sl extra
-# 列出所有单独指定安装的软件包
+# 列出所有手动安装的包
 pacman -Qe
 # 删除软件包
 pacman -R curl --noconfirm
-# 清空未使用的包
+# 自动清理未依赖的包
 pacman -R $(pacman -Qtdq)
 # 安装构建包
 pacman -U ./构建包名

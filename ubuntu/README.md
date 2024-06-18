@@ -1,5 +1,13 @@
 # apt
 ```bash
+# 已安装的包
+apt list --installed
+dpkg -l
+# 手动安装的软件包
+apt-mark showmanual
+# 自动清理不需要的包
+apt autoremove
+
 # 查看包依赖
 apt-cache depends gcc-9-aarch64-linux-gnu
 # 递归查看包依赖
@@ -13,7 +21,6 @@ dpkg -S /usr/aarch64-linux-gnu/lib/libc.so
 dpkg -L gcc-9-aarch64-linux-gnu
 ## 方法二
 dpkg-deb -c ./gcc-9-aarch64-linux-gnu_9.5.0-5ubuntu1cross1_amd64.deb
-
 
 # 解包
 ## 方法一

@@ -6,8 +6,13 @@ yum clean all && yum makecache
 ## 更新
 yum update -y
 
+## 自动移除不依赖的包
+yum autoremove
+
 ## 列出已安装包
 yum list installed
+## 列出手动安装的包
+yum list installed --exclude='*.noarch' | grep -v '@anaconda'
 
 ## 查看包文件
 rpm -ql bash
