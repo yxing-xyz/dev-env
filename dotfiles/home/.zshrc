@@ -2,6 +2,8 @@ TRZSZ_ENABLE=trzsz
 OMZTHEME=OMZT::robbyrussell
 # OMZTHEME=OMZT::eastwood
 # OMZTHEME=OMZT::garyblessington
+# OMZTHEME=OMZT::imajes
+
 # 历史纪录条目数量
 export HISTSIZE=10000000
 # 注销后保存的历史纪录条目数量
