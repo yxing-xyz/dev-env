@@ -1,7 +1,7 @@
 # 安装系统核心命令
 ```bash
 # 安装archlinux基本包
-pacstrap -i /mnt base base-devel linux linux-firmware linux-headers grub networkmanager dhcpcd vim net-tools squashfs-tools
+pacstrap -i /mnt base base-devel devtools linux linux-firmware linux-headers grub networkmanager dhcpcd vim net-tools squashfs-tools
 # 保存新系统分区表到/mnt/etc/fstab
 genfstab -U -p /mnt >> /mnt/etc/fstab
 # arch-chroot切换
@@ -30,7 +30,7 @@ pacman-key --init
 pacman-key --populate
 ```
 
-# asp
+# devtools
 ```bash
 # 下载gcc的PKGBUILD
 asp checkout gcc
@@ -119,6 +119,8 @@ pacman -S fio --needed --noconfirm --overwrite '*'
 pacman -S lsof --needed --noconfirm --overwrite '*'
 # kpartx创建loop设备子设备 mkinitcpio,dracut是initramfs工具
 pacman -S multipath-tools mkinitcpio dracut --needed --noconfirm --overwrite '*'
+# API欺骗root用户以及chroot fakechroot -- fakeroot -- chroot / ls
+pacman -S fakechroot fakeroot --needed --noconfirm --overwrite '*'
 # shell
 pacman -S zsh --needed --noconfirm --overwrite '*'
 # 终端复用
