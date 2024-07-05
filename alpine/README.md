@@ -16,38 +16,7 @@ apk upgrade --available
 
 
 # 安装
-```bash
-# alpine的setup脚本
-tee >/etc/apk/repositories <<EOF
-http://mirrors.nju.edu.cn/alpine/latest-stable/main
-http://mirrors.nju.edu.cn/alpine/latest-stable/community
-http://mirrors.nju.edu.cn/alpine/edge/testing/
-EOF
-
-## 常用package
-apk add linux-virt linux-headers alpine-conf apk-tools bash zsh sudo go gcc g++ automake autoconf \
-    wget curl e2fsprogs-extra dhcpcd psutils mkinitfs dracut cloud-utils-growpart \
-    ripgrep fd fzf vim emacs-nox zsh musl-locales py3-pip tree ip6tables iptables docker
-## 自定义glibc
-# 启用/etc/local.d/
-rc-update add local
-rc-update add docker
-
-apk update
-apk add --upgrade apk-tools
-apk upgrade --available
-
-# 支持shutdown命令，比如阿里云控制台重启ECS
-tee > /sbin/shutdown <<EOF
-#!/bin/sh
-/sbin/poweroff
-EOF
-sudo chmod 4777 /sbin/shutdown
-
-sync
-reboot
-```
-
+见url仓库自动构建alpine.qcow2脚本
 
 ## aliyun
 ### nvme

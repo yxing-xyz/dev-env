@@ -202,7 +202,7 @@ pacman -S graphviz --needed --noconfirm --overwrite '*'
 pacman -S pandoc --needed --noconfirm --overwrite '*'
 # 终端艺术字体
 pacman -S figlet --needed --noconfirm --overwrite '*'
-# 字体集格式转换  sudo python -m fontTools.ttLib ./CodeNewRomanNerdFont-Regular.otf -o ./CodeNewRomanNerdFont-Regular.ttf
+# 字体集格式转换
 pacman -S fonttools --needed --noconfirm --overwrite '*'
 # 处理 Excel 或 CSV ，csvkit 提供了 in2csv，csvcut，csvjoin，csvgrep 等方便易用的工具
 yay -S csvkit --needed --noconfirm --overwrite '*'
@@ -223,8 +223,6 @@ pacman -S swaks --needed --noconfirm --overwrite '*'
 # 暴力破解工具
 pacman -S hydra hashcat fcrackzip --needed --noconfirm --overwrite '*'
 # 制作ISO镜像
-# xorriso -as mkisofs -R -J -T -v --no-emul-boot --boot-load-size 4 --boot-info-table -V "CentOS" \
-# -c isolinux/boot.cat -b isolinux/isolinux.bin -o ./boot.iso ./centos7-cdrom/
 pacman -S xorriso mkisolinux --needed --noconfirm --overwrite '*'
 # github lfs
 pacman -S git-lfs --needed --noconfirm --overwrite '*'
@@ -286,12 +284,8 @@ pacman -S iperf mtr --needed --noconfirm --overwrite '*'
 # 抓包
 pacman -S iptraf-ng wireshark-qt wireshark-gtk ngrep --needed --noconfirm --overwrite '*'
 # 内网穿透
-# sshuttle --dns -vr root@114.215.181.234 192.168.0.0/16 --ssh-cmd 'ssh -i /home/x/workspace/juewei/k8s/cert/品牌中心密钥对.key'
 pacman -S frp localtunnel sshuttle --needed --noconfirm --overwrite '*'
 # 网络管理服务, 界面和插件
-# nmcli dev wifi list
-# nmcli device wifi connect "x" password "qwer1234"
-# nmcli connection import type openvpn file openvpn.ovpn
 pacman -S networkmanager network-manager-applet networkmanager-openvpn networkmanager-strongswan --needed --noconfirm --overwrite '*'
 
 ############### GUI  ###########
@@ -345,9 +339,6 @@ yay -S localsend-bin --needed --noconfirm --overwrite '*'
 # zenity拉起文件管理  trzsz(lrzsz zssh) croc中继服务器传输文件
 yay -S zenity trzsz croc --needed --noconfirm --overwrite '*'
 ############# 虚拟机相关 ##############
-# rdesktop -f 222.240.148.238:50010 -u administrator -p hngat2015 -a 32 -r clipboard:PRIMARYCLIPBOARD -r disk:h=/home/x
-# x0vncserver -display :0 -passwordfile ~/.vnc/passwd
-# xfreerdp /bpp:32 /gfx +aero +fonts /d:192.168.44.118 /u:x /p:x /v:192.168.44.118
-#         启动vnc服务端 win远程桌面客户端
 pacman -S tigervnc freerdp --needed --noconfirm --overwrite '*'
+pacman -S qemu-full edk2-ovmf --needed --noconfirm --overwrite '*'
 ```
