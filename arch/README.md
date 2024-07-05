@@ -86,8 +86,8 @@ set -o pipefail
 pacman -S bluez bluez-utils pulseaudio-bluetooth --needed --noconfirm --overwrite '*'
 systemctl start bluetooth.service
 systemctl enable bluetooth.service
-# 安装图形界面                     剪切板 窗口特效 合并X11配置   xorg-xev查看x的输入事件   setxkbmap设置键盘
-pacman -S xorg-server xorg-xinit xclip xsel picom xorg-xrdb  xorg-xinput light xorg-xev xorg-setxkbmap xdg-utils --needed --noconfirm --overwrite '*'
+# 安装图形界面                     剪切板 窗口特效 合并X11配置   xorg-xev查看x的输入事件   setxkbmap设置键盘     xlsclients查看xorg的客户端
+pacman -S xorg-server xorg-xinit xclip xsel picom xorg-xrdb  xorg-xinput light xorg-xev xorg-setxkbmap xdg-utils xorg-xlsclients --needed --noconfirm --overwrite '*'
 # awesome
 pacman -S awesome --needed --noconfirm --overwrite '*'
 
