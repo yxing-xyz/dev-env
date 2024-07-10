@@ -62,12 +62,10 @@ ARGUS_VERSION=3.5.11 /bin/bash -c "$(curl -s https://cms-agent-cn-hangzhou.oss-c
 #### init script
 ```bash
 tee <<EOF > /etc/local.d/aliyun-service.start
-/usr/local/share/aliyun-assist/*/aliyun-service -d
 /usr/local/cloudmonitor/bin/argusagent -d
-/usr/local/aegis/aegis_client/aegis_11_83/AliYunDun
-/usr/local/aegis/aegis_client/aegis_11_83/AliYunDunMonitor
+/usr/local/aegis/aegis_client/aegis_12_11/AliYunDun
+/usr/local/aegis/aegis_client/aegis_12_11/AliYunDunMonitor
 /usr/local/aegis/aegis_update/AliYunDunUpdate
-
 EOF
 chmod a+x /etc/local.d/aliyun-service.start
 ```

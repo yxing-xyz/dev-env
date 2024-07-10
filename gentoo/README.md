@@ -95,13 +95,8 @@ dracut --early-microcode --kver=6.1.12-gentoo
 # 方法二 二进制内核
 emerge --ask gentoo-kernel-bin
 
-# 安装UEFI grub
-grub-install --target=x86_64-efi --recheck --boot-directory=/boot/ --efi-directory=/boot/EFI --bootloader-id=grub
-# 安装BIOS gurb
-grub-install --target=i386-pc --recheck --boot-directory=/boot /dev/vda
-
-# 生成的grub.cfg必须放在上面一条命令安装的grub目录中
-grub-mkconfig -o /boot/grub/grub.cfg
+# grub引导
+略，见语雀
 ```
 
 # 6. 初始化systemd

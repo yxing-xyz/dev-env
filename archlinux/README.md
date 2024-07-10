@@ -259,7 +259,7 @@ yay -S cosmocc-bin --noconfirm --overwrite '*'
 # 硬件信息lshw lscpu lsblk lspci 模块 lsmod 模块信息modinfo dmi信息解码 smartmontools磁盘信息
 pacman -S lshw hardinfo dmidecode --needed smartmontools --noconfirm --overwrite '*'
 # 系统信息
-pacman -S neofetch --needed --noconfirm --overwrite '*'
+pacman -S neofetch device-mapper --needed --noconfirm --overwrite '*'
 # 实时查看网络、cpu、内存、磁盘等多功能实时监控, sysstat多单功能瞬时查看
 pacman -S nmon dstat sysstat --needed --noconfirm --overwrite '*'
 # 资源监控
