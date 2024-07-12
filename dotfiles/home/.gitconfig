@@ -24,7 +24,9 @@ no-assume-unchanged = update-index --no-assume-unchanged
 untracked-files = "!f() { git ls-files -v | grep '^[a-z]'; }; f"
 show-exclude = "!f() { cat \"$(git rev-parse --git-dir)/info/exclude\"; }; f"
 archive-dir = "!f() { cd ${GIT_PREFIX:-.}; mkdir -p $3; git archive --format=tar $1 $2 | tar -x -C $3; }; f"
-
+branch-diverged = "!f() { git cherry $1 $2 | grep '-';  }; f"
+keep-latest-commit = "!f() { git fetch --depth 1 origin main; }; f"
+empty-commit = "!f() { git commit --allow-empty -m 'empty'; }; f"
 [diff]
 external = difft --display inline
 #[http "https://github.com"]
