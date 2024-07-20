@@ -54,7 +54,7 @@ pacman -S yay bash expect git svn aria2 vim neovim emacs lsof \
 
 # yay -S trzsz --needed --noconfirm --overwrite '*'
 # yay -S bear-git --needed --noconfirm --overwrite '*'
-# yay -S plazydocker --needed --noconfirm --overwrite '*'
+# yay -S lazydocker --needed --noconfirm --overwrite '*'
 # yay -S superfile-bin --needed --noconfirm --overwrite '*'
 curl -sSL https://raw.githubusercontent.com/version-fox/vfox/main/install.sh | bash
 vfox add nodejs/nodejs

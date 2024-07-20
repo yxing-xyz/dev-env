@@ -75,7 +75,8 @@ emerge -u krita gimp mypaint
 #ln -s /lib/systemd/system/wpa_supplicant@.service wpa_supplicant@wlan0.service
 
 localectl set-keymap us
-localectl set-locale LANG=zh_CN.utf8
+localectl set-locale LANG=en_US.utf8
+timedatectl set-timezone Asia/Shanghai
 
 ## 调整声卡顺序, lspci -nn | grep -i audio, 修改后面两个ID
 tee >/etc/modprobe.d/alsa-base.conf <<EOF
