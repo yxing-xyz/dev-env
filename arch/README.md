@@ -4,10 +4,8 @@
 pacstrap -i /mnt base base-devel devtools linux linux-firmware linux-headers grub networkmanager dhcpcd vim net-tools squashfs-tools
 # 保存新系统分区表到/mnt/etc/fstab
 genfstab -U -p /mnt >> /mnt/etc/fstab
-# arch-chroot切换
-arch-chroot /mnt /bin/bash
 # amdgpu驱动
-pacman -S xf86-video-amdgpu --needed --noconfirm --overwrite '*'
+arch-chroot /mnt /bin/bash -c "pacman -S xf86-video-amdgpu --needed --noconfirm --overwrite '*'"
 ```
 
 # pacman

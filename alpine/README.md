@@ -16,9 +16,16 @@ apk upgrade --available
 
 
 # 安装
-见url仓库自动构建alpine.qcow2脚本
+见packer目录
 
 ## aliyun
+### 支持shutdown命令,阿里云控制台重启ECS
+tee > /sbin/shutdown <<EOF
+#!/bin/sh
+/sbin/poweroff
+EOF
+sudo chmod 4777 /sbin/shutdown
+
 ### nvme
 编辑`etc/mkinitfs/mkinitfs.conf`
 

@@ -1,0 +1,38 @@
+name: arch-packer
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "arch/packer/**"
+      - ".github/workflows/arch-packer.yaml"
+  schedule:
+    - cron: "0 0 1 * *"
+env:
+  PRODUCT_VERSION: "latest"
+jobs:
+  x86_64:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Init
+        run: |
+          sudo apt-get install -y qemu-system-x86 qemu-system-arm qemu-efi-aarch64
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup `packer`
+        uses: hashicorp/setup-packer@main
+        id: setup
+        with:
+          version: ${{ env.PRODUCT_VERSION }}
+      - name: Run `packer`
+        run: |
+          cd ./arch/packer
+          ./run.sh
+      - name: release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd ./arch/packer
+          gh release upload static arch.qcow2 --clobber

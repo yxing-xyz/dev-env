@@ -1,0 +1,55 @@
+name: url
+
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "url/url.sh"
+  schedule:
+    - cron: "0 0 1 * *"
+  workflow_dispatch:
+
+permissions: write-all
+jobs:
+  # create_release:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: checkout
+  #       uses: actions/checkout@v4
+  #       with:
+  #         lfs: true
+  #     - name: release
+  #       env:
+  #         GH_TOKEN: ${{ github.token }}
+  #       run: |
+  #         gh release delete v0.0.1 -y || true
+  #         gh release create v0.0.1 ./static/* --latest
+  create_url:
+#    needs: [create_release]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: szenius/set-timezone@v2.0
+        with:
+          timezoneLinux: "Asia/Shanghai"
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Git
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+      - name: commit and push
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          bash url/url.sh
+          mkdir -p build && cd build
+          rm -rf ./* || true
+          rm -rf ./.* || true
+          mv ../*.txt .
+          git init --initial-branch build
+          # git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/yxing-xyz/scripts.git
+          git add -A
+          git commit -m 'github action'
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/yxing-xyz/scripts.git build:build -u -f

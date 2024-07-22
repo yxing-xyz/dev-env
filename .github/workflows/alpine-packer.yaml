@@ -1,0 +1,64 @@
+name: alpine-packer
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "alpine/packer/**"
+      - ".github/workflows/alpine-packer.yaml"
+  schedule:
+    - cron: "0 0 1 * *"
+env:
+  PRODUCT_VERSION: "latest"
+jobs:
+  x86_64:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Init
+        run: |
+          sudo apt-get install -y qemu-system-x86 qemu-system-arm qemu-efi-aarch64
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup `packer`
+        uses: hashicorp/setup-packer@main
+        id: setup
+        with:
+          version: ${{ env.PRODUCT_VERSION }}
+      - name: Run `packer`
+        run: |
+          cd ./alpine/packer
+          ./build.sh x86_64
+      - name: release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd ./alpine/packer
+          gh release upload static alpine-x86_64.qcow2 --clobber
+
+  # aarch64:
+  #   runs-on: [ubuntu-latest, arm64]
+  #   steps:
+  #     - name: Init
+  #       run: |
+  #         sudo apt-get install qemu-system-x86 qemu-system-arm
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+  #     - name: Setup `packer`
+  #       uses: hashicorp/setup-packer@main
+  #       id: setup
+  #       with:
+  #         version: ${{ env.PRODUCT_VERSION }}
+  #     - name: Run `packer`
+  #       env:
+  #         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #       run: |
+  #         cd ./alpine/packer
+  #         ./build.sh aarch64
+  #     - name: release
+  #       run: |
+  #         cd ./alpine/packer
+  #         gh release upload static alpine-aarch64.qcow2 --clobber

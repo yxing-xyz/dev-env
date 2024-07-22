@@ -1,11 +1,12 @@
-name: alpine
+name: arch
 on:
   push:
     branches:
       - main
     paths:
-      - "rootfs.Dockerfile"
-      - "alpine/**"
+      - ".github/workflows/arch.yaml"
+      - "arch/docker/rootfs.Dockerfile"
+      - "arch/docker/rootfs.sh"
   schedule:
     - cron: "0 0 1 * *"
 env:
@@ -31,16 +32,21 @@ jobs:
           password: ${{ secrets.PASSWORD }}
       - name: Generate Tag List
         run: |
-          sed -i -e 's|${IMAGE}|alpine|' ./rootfs.Dockerfile
           docker system prune -af
           echo "TAGS<<EOF" >> $GITHUB_ENV
-          echo ${{ secrets.REGISTRY }}/yxing-xyz/linux:alpine >> $GITHUB_ENV
+          echo  ${{ secrets.REGISTRY }}/yxing-xyz/linux:arch >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
       - name: Build and Push
         uses: docker/build-push-action@v5
         with:
-          platforms: linux/amd64,linux/arm64/v8
+          platforms: linux/arm64
           push: true
-          file: "./rootfs.Dockerfile"
+          file: ./arch/docker/rootfs.Dockerfile
+          context: ./arch/docker
           tags: ${{ env.TAGS }}
-          context: ./alpine
+      # - name: Setup Debug Session
+      #   if: ${{ failure() }}
+      #   uses: mxschmitt/action-tmate@v3
+      #   timeout-minutes: 600
+      #   with:
+      #     detached: true
