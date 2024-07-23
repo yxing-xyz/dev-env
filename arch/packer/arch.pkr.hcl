@@ -95,6 +95,11 @@ build {
   sources = ["source.qemu.example"]
   provisioner "shell" {
     script       = "install.sh"
+    pause_after  = "5m"
+    timeout      = "1h10m1s"
+  }
+  provisioner "shell" {
+    script       = "init.sh"
     timeout      = "1h10m1s"
   }
 }
