@@ -16,7 +16,6 @@ hide-dirty = 1
 [alias]
 dlog = "-c diff.external='difft --display inline' log -p --ext-diff"
 dshow = "-c diff.external='difft --display inline' show HEAD --ext-diff"
-
 x-log = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --stat
 remote-recent-commits = "!f() { git branch -r | grep -v HEAD | while read b; do git log --color --format=\"%ci _%C(magenta)%cr %C(bold cyan)$b%Creset %s %C(bold blue)<%an>%Creset\" $b | head -n 1; done | sort -r | cut -d_ -f2- | sed 's;origin/;;g' | head -50; }; f"
 assume-unchanged = update-index --assume-unchanged
@@ -27,6 +26,8 @@ archive-dir = "!f() { cd ${GIT_PREFIX:-.}; mkdir -p $3; git archive --format=tar
 branch-diverged = "!f() { git cherry $1 $2 | grep '-';  }; f"
 keep-latest-commit = "!f() { git fetch --depth 1 origin main; }; f"
 empty-commit = "!f() { git commit --allow-empty -m 'empty'; }; f"
+rm-other-file = "!f() { git ls-files --others --exclude-standard | xargs rm; }; f"
+
 [diff]
 external = difft --display inline
 #[http "https://github.com"]
