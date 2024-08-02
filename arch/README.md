@@ -124,7 +124,7 @@ pacman -S zsh --needed --noconfirm --overwrite '*'
 # 终端复用
 pacman -S zellij tmux --needed --noconfirm --overwrite '*'
 # 终端文件管理
-pacman -S ranger vifm nnn mc --needed --noconfirm --overwrite '*' # 终端文件管理
+pacman -S yazi --needed --noconfirm --overwrite '*' # 终端文件管理
 pacman -S atool --needed --noconfirm --overwrite '*'              # 用于预览各种压缩文件和解压
 pacman -S highlight --needed --noconfirm --overwrite '*'          # 用于在预览代码，支持多色彩高亮显示代码
 pacman -S w3m --needed --noconfirm --overwrite '*'                # lynx, w3m 或 elinks：这三个东西都是命令行下的网页浏览器，都用于htm
@@ -288,7 +288,7 @@ pacman -S networkmanager network-manager-applet networkmanager-openvpn networkma
 
 ############### GUI  ###########
 # 文件管理
-yay -S sigma-file-manager  superfile-bin --needed --noconfirm --overwrite '*'
+yay -S sigma-file-manager --needed --noconfirm --overwrite '*'
 # 启动工具
 pacman -S rofi --needed --noconfirm --overwrite '*'
 # 截图
