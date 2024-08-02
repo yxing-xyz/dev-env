@@ -33,6 +33,8 @@ rm -rf ~/.ssh
 ln -snf $home_dir/.ssh ~/.ssh
 rm -rf ~/.cargo
 ln -snf $home_dir/.cargo ~/.cargo
+rm -rf ~/.emacs.d
+ln -snf $home_dir/.emacs.d ~/.emacs.d
 
 # .local/bin
 src_dir="${home_dir}/.local/bin"

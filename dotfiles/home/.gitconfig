@@ -2,6 +2,8 @@
 safecrlf = warn
 autocrlf = false
 fileMode = true
+	hooksPath = /Users/x/.git-hooks
+	quotepath = false
 [init]
 defaultBranch = main
 [pull]
