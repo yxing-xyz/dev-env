@@ -4,11 +4,19 @@
 apk list -I
 # 查看包内容
 apk info -L busybox
+# 查看包 依赖
+apk info -R zlib
+# 查看包被依赖
+apk info -r zlib
 # 递归强制删除
 apk del -rf tcpdump
+# 递归下载apk包
+apk fetch -R wget
+# 解压apk包
+tar -xvf wget.apk
 # 修复或者升级已经安装的包
 apk fix
-# 升级
+# 全面升级
 apk update
 apk add --upgrade apk-tools
 apk upgrade --available
