@@ -2,7 +2,7 @@
 set -e
 PACKAGE_GROUP='base base-devel'
 BOOTSTRAP_EXTRA_PACKAGES=""
-apk add arch-install-scripts pacman-makepkg curl zstd
+apk add arch-install-scripts pacman-makepkg curl zstd bash
 mkdir -p /etc/pacman.d
 if [[ $(arch) == *"x86_64"* ]]; then
     curl -L https://gitlab.archlinux.org/archlinux/packaging/packages/pacman/-/raw/main/pacman.conf -o /etc/pacman.conf
