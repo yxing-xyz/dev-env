@@ -47,3 +47,4 @@ githubReleaseURL v2fly v2ray-core
 githubReleaseURL v2rayA v2rayA
 githubReleaseURL localsend localsend
 githubReleaseURL FelisCatus SwitchyOmega
+githubReleaseURL wagoodman dive
