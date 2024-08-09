@@ -3,7 +3,7 @@
 
 ;; (setq debug-on-error t)
 
-(setq xxx-package-archives 'nju)
+(setq xxx-package-archives 'melpa)
 ;; (setq xxx-package-archives 'melpa)
 
 (setq xxx-full-name "shawnyyu")

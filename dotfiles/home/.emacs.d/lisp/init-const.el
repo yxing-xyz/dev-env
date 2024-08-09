@@ -9,7 +9,7 @@
 
 (defcustom xxx-completion-style 'childframe
   "Completion display style."
-  :group 'centaur
+  :group 'xxx
   :type '(choice (const :tag "Minibuffer" minibuffer)
                  (const :tag "Child Frame" childframe)))
 

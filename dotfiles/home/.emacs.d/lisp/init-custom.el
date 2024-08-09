@@ -98,20 +98,20 @@
     ("not"    . ?¬))
   "A list of symbol prettifications.
 Nil to use font supports ligatures."
-  :group 'centaur
+  :group 'xxx
   :type '(alist :key-type string :value-type (choice character sexp)))
 
 
 (defcustom xxx-lsp-format-on-save nil
   "Auto format buffers on save."
-  :group 'centaur
+  :group 'xxx
   :type 'boolean)
 
 (defcustom xxx-lsp-format-on-save-ignore-modes
   '(c-mode c++-mode python-mode markdown-mode)
   "The modes that don't auto format and organize imports while saving the buffers.
 `prog-mode' means ignoring all derived modes."
-  :group 'centaur
+  :group 'xxx
   :type '(repeat (symbol :tag "Major-Mode")))
 
 (defcustom xxx-lsp 'eglot
@@ -121,7 +121,7 @@ Nil to use font supports ligatures."
 `eglot': See https://github.com/joaotavora/eglot.
 tags: Use tags file instead of language server. See https://github.com/universal-ctags/citre.
 nil means disabled."
-  :group 'centaur
+  :group 'xxx
   :type '(choice (const :tag "LSP Mode" lsp-mode)
                  (const :tag "Eglot" eglot)
                  (const :tag "Disable" nil)))
