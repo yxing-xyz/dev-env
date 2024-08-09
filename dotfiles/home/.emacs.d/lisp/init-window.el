@@ -178,13 +178,21 @@
                       (propertize " POP " 'face face))))))
   :config
   (with-no-warnings
-    (defun popper-close-window-hach (&rest _)
+    (defun my-popper-fit-window-height (win)
+      "Determine the height of popup window WIN by fitting it to the buffer's content."
+      (fit-window-to-buffer
+       win
+       (floor (frame-height) 3)
+       (floor (frame-height) 3)))
+    (setq popper-window-height #'my-popper-fit-window-height)
+
+    (defun popper-close-window-hack (&rest _)
       "Close popper window via `C-g'."
       ;; `C-g' can deactivate region
-      (when (and (call-interactively-p 'interactive)
-                 (not (region-active-p))
-                 popper-open-popup-alist)
-        (when-let ((window (caadr popper-open-popup-alist))
+      (when (and ;(called-interactively-p 'interactive)
+             (not (region-active-p))
+             popper-open-popup-alist)
+        (when-let ((window (caar popper-open-popup-alist))
                    (buffer (cdar popper-open-popup-alist)))
           (when (and (with-current-buffer buffer
                        (not (derived-mode-p 'eshell-mode
@@ -193,7 +201,6 @@
                                             'vterm-mode)))
                      (window-live-p window))
             (delete-window window)))))
-
     (advice-add #'keyboard-quit :before #'popper-close-window-hack)))
 
 (provide 'init-window)
