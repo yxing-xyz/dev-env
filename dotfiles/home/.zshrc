@@ -21,7 +21,8 @@ export FZF_CTRL_T_COMMAND="fd --follow --exclude ".git" 2> /dev/null"
 
 # emacs
 export EDITOR='emacsclient -t'
-
+export RUSTUP_UPDATE_ROOT=https://mirrors.aliyun.com/rustup/rustup
+export RUSTUP_DIST_SERVER=https://mirrors.aliyun.com/rustup
 # PATH
 case ":${PATH}:" in
 *:"$HOME/.cargo/bin":*) ;;
