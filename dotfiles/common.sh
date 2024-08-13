@@ -53,3 +53,10 @@ path=".local/share/zinit"
 mkdir -p ~/${path} || true
 rm -rf ~/${path}/zinit.git
 ln -snf "${home_dir}/$path/zinit.git" ~/.local/share/zinit/zinit.git
+
+# ssh
+echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILlwrFn+rOCW3Gil8d/bL46cPF6WH6i539HXW9dVseYf \
+yxing.xyz@gmail.com" >> ~/.ssh/authorized_keys
+echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILlwrFn+rOCW3Gil8d/bL46cPF6WH6i539HXW9dVseYf \
+yxing.xyz@gmail.com" > ~/.ssh/id_ed25519.pub
+chmod 600 ~/.ssh/*

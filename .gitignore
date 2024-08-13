@@ -1,10 +1,7 @@
-gentoo.qcow2
-install-arm64-minimal-*.iso
-stage3-*.tar.xz
-linux.qcow2
-bak
-tmp
-dotfiles/home/.ssh/id_ed25519
 dotfiles/home/.git-credentials
 dotfiles/home/.config/go/telemetry/local
-dotfiles/home/.ssh/id_rsa
+dotfiles/home/.cargo/.global-cache
+dotfiles/home/.cargo/.package-cache-mutate
+dotfiles/home/.ssh/id_ed25519
+dotfiles/home/.ssh/authorized_keys
+dotfiles/home/.ssh/id_ed25519.pub
