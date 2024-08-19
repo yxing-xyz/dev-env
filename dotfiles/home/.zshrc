@@ -28,12 +28,11 @@ case ":${PATH}:" in
 *:"$HOME/.cargo/bin":*) ;;
 *)
     if [[ "${OSTYPE}" == darwin* ]]; then
+	export HOMEBREW_BREW_GIT_REMOTE="https://mirror.nju.edu.cn/git/homebrew/brew.git"
+	export HOMEBREW_CORE_GIT_REMOTE="https://mirror.nju.edu.cn/git/homebrew/homebrew-core.git"
+	export HOMEBREW_INSTALL_FROM_API=1
+	export HOMEBREW_BREW_GIT_REMOTE="https://mirror.nju.edu.cn/git/homebrew/brew.git"
         eval "$(/opt/homebrew/bin/brew shellenv)"
-        export HOMEBREW_INSTALL_FROM_API=1
-        export HOMEBREW_API_DOMAIN="https://mirrors.aliyun.com/homebrew-bottles/api"
-        export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.aliyun.com/homebrew/brew.git"
-        export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.aliyun.com/homebrew/homebrew-core.git"
-        export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.aliyun.com/homebrew/homebrew-bottles"
         export DOCKER_HOST=unix:///Users/x/.docker/run/docker.sock
     fi
     export PATH=$HOME/.local/bin:$PATH
