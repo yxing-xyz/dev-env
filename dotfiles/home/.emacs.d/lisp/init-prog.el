@@ -11,15 +11,14 @@
   ;;  :hook (prog-mode . prettify-symbols-mode)
   :init
   (progn
-    (setq-default prettify-symbols-alist xxx-prettify-symbols-alist)
+    (setq-default prettify-symbols-alist xx-prettify-symbols-alist)
     (setq prettify-symbols-unprettify-at-point 'right-edge)))
 
 
 ;; Tree-sitter support
-(when (xxx-treesit-available-p)
-  (use-package treesit-auto
-    :hook (after-init . global-treesit-auto-mode)
-    :init (setq treesit-auto-install 'prompt)))
+(use-package treesit-auto
+  :hook (after-init . global-treesit-auto-mode)
+  :init (setq treesit-auto-install 'prompt))
 
 (use-package eldoc
   :ensure t
@@ -153,12 +152,6 @@ Install the doc if it's not installed."
 (use-package nxml-mode
   :ensure nil
   :mode (("\\.xaml$" . xml-mode)))
-
-;; Fish shell
-(use-package fish-mode
-  :hook (fish-mode . (lambda ()
-                       (add-hook 'before-save-hook
-                                 #'fish_indent-before-save))))
 
 (provide 'init-prog)
 

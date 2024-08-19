@@ -57,7 +57,7 @@
     "Misc"
     (("<left>" winner-undo "winner undo")
      ("<right>" winner-redo "winner redo")
-     ("T" xxx-load-theme "theme"))))
+     ("T" xx-load-theme "theme"))))
   :custom-face
   (aw-leading-char-face ((t (:inherit font-lock-keyword-face :foreground unspecified :bold t :height 3.0))))
   (aw-minibuffer-leading-char-face ((t (:inherit font-lock-keyword-face :bold t :height 1.0))))

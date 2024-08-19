@@ -3,14 +3,14 @@
 
 ;; (setq debug-on-error t)
 
-(setq xxx-package-archives 'nju)
-;; (setq xxx-package-archives 'melpa)
+(setq xx-package-archives 'nju)
+;; (setq xx-package-archives 'melpa)
 
-(setq xxx-full-name "shawnyyu")
-(setq xxx-mail-address "yxing.xyz@gmail.com")
-(setq xxx-server nil)
-(setq xxx-doom-theme 'doom-dracula)
-(setq xxx-tree-sitter t)
+(setq xx-full-name "shawnyyu")
+(setq xx-mail-address "yxing.xyz@gmail.com")
+(setq xx-server nil)
+(setq xx-doom-theme 'doom-dracula)
+(setq xx-tree-sitter t)
 
 (setq youdao-dictionary-app-key "677588b0ec9f5136"
       youdao-dictionary-secret-key "2zhbzSXPCFMi7Au1br09CiK5KKtlKBoV")
@@ -41,7 +41,7 @@
  '(ivy-minibuffer-match-face-2 ((t (:inherit ivy-minibuffer-match-face-1 :foreground "green" :weight semi-bold))))
  '(region ((t (:extend t :background "black")))))
 
-(defun xxx-setup-fonts ()
+(defun xx-setup-fonts ()
   "Setup fonts."
   (when (display-graphic-p)
     (cond (sys/macp (progn
@@ -81,9 +81,9 @@
                                  ))))
           )))
 
-(xxx-setup-fonts)
-(add-hook 'window-setup-hook #'xxx-setup-fonts)
-(add-hook 'server-after-make-frame-hook #'xxx-setup-fonts)
+(xx-setup-fonts)
+(add-hook 'window-setup-hook #'xx-setup-fonts)
+(add-hook 'server-after-make-frame-hook #'xx-setup-fonts)
 
 ;;你好aaa你ac
 ;;abcdaaaabad

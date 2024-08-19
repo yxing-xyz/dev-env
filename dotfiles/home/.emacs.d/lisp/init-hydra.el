@@ -73,7 +73,7 @@
         ("M" diff-hl-margin-mode "margin gutter" :toggle t)
         ("D" diff-hl-dired-mode "dired gutter" :toggle t))
        "Theme"
-       (("t o" xxx-load-theme
+       (("t o" xx-load-theme
          "others"
          :toggle t
          :exit nil))))))

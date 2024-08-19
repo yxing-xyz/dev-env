@@ -11,11 +11,10 @@
   :init (setq-default c-basic-offset 4))
 
 
-(when (xxx-treesit-available-p)
-  (use-package c-ts-mode
+
+(use-package c-ts-mode
   :ensure nil
   :init (setq c-ts-mode-indent-offset 4))
-  )
 
 (provide 'init-c)
 

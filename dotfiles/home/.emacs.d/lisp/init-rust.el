@@ -13,9 +13,8 @@
 
 \\{rust-mode-map}")
 
-  (when (xxx-treesit-available-p)
-    (setq auto-mode-alist (delete '("\\.rs\\'" . rust-mode) auto-mode-alist))
-    (setq auto-mode-alist (delete '("\\.rs\\'" . rust-ts-mode) auto-mode-alist))))
+  (setq auto-mode-alist (delete '("\\.rs\\'" . rust-mode) auto-mode-alist))
+  (setq auto-mode-alist (delete '("\\.rs\\'" . rust-ts-mode) auto-mode-alist)))
 
 
 (use-package ron-mode

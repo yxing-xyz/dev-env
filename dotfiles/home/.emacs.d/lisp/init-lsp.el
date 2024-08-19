@@ -27,6 +27,10 @@
       :autoload eglot-booster-mode
       :init (eglot-booster-mode 1))))
 
+(defun xx-eglot-organize-imports () (interactive)
+	   (eglot-code-actions nil nil "source.organizeImports" t))
+(add-hook 'before-save-hook 'xx-eglot-organize-imports)
+(add-hook 'before-save-hook 'eglot-format-buffer)
 
 
 (provide 'init-lsp)

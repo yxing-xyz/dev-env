@@ -1,15 +1,15 @@
 ;;; -*- lexical-binding: t -*-
 
 
-(defconst xxx-custom-file
+(defconst xx-custom-file
   (expand-file-name "custom.el" user-emacs-directory))
 
-(defconst xxx-custom-post-file
+(defconst xx-custom-post-file
   (expand-file-name "custom-post.el" user-emacs-directory))
 
-(defcustom xxx-completion-style 'childframe
+(defcustom xx-completion-style 'minibuffer
   "Completion display style."
-  :group 'xxx
+  :group 'xx
   :type '(choice (const :tag "Minibuffer" minibuffer)
                  (const :tag "Child Frame" childframe)))
 

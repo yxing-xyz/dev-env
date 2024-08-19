@@ -11,7 +11,7 @@
 
 (defun load-custom-post-file ()
   "load custom-post file"
-  (and (file-exists-p xxx-custom-post-file) (load xxx-custom-post-file)))
+  (and (file-exists-p xx-custom-post-file) (load xx-custom-post-file)))
 (add-hook 'after-init-hook #'load-custom-post-file)
 
 ;; HACK: DO NOT save `package-selected-packages' to `custom-file'
@@ -25,7 +25,7 @@
 (advice-add 'package--save-selected-packages :override #'my-package--save-selected-packages)
 
 ;; Set ELPA packages
-(set-package-archives xxx-package-archives nil nil t)
+(set-package-archives xx-package-archives nil nil t)
 
 ;; Initialize packages
 (unless (bound-and-true-p package--initialized) ; To avoid warnings in 27

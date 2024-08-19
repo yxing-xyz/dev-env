@@ -8,8 +8,8 @@
 (use-package compat :demand t)
 
 
-(setq user-full-name xxx-full-name
-      user-mail-address xxx-mail-address)
+(setq user-full-name xx-full-name
+      user-mail-address xx-mail-address)
 
 
 
@@ -69,7 +69,7 @@
 
 ;; Start server
 (use-package server
-  :if xxx-server
+  :if xx-server
   :hook (after-init . server-mode))
 
 (use-package desktop

@@ -281,13 +281,14 @@ targets."
   (corfu-auto t)
   (corfu-auto-prefix 2)
   (corfu-preview-current nil)
-  (corfu-auto-delay 0.2)
-  (corfu-popupinfo-delay '(0.4 . 0.2))
+  (corfu-auto-delay 0.1)
+  (corfu-popupinfo-delay '(0.1))
   :custom-face
   (corfu-border ((t (:inherit region :background unspecified))))
   :bind ("M-/" . completion-at-point)
   :hook ((after-init . global-corfu-mode)
          (global-corfu-mode . corfu-popupinfo-mode)))
+
 
 (unless (display-graphic-p)
   (use-package corfu-terminal

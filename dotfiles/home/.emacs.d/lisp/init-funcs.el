@@ -144,7 +144,7 @@ Same as '`replace-string' `C-q' `C-m' `RET' `RET''."
   "Reload Emacs configurations."
   (interactive)
   (load user-init-file))
-(defalias 'xxx-reload-init-file #'reload-init-file)
+(defalias 'xx-reload-init-file #'reload-init-file)
 
 
 ;; Misc
@@ -176,14 +176,7 @@ Same as '`replace-string' `C-q' `C-m' `RET' `RET''."
     (if (fboundp 'native-compile-async)
         (native-compile-async dir t))))
 
-(defun xxx-treesit-available-p ()
-  "Check whether tree-sitter is available.
-Native tree-sitter is introduced since 29.1."
-  (and xxx-tree-sitter
-       (fboundp 'treesit-available-p)
-       (treesit-available-p)))
-
-(defun xxx-set-variable (variable value &optional no-save)
+(defun xx-set-variable (variable value &optional no-save)
   "Set the VARIABLE to VALUE, and return VALUE.
 Save to option `custom-file' if NO-SAVE is nil."
   (customize-set-variable variable value)
@@ -212,15 +205,15 @@ Save to option `custom-file' if NO-SAVE is nil."
    (list
     (intern
      (completing-read "Select package archives: "
-                      (mapcar #'car xxx-package-archives-alist)))))
+                      (mapcar #'car xx-package-archives-alist)))))
   ;; Set option
-  (xxx-set-variable 'xxx-package-archives archives no-save)
+  (xx-set-variable 'xx-package-archives archives no-save)
 
   ;; Refresh if need
   (and refresh (package-refresh-contents async))
 
   (message "Set package archives to `%s'" archives))
-(defalias 'xxx-set-package-archives #'set-package-archives)
+(defalias 'xx-set-package-archives #'set-package-archives)
 
 (defun set-from-minibuffer (sym)
   "Set SYM value from minibuffer."
@@ -277,25 +270,25 @@ This issue has been addressed in 28."
   (message "Updating packages...")
   (package-upgrade-all)
   (message "Updating packages...done"))
-(defalias 'xxx-update-packages #'update-packages)
+(defalias 'xx-update-packages #'update-packages)
 
 (defun update-config-and-packages()
   "Update confgiurations and packages."
   (interactive)
   (update-config)
   (update-packages))
-(defalias 'xxx-update #'update-config-and-packages)
+(defalias 'xx-update #'update-config-and-packages)
 
 
 (defun update-all()
   "Update dotfiles, org files, configurations and packages to the latest."
   (interactive)
   (update-config-and-packages))
-(defalias 'xxx-update-all #'update-all)
+(defalias 'xx-update-all #'update-all)
 
 
 ;; Fonts
-(defun xxx-install-fonts ()
+(defun xx-install-fonts ()
   "Install necessary fonts."
   (interactive)
   (nerd-icons-install-fonts))
@@ -307,15 +300,15 @@ This issue has been addressed in 28."
   "Show HTTP/HTTPS proxy."
   (interactive)
   (if url-proxy-services
-      (message "Current HTTP proxy is `%s'" xxx-proxy)
+      (message "Current HTTP proxy is `%s'" xx-proxy)
     (message "No HTTP proxy")))
 
 (defun enable-http-proxy ()
   "Enable HTTP/HTTPS proxy."
   (interactive)
   (setq url-proxy-services
-        `(("http" . ,xxx-proxy)
-          ("https" . ,xxx-proxy)
+        `(("http" . ,xx-proxy)
+          ("https" . ,xx-proxy)
           ("no_proxy" . "^\\(localhost\\|192.168.*\\|10.*\\)")))
   (show-http-proxy))
 
@@ -346,11 +339,11 @@ This issue has been addressed in 28."
   (require 'socks)
   (setq url-gateway-method 'socks
         socks-noproxy '("localhost"))
-  (let* ((proxy (split-string xxx-socks-proxy ":"))
+  (let* ((proxy (split-string xx-socks-proxy ":"))
          (host (car proxy))
          (port (string-to-number (cadr proxy))))
     (setq socks-server `("Default server" ,host ,port 5)))
-  (setenv "all_proxy" (concat "socks5://" xxx-socks-proxy))
+  (setenv "all_proxy" (concat "socks5://" xx-socks-proxy))
   (show-socks-proxy))
 
 (defun dsiable-socks-proxy ()
@@ -396,7 +389,7 @@ This issue has been addressed in 28."
   (run-hooks 'after-load-theme-hook))
 (advice-add #'load-theme :after #'run-after-load-theme-hook)
 
-(defun xxx-load-theme (theme &optional no-save)
+(defun xx-load-theme (theme &optional no-save)
   "Load color THEME. Save to `custom-file' if NO-SAVE is nil."
   (interactive
    (list
@@ -405,7 +398,7 @@ This issue has been addressed in 28."
                       (mapcar #'symbol-name (custom-available-themes))
                       ))))
   (load-theme theme t)
-  (xxx-set-variable 'xxx-doom-theme theme no-save))
+  (xx-set-variable 'xx-doom-theme theme no-save))
 
 
 (defun icons-displayable-p ()

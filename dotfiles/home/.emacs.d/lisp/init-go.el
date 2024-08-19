@@ -72,9 +72,9 @@
            ("C-c t c" . go-test-current-coverage)
            ("C-c t x" . go-run))))
 
-(when (xxx-treesit-available-p)
-  (use-package go-ts-mode
-    :init (setq go-ts-mode-indent-offset 4)))
+
+(use-package go-ts-mode
+  :init (setq go-ts-mode-indent-offset 4))
 
 (provide 'init-go)
 

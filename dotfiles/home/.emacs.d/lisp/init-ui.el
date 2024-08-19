@@ -22,8 +22,8 @@
   (use-package solaire-mode
     :hook (after-load-theme . solaire-global-mode))
   (use-package doom-themes
-    :bind ("C-c T" . xxx-load-theme)
-    :init (xxx-load-theme xxx-doom-theme t)
+    :bind ("C-c T" . xx-load-theme)
+    :init (xx-load-theme xx-doom-theme t)
     )
   :config
   ;; Enable flashing mode-line on errors
