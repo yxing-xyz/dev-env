@@ -41,19 +41,19 @@ builtin_box_drawing = true
 size = 14
 
 [font.bold]
-family = "CodeNewRoman Nerd Font"
+family = "CodeNewRoman Nerd Font Propo"
 style = "Bold"
 
 [font.bold_italic]
-family = "CodeNewRoman Nerd Font"
+family = "CodeNewRoman Nerd Font Propo"
 style = "Bold Italic"
 
 [font.italic]
-family = "CodeNewRoman Nerd Font"
+family = "CodeNewRoman Nerd Font Propo"
 style = "Italic"
 
 [font.normal]
-family = "CodeNewRoman Nerd Font"
+family = "CodeNewRoman Nerd Font Propo"
 style = "Regular"
 
 [[keyboard.bindings]]

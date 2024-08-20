@@ -5,15 +5,12 @@
 
 (setq xx-package-archives 'nju)
 ;; (setq xx-package-archives 'melpa)
-
 (setq xx-full-name "shawnyyu")
 (setq xx-mail-address "yxing.xyz@gmail.com")
 (setq xx-server nil)
 (setq xx-doom-theme 'doom-dracula)
 (setq xx-tree-sitter t)
 
-(setq youdao-dictionary-app-key "677588b0ec9f5136"
-      youdao-dictionary-secret-key "2zhbzSXPCFMi7Au1br09CiK5KKtlKBoV")
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -32,25 +29,17 @@
  '(scroll-bar-mode nil)
  '(vc-follow-symlinks t)
  '(warning-suppress-log-types '((magit-todos))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ivy-current-match ((t (:extend t :background "black"))))
- '(ivy-minibuffer-match-face-2 ((t (:inherit ivy-minibuffer-match-face-1 :foreground "green" :weight semi-bold))))
- '(region ((t (:extend t :background "black")))))
 
 (defun xx-setup-fonts ()
   "Setup fonts."
   (when (display-graphic-p)
     (cond (sys/macp (progn
                       ;;
-                      (setq nerd-icons-font-family "CodeNewRoman Nerd Font Mono")
+                      (setq nerd-icons-font-family "CodeNewRoman Nerd Font Propo")
                       ;;(setq nerd-icons-font-family "Symbols Nerd Font Mono")
                       ;; (setq nerd-icons-scale-factor 0.5)
                       ;; Set default font
-                      (cl-loop for font in '("CodeNewRoman Nerd Font")
+                      (cl-loop for font in '("CodeNewRoman Nerd Font Propo")
                                when (font-installed-p font)
                                return (set-face-attribute 'default nil
                                                           :family font
@@ -62,24 +51,24 @@
                                return (progn
                                         (setq face-font-rescale-alist `((,font . 1.15)))
                                         (set-fontset-font t 'han (font-spec :family font))
-                                        ))))
-          (t (progn
-               (setq nerd-icons-font-family "CodeNewRoman Nerd Font")
-               ;; Set default font
-               (cl-loop for font in '("CodeNewRoman Nerd Font")
-                        when (font-installed-p font)
-                        return (set-face-attribute 'default nil
-                                                   :family font
-                                                   :weight 'regular
-                                                   :height 120))
-               ;; Specify font for Chinese characters
-               (cl-loop for font in '("WenQuanYi Micro Hei")
-                        when (font-installed-p font)
-                        return (progn
-                                 (setq face-font-rescale-alist `((,font . 1.18)))
-                                 (set-fontset-font t 'han (font-spec :family font))
-                                 ))))
-          )))
+                                        ))
+                      ))
+          (sys/linuxp (progn
+                        (setq nerd-icons-font-family "CodeNewRoman Nerd Font")
+                        ;; Set default font
+                        (cl-loop for font in '("CodeNewRoman Nerd Font")
+                                 when (font-installed-p font)
+                                 return (set-face-attribute 'default nil
+                                                            :family font
+                                                            :weight 'regular
+                                                            :height 120))
+                        ;; Specify font for Chinese characters
+                        (cl-loop for font in '("WenQuanYi Micro Hei")
+                                 when (font-installed-p font)
+                                 return (progn
+                                          (setq face-font-rescale-alist `((,font . 1.18)))
+                                          (set-fontset-font t 'han (font-spec :family font))
+                                          )))))))
 
 (xx-setup-fonts)
 (add-hook 'window-setup-hook #'xx-setup-fonts)
