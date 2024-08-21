@@ -12,6 +12,7 @@ export SAVEHIST=10000000
 export LANG=zh_CN.UTF-8
 # export LC_ALL=C
 export LC_CTYPE=zh_CN.UTF-8
+export COLORTERM=truecolor
 
 export FZF_DEFAULT_OPTS='--no-mouse --height 50% --reverse --multi --inline-info --preview "bat --style=numbers --color=always --line-range :500 {} 2> /dev/null"'
 # export FZF_DEFAULT_COMMAND='fd --hidden --follow --exclude ".git" 2> /dev/null'
