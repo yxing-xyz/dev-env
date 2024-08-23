@@ -67,13 +67,14 @@
                         (cl-loop for font in '("WenQuanYi Micro Hei Mono")
                                  when (font-installed-p font)
                                  return (progn
-                                          (setq face-font-rescale-alist `((,font . 1.4)))
+                                          (setq face-font-rescale-alist `((,font . 1.5)))
                                           (set-fontset-font t 'han (font-spec :family font))))
                         )))))
 
 (xx-setup-fonts)
 (add-hook 'window-setup-hook #'xx-setup-fonts)
 (add-hook 'server-after-make-frame-hook #'xx-setup-fonts)
+
 
 ;;你好aaa你ac
 ;;abcdaaaabad
