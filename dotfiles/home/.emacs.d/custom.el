@@ -55,21 +55,21 @@
                                         ))
                       ))
           (sys/linuxp (progn
-                        (setq nerd-icons-font-family "CodeNewRoman Nerd Font")
+                        (setq nerd-icons-font-family "CodeNewRoman Nerd Font Propo")
                         ;; Set default font
-                        (cl-loop for font in '("CodeNewRoman Nerd Font")
+                        (cl-loop for font in '("CodeNewRoman Nerd Font Propo")
                                  when (font-installed-p font)
                                  return (set-face-attribute 'default nil
                                                             :family font
                                                             :weight 'regular
-                                                            :height 120))
+                                                            :height 140))
                         ;; Specify font for Chinese characters
-                        (cl-loop for font in '("WenQuanYi Micro Hei")
+                        (cl-loop for font in '("WenQuanYi Micro Hei Mono")
                                  when (font-installed-p font)
                                  return (progn
-                                          (setq face-font-rescale-alist `((,font . 1.18)))
-                                          (set-fontset-font t 'han (font-spec :family font))
-                                          )))))))
+                                          (setq face-font-rescale-alist `((,font . 1.4)))
+                                          (set-fontset-font t 'han (font-spec :family font))))
+                        )))))
 
 (xx-setup-fonts)
 (add-hook 'window-setup-hook #'xx-setup-fonts)
