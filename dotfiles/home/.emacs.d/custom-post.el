@@ -19,5 +19,11 @@
 (add-hook 'prog-mode-hook (lambda () (progn
                                        (local-set-key (kbd "C-c @ `") 'hideshow-hydra/body)
                                        )))
+
+;; 设置环境变量
+(when sys/macp (progn
+                 (setq cargo-bin-path (format "%s/%s" (getenv "HOME") ".cargo/bin"))
+                 (add-to-list 'exec-path cargo-bin-path)
+                 (setenv "PATH" (format "%s:%s" (getenv "PATH") cargo-bin-path))))
 ;; 恢复会话
 (desktop-read)
