@@ -11,14 +11,12 @@
               which-key-lighter nil
               which-key-show-remaining-keys t)
   :config
-  (which-key-add-key-based-replacements "C-c !" "flycheck")
   (which-key-add-key-based-replacements "C-c &" "yasnippet")
   (which-key-add-key-based-replacements "C-c @" "hideshow")
   (which-key-add-key-based-replacements "C-c c" "consult")
   (which-key-add-key-based-replacements "C-c d" "dict")
   (which-key-add-key-based-replacements "C-c l" "link-hint")
   (which-key-add-key-based-replacements "C-c n" "org-roam")
-  (which-key-add-key-based-replacements "C-c p" "projectile")
   (which-key-add-key-based-replacements "C-c t" "hl-todo")
   (which-key-add-key-based-replacements "C-c C-z" "browse")
 
@@ -84,14 +82,10 @@
          ("c" . rg-dwim-current-dir)
          ("f" . rg-dwim-current-file)
          ("m" . rg-menu))
-  :init (setq rg-group-result t
-              rg-show-columns t)
+  :init (setq rg-show-columns t)
   :config
   (cl-pushnew '("tmpl" . "*.tmpl") rg-custom-type-aliases))
 
-
-(use-package calc
-  :defer t)
 
 (use-package casual-calc
   :ensure nil
