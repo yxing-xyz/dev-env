@@ -21,5 +21,4 @@
   :mode ("\\.ron" . ron-mode))
 
 (provide 'init-rust)
-
 ;;; init-rust.el ends here

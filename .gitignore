@@ -5,4 +5,10 @@ dotfiles/home/.cargo/.package-cache-mutate
 dotfiles/home/.ssh/id_ed25519
 dotfiles/home/.ssh/authorized_keys
 dotfiles/home/.ssh/id_ed25519.pub
-dotfiles/home/.config/fcitx5/conf/cached_layouts
+dotfiles/home/.config/lazygit/state.yml
+dotfiles/home/.cargo/registry
+dotfiles/home/.cargo/.package-cache
+dotfiles/home/.ssh/known_hosts
+dotfiles/home/.ssh/known_hosts.old
+dotfiles/home/.cargo/bin
+dotfiles/home/.cargo/env
