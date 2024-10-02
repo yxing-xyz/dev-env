@@ -12,3 +12,4 @@ dotfiles/home/.ssh/known_hosts
 dotfiles/home/.ssh/known_hosts.old
 dotfiles/home/.cargo/bin
 dotfiles/home/.cargo/env
+dotfiles/home/.config/fcitx5/conf/cached_layouts
