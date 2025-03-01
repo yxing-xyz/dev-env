@@ -1,0 +1,13 @@
+https://github.com/jesseduffield/lazydocker/releases/download/v0.24.1/checksums.txt
+https://github.com/jesseduffield/lazydocker/releases/download/v0.24.1/lazydocker_0.24.1_Darwin_arm64.tar.gz
+https://github.com/jesseduffield/lazydocker/releases/download/v0.24.1/lazydocker_0.24.1_Darwin_x86_64.tar.gz
+https://github.com/jesseduffield/lazydocker/releases/download/v0.24.1/lazydocker_0.24.1_Linux_arm64.tar.gz
+https://github.com/jesseduffield/lazydocker/releases/download/v0.24.1/lazydocker_0.24.1_Linux_armv6.tar.gz
+https://github.com/jesseduffield/lazydocker/releases/download/v0.24.1/lazydocker_0.24.1_Linux_armv7.tar.gz
+https://github.com/jesseduffield/lazydocker/releases/download/v0.24.1/lazydocker_0.24.1_Linux_x86.tar.gz
+https://github.com/jesseduffield/lazydocker/releases/download/v0.24.1/lazydocker_0.24.1_Linux_x86_64.tar.gz
+https://github.com/jesseduffield/lazydocker/releases/download/v0.24.1/lazydocker_0.24.1_Windows_arm64.zip
+https://github.com/jesseduffield/lazydocker/releases/download/v0.24.1/lazydocker_0.24.1_Windows_armv6.zip
+https://github.com/jesseduffield/lazydocker/releases/download/v0.24.1/lazydocker_0.24.1_Windows_armv7.zip
+https://github.com/jesseduffield/lazydocker/releases/download/v0.24.1/lazydocker_0.24.1_Windows_x86.zip
+https://github.com/jesseduffield/lazydocker/releases/download/v0.24.1/lazydocker_0.24.1_Windows_x86_64.zip

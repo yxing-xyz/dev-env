@@ -1,0 +1,11 @@
+https://github.com/wagoodman/dive/releases/download/v0.12.0/dive_0.12.0_checksums.txt
+https://github.com/wagoodman/dive/releases/download/v0.12.0/dive_0.12.0_darwin_amd64.tar.gz
+https://github.com/wagoodman/dive/releases/download/v0.12.0/dive_0.12.0_darwin_arm64.tar.gz
+https://github.com/wagoodman/dive/releases/download/v0.12.0/dive_0.12.0_linux_amd64.deb
+https://github.com/wagoodman/dive/releases/download/v0.12.0/dive_0.12.0_linux_amd64.rpm
+https://github.com/wagoodman/dive/releases/download/v0.12.0/dive_0.12.0_linux_amd64.tar.gz
+https://github.com/wagoodman/dive/releases/download/v0.12.0/dive_0.12.0_linux_arm64.deb
+https://github.com/wagoodman/dive/releases/download/v0.12.0/dive_0.12.0_linux_arm64.rpm
+https://github.com/wagoodman/dive/releases/download/v0.12.0/dive_0.12.0_linux_arm64.tar.gz
+https://github.com/wagoodman/dive/releases/download/v0.12.0/dive_0.12.0_windows_amd64.zip
+https://github.com/wagoodman/dive/releases/download/v0.12.0/dive_0.12.0_windows_arm64.zip

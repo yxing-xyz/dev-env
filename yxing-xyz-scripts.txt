@@ -1,0 +1,3 @@
+https://github.com/yxing-xyz/scripts/releases/download/static/alpine-x86_64.qcow2
+https://github.com/yxing-xyz/scripts/releases/download/static/arch.qcow2
+https://github.com/yxing-xyz/scripts/releases/download/static/userdata.7z
